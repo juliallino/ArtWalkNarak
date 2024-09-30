@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".MAExposicao">
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/Edicao"
+        android:id="@+id/sobreExposicaoTool"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         android:layout_width="match_parent"
@@ -20,6 +20,7 @@
             android:backgroundTint="@color/azuleclaro"
             android:src="@drawable/baseline_arrow_circle_left_24"
             ></ImageButton>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -31,6 +32,48 @@
            android:paddingLeft="15dp"
             ></TextView>
     </androidx.appcompat.widget.Toolbar>
+
+
+    <EditText
+        android:id="@+id/busca"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+
+        android:layout_below="@+id/sobreExposicaoTool"
+        android:layout_marginLeft="150dp"
+
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        android:background="#E2EEFF"
+        android:drawableRight="@drawable/baseline_search_24"
+        android:drawablePadding="10dp"
+
+        android:paddingLeft="15dp"
+        android:paddingTop="5dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="5dp"
+
+
+        android:text="Busque por exposição..."
+        android:textColor="@color/azulemedio"
+        android:textSize="16dp"
+
+        tools:ignore="TextContrastCheck"></EditText>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/sobreExposicaoRecyclerView"
+        android:layout_below="@+id/busca"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ></androidx.recyclerview.widget.RecyclerView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/obrasRecyclerView"
+        android:layout_below="@+id/sobreExposicaoRecyclerView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </androidx.recyclerview.widget.RecyclerView>
+
     <ImageButton
         android:id="@+id/addObra"
         android:layout_width="60dp"

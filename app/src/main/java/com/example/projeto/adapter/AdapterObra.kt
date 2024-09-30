@@ -13,10 +13,7 @@ import com.example.projeto.model.Obra
 class AdapterObra(private val context: Context, private val obras: MutableList<Obra>): RecyclerView.Adapter<AdapterObra.ObraViewHolder>() {
 
     //cria o item da lista
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): AdapterObra.ObraViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdapterObra.ObraViewHolder {
         val obras = LayoutInflater.from(context).inflate(R.layout.obras_view, parent, false)
         val holder = ObraViewHolder(obras)
         return holder

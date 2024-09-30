@@ -5,7 +5,6 @@
     android:gravity="center"
     >
 
-
     <ImageButton
         android:id="@+id/imagemObra"
         android:layout_width="60dp"

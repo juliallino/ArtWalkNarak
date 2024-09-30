@@ -9,7 +9,7 @@
     >
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/Edicao"
+        android:id="@+id/sobreExposicaoTool"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         android:layout_width="match_parent"
@@ -36,7 +36,7 @@
 
     <TextView
         android:id="@+id/nomeObra"
-        android:layout_below="@+id/Edicao"
+        android:layout_below="@+id/sobreExposicaoTool"
         android:text="Nome da Exposição:"
         android:textColor="@color/azulescuro"
         android:textStyle="bold"
