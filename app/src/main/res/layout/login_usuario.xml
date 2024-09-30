@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_login"
+    tools:context=".MALoginUsuario">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/logo"
+        android:src="@drawable/logounifor"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="120dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        >
+    </ImageView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/loginUserTitulo"
+        android:text="Faça seu login com\nsua conta google:"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/azulescuro"
+        android:gravity="center"
+        android:layout_below="@+id/logo"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        >
+    </TextView>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/google"
+        android:src="@drawable/google"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/loginUserTitulo"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:backgroundTint="#00ffffff"
+        >
+    </ImageButton>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cadastroUserTitulo"
+        android:text="Ou cadastre-se:"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/azulescuro"
+        android:gravity="center"
+        android:layout_below="@+id/google"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        >
+    </TextView>
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#00ffffff"
+        android:id="@+id/google2"
+        android:src="@drawable/google"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/cadastroUserTitulo"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        >
+    </ImageButton>
+
+    <Button
+        android:id="@+id/botaoDeLoginComoFuncionario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/google2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="140dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="#00ffffff"
+        android:padding="10dp"
+        android:text="Login como funcionário"
+        android:textColor="@color/azulescuro"
+        android:textSize="15dp"
+        android:textStyle="italic"></Button>
+
+</RelativeLayout>

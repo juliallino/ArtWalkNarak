@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MAExposicao">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/Edicao"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/azuleclaro">
+        <ImageButton
+            android:id="@+id/voltarParaTelaHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/azuleclaro"
+            android:src="@drawable/baseline_arrow_circle_left_24"
+            ></ImageButton>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sobre uma exposição"
+            android:layout_gravity="center"
+            android:textColor="@color/azulescuro"
+            android:textSize="20dp"
+            android:textStyle="bold"
+           android:paddingLeft="15dp"
+            ></TextView>
+    </androidx.appcompat.widget.Toolbar>
+    <ImageButton
+        android:id="@+id/addObra"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_above="@+id/navigationBar"
+        android:contentDescription="Botão da imagem"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/add_obra"
+        ></ImageButton>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigationBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/azuleclaro"
+        android:padding="10dp"
+        android:layout_alignParentBottom="true"
+        ></com.google.android.material.navigation.NavigationView>
+
+</RelativeLayout>
