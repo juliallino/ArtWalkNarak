@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projeto.adapter.AdapterExposicao
 import com.example.projeto.adapter.AdapterObra
-import com.example.projeto.model.ExposicaoHome
+import com.example.projeto.model.Exposicao
 import com.example.projeto.model.Obra
 
 class MAExposicao : AppCompatActivity() {
@@ -34,11 +34,12 @@ class MAExposicao : AppCompatActivity() {
         //otimiza a lista
         recyclerViewSobreExposicoes.setHasFixedSize(true)
         //configurar adapter
-        val sobreExposicaoLista: MutableList<ExposicaoHome> = mutableListOf()
+        val sobreExposicaoLista: MutableList<Exposicao> = mutableListOf()
         val adapterExposicao = AdapterExposicao(this, sobreExposicaoLista)
         recyclerViewSobreExposicoes.adapter = adapterExposicao
         //adicionando manualmente
-        val centelhas = ExposicaoHome(
+        val centelhas = Exposicao(
+            1,
             "CENTELHAS EM MOVIMENTO",
             R.drawable.centelhas,
             R.drawable.edit,
@@ -55,8 +56,9 @@ class MAExposicao : AppCompatActivity() {
         val adapterObra = AdapterObra(this, obras)
         recyclerViewObras.adapter = adapterExposicao
         //adicionando manualmente
-        val batman = Obra("Batman", R.drawable.batman, R.drawable.edit, "Super-Herói de Gotham")
-        val arqueiro = Obra("Aruqueiro Verde", R.drawable.arqueiro, R.drawable.edit, "Super-Herói de StarCity")
+        val batman = Obra(1,"Batman", R.drawable.batman, R.drawable.edit, "Super-Herói de Gotham")
+        val arqueiro =
+            Obra(2,"Aruqueiro Verde", R.drawable.arqueiro, R.drawable.edit, "Super-Herói de StarCity")
 
 
         //botões
@@ -64,11 +66,16 @@ class MAExposicao : AppCompatActivity() {
         botaoVoltarTela.setOnClickListener {
             VoltarTela()
         }
+
 //        val botaoEditObra = findViewById<ImageButton>(R.id.imagemObra)
 //        botaoEditObra.setOnClickListener{
 //           EditEObra()
 //      }
 
+        val botaoAddObra = findViewById<ImageButton>(R.id.addObra)
+        botaoAddObra.setOnClickListener {
+            AddObra()
+        }
     }
 
     //func de botões
@@ -78,9 +85,15 @@ class MAExposicao : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun EditEObra() {
-        Log.d("Editar", "Indo para tela de editar obra")
-        val intent = Intent(this, MAEdicaoObras::class.java)
+//    private fun EditEObra() {
+//        Log.d("Editar", "Indo para tela de editar obra")
+//        val intent = Intent(this, MAAddObra::class.java)
+//        startActivity(intent)
+//    }
+
+    private fun AddObra() {
+        Log.d("ADD", "tela add obra")
+        val intent = Intent(this, MAAddObra::class.java)
         startActivity(intent)
     }
 
