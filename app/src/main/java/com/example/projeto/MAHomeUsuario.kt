@@ -13,12 +13,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.projeto.adapter.AdapterExposicao
 import com.example.projeto.model.Exposicao
 
-class MAHomeFuncionario : AppCompatActivity() {
+class MAHomeUsuario: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.funcionario_home)
+        setContentView(R.layout.usuario_home)
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -26,7 +26,7 @@ class MAHomeFuncionario : AppCompatActivity() {
             insets
         }
 
-        val recyclerViewExposicoes = findViewById<RecyclerView>(R.id.recyclerviewExposicoesFuncionarios)
+        val recyclerViewExposicoes = findViewById<RecyclerView>(R.id.recyclerviewExposicoesUsuarios)
 
         recyclerViewExposicoes.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         //otimiza a lista
@@ -40,34 +40,16 @@ class MAHomeFuncionario : AppCompatActivity() {
         val centelhasEmMovimento = Exposicao(1,"CENTELHAS EM MOVIMENTO", R.drawable.centelhas, R.drawable.edit, "A exposição Centelhas em Movimento reúne cerca de 190 obras da coleção de Igor Queiroz Barroso, explorando a arte brasileira do século XX, com foco nas diferentes fases do modernismo.\\n\\n A curadoria, assinada por Paulo Miyada e Tiago Gualberto, busca criar diálogos visuais entre as obras, sem seguir uma ordem cronológica, estimulando reflexões sobre o movimento modernista e suas transformações.")
         listaExposcoes.add(centelhasEmMovimento)
 
-        val botaoEdit = findViewById<ImageButton>(R.id.botaoaddexpo)
-        botaoEdit.setOnClickListener{
-            AddExposicao()
-        }
         val botaoExposicao = findViewById<ImageButton>(R.id.imagemExposicao)
         botaoExposicao.setOnClickListener{
             EntrarExposicao()
         }
 
-        val botaoEditExposicao = findViewById<ImageButton>(R.id.editExposicao)
-        botaoEdit.setOnClickListener{
-            EditExposicao()
-        }
 
     }
 
-    private fun AddExposicao() {
-        Log.d("ADD", "Tela add Exposição")
-        val intent = Intent(this, MAEdicaoExposicao::class.java)
-        startActivity(intent)
-    }
-    private fun EditExposicao() {
-        Log.d("Editar", "Indo para tela de editar exposição")
-        val intent = Intent(this, MAEdicaoExposicao::class.java)
-        startActivity(intent)
-    }
     private fun EntrarExposicao() {
-        Log.d("Entrar", "Indo para tela de editar exposição")
+        Log.d("Entrar", "Indo para tela daexposição")
         val intent = Intent(this, MAExposicaoFuncionario::class.java)
         startActivity(intent)
     }

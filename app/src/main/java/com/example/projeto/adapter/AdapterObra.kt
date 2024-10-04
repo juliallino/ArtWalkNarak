@@ -14,7 +14,7 @@ class AdapterObra(private val context: Context, private val obras: MutableList<O
 
     //cria o item da lista
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdapterObra.ObraViewHolder {
-        val obras = LayoutInflater.from(context).inflate(R.layout.obras_view, parent, false)
+        val obras = LayoutInflater.from(context).inflate(R.layout.funcionario_list_obras_view, parent, false)
         val holder = ObraViewHolder(obras)
         return holder
     }
@@ -28,7 +28,7 @@ class AdapterObra(private val context: Context, private val obras: MutableList<O
     override fun getItemCount(): Int = obras.size
 
     inner class ObraViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val nomeObra = itemView.findViewById<TextView>(R.id.nomeObra)
+        val nomeObra = itemView.findViewById<TextView>(R.id.nomeExposicao)
         val imagemObra = itemView.findViewById<ImageView>(R.id.imagemObra)
     }
 }

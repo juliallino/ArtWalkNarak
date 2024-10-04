@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MAExposicaoFuncionario">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/sobreExposicaoTool"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/azulclaro"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme">
+
+        <ImageButton
+            android:id="@+id/voltarParaTelaHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/azulclaro"
+            android:src="@drawable/baseline_arrow_circle_left_24"></ImageButton>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingLeft="15dp"
+            android:text="Sobre a Obra"
+            android:textColor="@color/azulescuro"
+            android:textSize="20dp"
+            android:textStyle="bold"></TextView>
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/obrasRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sobreExposicaoTool"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        tools:itemCount="1"
+        tools:listitem="@layout/usuario_list_sobre_obra_view"></androidx.recyclerview.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/tituloChatIA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/obrasRecyclerView"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:drawableLeft="@drawable/baseline_smart_toy_24"
+        android:drawablePadding="10dp"
+        android:text="Possui alguma pergunta? Pergunte ao GEMINI:"
+        android:textColor="@color/azulescuro"
+        android:textStyle="bold"
+
+        ></TextView>
+
+    <EditText
+        android:id="@+id/chatIA"
+        android:layout_width="315dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/tituloChatIA"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:background="@color/azulclaro"
+        android:text="Digite sua pergunta...."
+        android:textColor="@color/azulescuro"
+        android:textSize="12dp"></EditText>
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/chatIA"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="15dp"
+        android:backgroundTint="@color/azulescuro"
+        android:text="Enviar"
+        android:textSize="16dp"
+        android:textStyle="bold"></Button>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigationBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/azulclaro"
+        android:padding="10dp"></com.google.android.material.navigation.NavigationView>
+
+</RelativeLayout>

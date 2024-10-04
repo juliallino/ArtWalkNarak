@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginTop="20dp"
+    tools:showIn="@layout/funcionario_home">
+
+    <TextView
+        android:id="@+id/nomeExposicao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="Nome da Exposição"
+        android:textColor="@color/azulmedio"
+        android:textSize="16dp"
+        android:textStyle="bold"></TextView>
+
+    <ImageButton
+        android:id="@+id/imagemExposicao"
+        android:layout_width="285dp"
+        android:layout_height="100dp"
+        android:layout_below="@id/nomeExposicao"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:contentDescription="Botão da imagem"
+        android:src="@drawable/centelhas"></ImageButton>
+
+    <ImageButton
+        android:id="@+id/editExposicao"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignTop="@+id/imagemExposicao"
+        android:layout_marginLeft="15dp"
+        android:layout_toEndOf="@+id/imagemExposicao"
+        android:backgroundTint="#00FFFFFF"
+        android:contentDescription="Botão para editar a exposição"
+        android:src="@drawable/baseline_edit_24"></ImageButton>
+
+</RelativeLayout>

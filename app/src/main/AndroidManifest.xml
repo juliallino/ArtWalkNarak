@@ -13,10 +13,22 @@
         android:theme="@style/Theme.Projeto"
         tools:targetApi="35">
         <activity
+            android:name=".model.MAQRCodePage"
+            android:exported="false" />
+        <activity
+            android:name=".MAObraUsuario"
+            android:exported="false" />
+        <activity
+            android:name=".exposicao_funcionario"
+            android:exported="false" />
+        <activity
+            android:name=".MAHomeUsuario"
+            android:exported="false" />
+        <activity
             android:name=".MAAddObra"
             android:exported="false" />
         <activity
-            android:name=".MAExposicao"
+            android:name=".MAExposicaoFuncionario"
             android:exported="false" />
         <activity
             android:name=".MAEdicaoExposicao"
@@ -32,6 +44,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

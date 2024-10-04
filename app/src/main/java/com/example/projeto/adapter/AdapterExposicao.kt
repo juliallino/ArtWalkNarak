@@ -24,7 +24,7 @@ class AdapterExposicao(
         viewType: Int
     ): AdapterExposicao.ExposicaoViewHolder {
         val exposicao_view =
-            LayoutInflater.from(context).inflate(R.layout.exposicoes_home_view, parent, false)
+            LayoutInflater.from(context).inflate(R.layout.funcionario_list_exposicoes_home_view, parent, false)
         val holder = ExposicaoViewHolder(exposicao_view)
         return holder
     }
@@ -34,16 +34,17 @@ class AdapterExposicao(
         holder.nomeExposicao.text = (exposicoes[position].nomeExposicao)
         holder.imagemExposicao.setImageResource(exposicoes[position].imagemExposicao)
         holder.editExposicao.setImageResource(exposicoes[position].editExposicao)
-        holder.descricaoExposicao.text = (exposicoes[position].descricaoExposicao)
+       holder.descricaoExposicao.text = (exposicoes[position].descricaoExposicao)
 
     }
 
     override fun getItemCount(): Int = exposicoes.size
 
     inner class ExposicaoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val nomeExposicao = itemView.findViewById<TextView>(R.id.nomeObra)
-        val imagemExposicao = itemView.findViewById<ImageView>(R.id.imagemObra)
+        val nomeExposicao = itemView.findViewById<TextView>(R.id.nomeExposicao)
+        val imagemExposicao = itemView.findViewById<ImageView>(R.id.imagemExposicao)
         val editExposicao = itemView.findViewById<ImageView>(R.id.editExposicao)
-        val descricaoExposicao = itemView.findViewById<TextView>(R.id.descricaoExposicao)
+       val descricaoExposicao = itemView.findViewById<TextView>(R.id.descricaoExposicao)
     }
+
 }
