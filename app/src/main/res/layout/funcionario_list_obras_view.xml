@@ -1,24 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:gravity="center">
+    android:gravity="center"
+    tools:showIn="@layout/funcionario_edicao_exposicao">
 
     <ImageButton
         android:id="@+id/imagemObra"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_marginRight="7dp"
         android:layout_marginBottom="15dp"
         android:contentDescription="Botão da imagem"
-        android:src="@drawable/batman"></ImageButton>
+        android:scaleType="top"
+        android:src="@drawable/batman"
+        android:backgroundTint="@color/azulclaro"></ImageButton>
 
     <ImageView
+        android:id="@id/editObra"
         android:layout_width="-35dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="-35dp"
         android:layout_toEndOf="@+id/imagemObra"
-        android:src="@drawable/baseline_edit_2"></ImageView>
+        android:src="@drawable/baseline_edit_24"></ImageView>
 
 
 </RelativeLayout>

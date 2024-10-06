@@ -74,8 +74,9 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="5"
         app:rippleColor="@color/azulclaro"
-        tools:itemCount="2"
+        tools:itemCount="8"
         tools:listitem="@layout/usuario_list_obras_view"></androidx.recyclerview.widget.RecyclerView>
 
 

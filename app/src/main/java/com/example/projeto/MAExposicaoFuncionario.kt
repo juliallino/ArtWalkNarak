@@ -30,8 +30,7 @@ class MAExposicaoFuncionario : AppCompatActivity() {
         val recyclerViewSobreExposicoes =
             findViewById<RecyclerView>(R.id.sobreExposicaoRecyclerView)
 
-        recyclerViewSobreExposicoes.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        recyclerViewSobreExposicoes.layoutManager = GridLayoutManager(this,5)
         //otimiza a lista
         recyclerViewSobreExposicoes.setHasFixedSize(true)
         //configurar adapter

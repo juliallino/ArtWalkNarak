@@ -6,11 +6,13 @@
 
     <ImageButton
         android:id="@+id/imagemObra"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_marginRight="7dp"
         android:layout_marginBottom="15dp"
         android:contentDescription="Botão da imagem"
-        android:src="@drawable/batman"></ImageButton>
+        android:scaleType="centerCrop"
+        android:src="@drawable/batman"
+        android:backgroundTint="@color/azulclaro"></ImageButton>
 
 </RelativeLayout>

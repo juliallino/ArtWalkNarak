@@ -25,7 +25,8 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:contentDescription="Botão da imagem"
-        android:src="@drawable/centelhas"></ImageButton>
+        android:src="@drawable/centelhas"
+        ></ImageButton>
 
     <ImageButton
         android:id="@+id/editExposicao"
@@ -37,5 +38,4 @@
         android:backgroundTint="#00FFFFFF"
         android:contentDescription="Botão para editar a exposição"
         android:src="@drawable/baseline_edit_24"></ImageButton>
-
 </RelativeLayout>

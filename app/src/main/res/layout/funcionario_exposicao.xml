@@ -68,17 +68,17 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/obrasRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="378dp"
+        android:layout_height="313dp"
         android:layout_below="@id/sobreExposicaoRecyclerView"
         android:layout_marginLeft="15dp"
+        android:layout_marginTop="-1dp"
         android:layout_marginRight="15dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:rippleColor="@color/azulclaro"
-        tools:itemCount="6"
-        tools:listitem="@layout/funcionario_list_obras_view"
-
-        ></androidx.recyclerview.widget.RecyclerView>
+        app:spanCount="5"
+        tools:itemCount="7"
+        tools:listitem="@layout/funcionario_list_obras_view"></androidx.recyclerview.widget.RecyclerView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addObra"

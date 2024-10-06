@@ -13,6 +13,7 @@ import com.example.projeto.model.Exposicao
 
 // classe que gerencia todos os recursos dinâmicos, ou seja, todas as coleções de inserção, exclusão ou edição de dados
 // ele que comunica o ViewHolder(quem gerencia cada celula da lista) e é responsavel pelo produto final
+
 class AdapterExposicao(
     private val context: Context,
     private val exposicoes: MutableList<Exposicao>
@@ -39,7 +40,7 @@ class AdapterExposicao(
     }
 
     override fun getItemCount(): Int = exposicoes.size
-
+    // o viewHolder que representa cada item do recyclerview
     inner class ExposicaoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nomeExposicao = itemView.findViewById<TextView>(R.id.nomeExposicao)
         val imagemExposicao = itemView.findViewById<ImageView>(R.id.imagemExposicao)
