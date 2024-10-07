@@ -10,7 +10,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.projeto.adapter.AdapterExposicao
+import com.example.projeto.adapter.AdapterExposicaoHome
 import com.example.projeto.model.Exposicao
 
 class MAHomeFuncionario : AppCompatActivity() {
@@ -18,7 +18,7 @@ class MAHomeFuncionario : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.funcionario_home)
+        setContentView(R.layout.funcionario_home)  // Verifique se o layout está correto
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -27,31 +27,21 @@ class MAHomeFuncionario : AppCompatActivity() {
         }
 
         val recyclerViewExposicoes = findViewById<RecyclerView>(R.id.recyclerviewExposicoesFuncionarios)
-
         recyclerViewExposicoes.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        //otimiza a lista
         recyclerViewExposicoes.setHasFixedSize(true)
-        //configurar adapter
-        val listaExposcoes: MutableList<Exposicao> = mutableListOf()
-        val adapterExposicao = AdapterExposicao(this, listaExposcoes)
+
+        val listaExposicoes: MutableList<Exposicao> = mutableListOf()
+        val adapterExposicao = AdapterExposicaoHome(this, listaExposicoes, true)
         recyclerViewExposicoes.adapter = adapterExposicao
 
+        // Exemplo de criação de uma nova Exposição
+        val centelhasEmMovimento = Exposicao(1, "CENTELHAS EM MOVIMENTO", R.drawable.centelhas, R.drawable.edit, "Descrição da exposição.")
+        listaExposicoes.add(centelhasEmMovimento)
 
-        val centelhasEmMovimento = Exposicao(1,"CENTELHAS EM MOVIMENTO", R.drawable.centelhas, R.drawable.edit, "A exposição Centelhas em Movimento reúne cerca de 190 obras da coleção de Igor Queiroz Barroso, explorando a arte brasileira do século XX, com foco nas diferentes fases do modernismo.\\n\\n A curadoria, assinada por Paulo Miyada e Tiago Gualberto, busca criar diálogos visuais entre as obras, sem seguir uma ordem cronológica, estimulando reflexões sobre o movimento modernista e suas transformações.")
-        listaExposcoes.add(centelhasEmMovimento)
-
-        val botaoEdit = findViewById<ImageButton>(R.id.botaoaddexpo)
-        botaoEdit.setOnClickListener{
+        // Botão para adicionar exposição
+        val botaoAddExposicao = findViewById<ImageButton>(R.id.botaoaddexpo)
+        botaoAddExposicao.setOnClickListener {
             AddExposicao()
-        }
-        val botaoExposicao = findViewById<ImageButton>(R.id.imagemExposicao)
-        botaoExposicao.setOnClickListener{
-            EntrarExposicao()
-        }
-
-        val botaoEditExposicao = findViewById<ImageButton>(R.id.editExposicao)
-        botaoEdit.setOnClickListener{
-            EditExposicao()
         }
 
     }
@@ -61,13 +51,9 @@ class MAHomeFuncionario : AppCompatActivity() {
         val intent = Intent(this, MAEdicaoExposicao::class.java)
         startActivity(intent)
     }
-    private fun EditExposicao() {
-        Log.d("Editar", "Indo para tela de editar exposição")
-        val intent = Intent(this, MAEdicaoExposicao::class.java)
-        startActivity(intent)
-    }
+
     private fun EntrarExposicao() {
-        Log.d("Entrar", "Indo para tela de editar exposição")
+        Log.d("Entrar", "Indo para tela da exposição")
         val intent = Intent(this, MAExposicaoFuncionario::class.java)
         startActivity(intent)
     }

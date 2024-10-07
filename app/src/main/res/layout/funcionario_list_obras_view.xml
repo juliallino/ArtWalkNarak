@@ -3,8 +3,10 @@
 
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:gravity="center"
-    tools:showIn="@layout/funcionario_edicao_exposicao">
+    tools:showIn="@layout/funcionario_exposicao"
+    >
 
     <ImageButton
         android:id="@+id/imagemObra"
@@ -13,17 +15,16 @@
         android:layout_marginRight="7dp"
         android:layout_marginBottom="15dp"
         android:contentDescription="Botão da imagem"
-        android:scaleType="top"
+        android:scaleType="centerCrop"
         android:src="@drawable/batman"
         android:backgroundTint="@color/azulclaro"></ImageButton>
 
     <ImageView
-        android:id="@id/editObra"
+        android:id="@+id/editObra"
         android:layout_width="-35dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="-35dp"
         android:layout_toEndOf="@+id/imagemObra"
         android:src="@drawable/baseline_edit_24"></ImageView>
-
 
 </RelativeLayout>

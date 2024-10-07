@@ -33,6 +33,7 @@ class MALoginFuncionario : AppCompatActivity() {
             AprovarLoginFuncionario()
         }
     }
+
     private fun AprovarLoginFuncionario() {
         Log.d("Home Funcionario", "Indo para tela inicial do funcionário")
         val intent = Intent(this, MAHomeFuncionario::class.java)

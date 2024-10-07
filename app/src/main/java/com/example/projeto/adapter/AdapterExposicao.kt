@@ -4,48 +4,40 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projeto.R
 import com.example.projeto.model.Exposicao
-
-
-// classe que gerencia todos os recursos dinâmicos, ou seja, todas as coleções de inserção, exclusão ou edição de dados
-// ele que comunica o ViewHolder(quem gerencia cada celula da lista) e é responsavel pelo produto final
 
 class AdapterExposicao(
     private val context: Context,
     private val exposicoes: MutableList<Exposicao>
 ) : RecyclerView.Adapter<AdapterExposicao.ExposicaoViewHolder>() {
 
-    //cria o item da lista
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): AdapterExposicao.ExposicaoViewHolder {
-        val exposicao_view =
-            LayoutInflater.from(context).inflate(R.layout.funcionario_list_exposicoes_home_view, parent, false)
-        val holder = ExposicaoViewHolder(exposicao_view)
-        return holder
+    // Cria uma nova View para o item da lista
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExposicaoViewHolder {
+        val view = LayoutInflater.from(context).inflate(R.layout.list_sobre_exposicao_view, parent, false)
+        return ExposicaoViewHolder(view)
     }
 
-    // exibe as views para o usuario
-    override fun onBindViewHolder(holder: AdapterExposicao.ExposicaoViewHolder, position: Int) {
-        holder.nomeExposicao.text = (exposicoes[position].nomeExposicao)
-        holder.imagemExposicao.setImageResource(exposicoes[position].imagemExposicao)
-        holder.editExposicao.setImageResource(exposicoes[position].editExposicao)
-       holder.descricaoExposicao.text = (exposicoes[position].descricaoExposicao)
-
+    // Liga os dados do item à ViewHolder
+    override fun onBindViewHolder(holder: ExposicaoViewHolder, position: Int) {
+        val exposicao = exposicoes[position]
+        holder.bind(exposicao)
     }
 
+    // Retorna o número total de itens na lista
     override fun getItemCount(): Int = exposicoes.size
-    // o viewHolder que representa cada item do recyclerview
-    inner class ExposicaoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val nomeExposicao = itemView.findViewById<TextView>(R.id.nomeExposicao)
-        val imagemExposicao = itemView.findViewById<ImageView>(R.id.imagemExposicao)
-        val editExposicao = itemView.findViewById<ImageView>(R.id.editExposicao)
-       val descricaoExposicao = itemView.findViewById<TextView>(R.id.descricaoExposicao)
-    }
 
+    // Classe interna ViewHolder, responsável por armazenar as Views de cada item
+    inner class ExposicaoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val nomeExposicao: TextView = itemView.findViewById(R.id.nomeExposicao)
+        private val descricaoExposicao: TextView = itemView.findViewById(R.id.descricaoExposicao)
+
+        // Método para associar os dados da exposição ao item da view
+        fun bind(exposicao: Exposicao) {
+            nomeExposicao.text = exposicao.nomeExposicao
+            descricaoExposicao.text = exposicao.descricaoExposicao
+        }
+    }
 }
