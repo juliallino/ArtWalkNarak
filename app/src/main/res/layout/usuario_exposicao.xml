@@ -51,8 +51,8 @@
         android:paddingBottom="5dp"
 
 
-        android:text="Busque por exposição..."
-        android:textColor="@color/azulmedio"
+        android:hint="Busque por exposição..."
+        android:textColorHint="@color/azulmedio"
         android:textSize="16dp"
 
         tools:ignore="TextContrastCheck"></EditText>
@@ -102,8 +102,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
         android:background="@color/azulclaro"
-        android:text="Digite sua pergunta...."
-        android:textColor="@color/azulescuro"
+        android:hint="Digite sua pergunta...."
+        android:textColorHint="@color/azulescuro"
         android:textSize="12dp"></EditText>
 
     <Button

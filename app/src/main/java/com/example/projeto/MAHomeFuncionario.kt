@@ -48,13 +48,19 @@ class MAHomeFuncionario : AppCompatActivity() {
 
     private fun AddExposicao() {
         Log.d("ADD", "Tela add Exposição")
-        val intent = Intent(this, MAEdicaoExposicao::class.java)
+        val intent = Intent(this, MAAddExposicao::class.java)
         startActivity(intent)
     }
 
     private fun EntrarExposicao() {
         Log.d("Entrar", "Indo para tela da exposição")
         val intent = Intent(this, MAExposicaoFuncionario::class.java)
+        startActivity(intent)
+    }
+
+    private fun EditarExposicao() {
+        Log.d("Editar", "Indo para tela da exposição")
+        val intent = Intent(this, MAAddExposicao::class.java)
         startActivity(intent)
     }
 }

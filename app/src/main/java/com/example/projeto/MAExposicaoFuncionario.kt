@@ -15,6 +15,7 @@ import com.example.projeto.adapter.AdapterExposicaoHome
 import com.example.projeto.adapter.AdapterObra
 import com.example.projeto.model.Exposicao
 import com.example.projeto.model.Obra
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MAExposicaoFuncionario : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -78,12 +79,19 @@ class MAExposicaoFuncionario : AppCompatActivity() {
         adapterObra.notifyDataSetChanged()
 
         // Botões
-        findViewById<ImageButton>(R.id.voltarParaTelaHome).setOnClickListener { VoltarTela() }
-        findViewById<ImageButton>(R.id.addObra).setOnClickListener { AddObra() }
+        val botaoVoltarTela = findViewById<ImageButton>(R.id.voltarParaTelaHome)
+        botaoVoltarTela.setOnClickListener{
+            VoltarTela()
+        }
+        val botaoAddObra = findViewById<ImageButton>(R.id.addObra)
+        botaoAddObra.setOnClickListener{
+            AddObra()
+        }
+
     }
 
     private fun VoltarTela() {
-        Log.d("Voltar home Funcionario", "Voltando para tela inicial do funcionário")
+        Log.d("Voltar", "Voltando para tela inicial do funcionário")
         startActivity(Intent(this, MAHomeFuncionario::class.java))
     }
 
@@ -91,4 +99,6 @@ class MAExposicaoFuncionario : AppCompatActivity() {
         Log.d("ADD", "tela add obra")
         startActivity(Intent(this, MAAddObra::class.java))
     }
+
+    //edit obra recyclerview
 }

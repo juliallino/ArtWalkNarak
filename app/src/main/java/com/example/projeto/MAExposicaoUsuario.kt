@@ -1,6 +1,9 @@
 package com.example.projeto
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.widget.ImageButton
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -12,6 +15,7 @@ import com.example.projeto.adapter.AdapterExposicaoHome
 import com.example.projeto.adapter.AdapterObra
 import com.example.projeto.model.Exposicao
 import com.example.projeto.model.Obra
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MAExposicaoUsuario : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +29,8 @@ class MAExposicaoUsuario : AppCompatActivity() {
             insets
         }
 
-        val recyclerViewSobreExposicoes = findViewById<RecyclerView>(R.id.sobreExposicaoRecyclerView)
+        val recyclerViewSobreExposicoes =
+            findViewById<RecyclerView>(R.id.sobreExposicaoRecyclerView)
         recyclerViewSobreExposicoes.layoutManager = GridLayoutManager(this, 5)
         recyclerViewSobreExposicoes.setHasFixedSize(true)
 
@@ -73,5 +78,29 @@ class MAExposicaoUsuario : AppCompatActivity() {
 
         // Atualiza a lista para o adapter
         adapterObra.notifyDataSetChanged()
+
+        //botões
+
+        val botaoVoltarTela = findViewById<ImageButton>(R.id.voltarParaTelaHome)
+        botaoVoltarTela.setOnClickListener{
+            VoltarTela()
+        }
+        val botaoScanObra =  findViewById<FloatingActionButton>(R.id.scanObra)
+        botaoScanObra.setOnClickListener {
+            ScanObra()
+        }
+
     }
+    private fun VoltarTela() {
+        Log.d("Voltar", "Voltando para tela inicial do usuario")
+        startActivity(Intent(this, MAHomeFuncionario::class.java))
+    }
+
+    private fun ScanObra() {
+        Log.d("Scan obra", "Indo para tela de scan")
+        startActivity(Intent(this, MAQRCodePage::class.java))
+    }
+
+    //entrar na obra
 }
+

@@ -11,22 +11,30 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class MAAddObra : AppCompatActivity() {
+class MAAddExposicao : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.funcionario_add_obras)
+        setContentView(R.layout.funcionario_add_exposicao)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        //botões
-        val botaoVoltarTela = findViewById<ImageButton>(R.id.voltarParaTelaExposicoes)
-        botaoVoltarTela.setOnClickListener{
+        val botaoVoltarTela = findViewById<ImageButton>(R.id.voltarParaTelaHome)
+        botaoVoltarTela.setOnClickListener {
             VoltarTela()
         }
+        val emAndamentoBotao = findViewById<Button>(R.id.EmAndamentoBotao)
+        emAndamentoBotao.setOnClickListener {
+            EmAndamento()
+        }
+        val encerradaBotao = findViewById<Button>(R.id.EncerradaBotao)
+        encerradaBotao.setOnClickListener {
+            Encerrada()
+        }
+
         val salvarBotao = findViewById<Button>(R.id.salvarBotao)
         salvarBotao.setOnClickListener {
             Salvar()
@@ -35,24 +43,40 @@ class MAAddObra : AppCompatActivity() {
         excluirBotao.setOnClickListener {
             Excluir()
         }
-    }
 
+
+    }
 
     private fun VoltarTela() {
-        Log.d("Voltar", "Voltando para tela exposicções do funcionário")
-        startActivity(Intent(this, MAExposicaoFuncionario::class.java))
+        Log.d("Voltar", "Voltando para tela inicial do funcionário")
+        val intent = Intent(this, MAHomeFuncionario::class.java)
+        startActivity(intent)
     }
+
     private fun Salvar() {
-        Log.d("Salvar", "Salvar nova obra")
+        Log.d("Salvar", "Voltando para tela inicial do funcionário")
         Toast.makeText(this, "Exposição savla", Toast.LENGTH_SHORT).show()
-        val intent = Intent(this, MAExposicaoFuncionario::class.java)
+        val intent = Intent(this, MAHomeFuncionario::class.java)
         startActivity(intent)
     }
 
     private fun Excluir() {
-        Log.d("Excluir", "Excluir obra")
+        Log.d("Excluir", "Voltando para tela inicial do funcionário")
         Toast.makeText(this, "Exposição excluida", Toast.LENGTH_SHORT).show()
-        val intent = Intent(this, MAExposicaoFuncionario::class.java)
+        val intent = Intent(this, MAHomeFuncionario::class.java)
         startActivity(intent)
     }
+
+    private fun EmAndamento() {
+        Log.d("Em andamento botão", "botao de status da exposição")
+        Toast.makeText(this, "Em andamento", Toast.LENGTH_SHORT).show()
+
+    }
+
+    private fun Encerrada() {
+        Log.d("Encerrada botão", "botao de status da exposição")
+        Toast.makeText(this, "Encerrada", Toast.LENGTH_SHORT).show()
+
+    }
+
 }

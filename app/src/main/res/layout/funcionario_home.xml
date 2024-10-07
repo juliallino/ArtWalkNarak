@@ -32,8 +32,8 @@
             android:paddingRight="20dp"
             android:paddingBottom="6.5dp"
 
-            android:text="Espaço Cultural Unifor"
-            android:textColor="@color/azulescuro"
+            android:hint="Espaço Cultural Unifor"
+            android:textColorHint="@color/azulescuro"
             android:textSize="20dp"
             android:textStyle="bold"
 
@@ -62,8 +62,8 @@
         android:paddingBottom="5dp"
 
 
-        android:text="Busque por exposição..."
-        android:textColor="@color/azulmedio"
+        android:hint="Busque por exposição..."
+        android:textColorHint="@color/azulmedio"
         android:textSize="16dp"
 
         tools:ignore="TextContrastCheck"></EditText>
