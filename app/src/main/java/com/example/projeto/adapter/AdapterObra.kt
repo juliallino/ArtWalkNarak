@@ -1,12 +1,16 @@
 package com.example.projeto.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.projeto.MAAddObra
+import com.example.projeto.MAExposicaoFuncionario
+import com.example.projeto.MAObraUsuario
 import com.example.projeto.R
 import com.example.projeto.model.Obra
 
@@ -43,6 +47,10 @@ class AdapterObra(
     override fun onBindViewHolder(holder: ObraViewHolder, position: Int) {
         val obra = obras[position]
         holder.bind(obra)
+        holder.itemView.findViewById<ImageView>(R.id.imagemObra).setOnClickListener {
+            holder.itemView.context.startActivity(Intent( holder.itemView.context, MAAddObra::class.java)
+            )
+        }
     }
 
     // Retorna o número total de itens na lista
@@ -50,13 +58,23 @@ class AdapterObra(
 
     // Classe interna ViewHolder, responsável por armazenar as Views de cada item
     inner class ObraViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val nomeObra = itemView.findViewById<TextView>(R.id.nomeExposicao) // Para funcionários
+        private val nomeObra = itemView.findViewById<TextView>(R.id.nomeExposicao)
         private val imagemObra = itemView.findViewById<ImageView>(R.id.imagemObra)
+        private val editObra = itemView.findViewById<ImageView>(R.id.editObra)
 
         // Método para associar os dados da obra ao item da view
         fun bind(obra: Obra) {
             nomeObra?.text = obra.nomeObra
             imagemObra.setImageResource(obra.imagemObra)
+
+            // Se for a view do funcionário, mostra o botão de editar
+            if (isFuncionarioView) {
+                editObra.setImageResource(obra.editObra)
+                        editObra.visibility = View.VISIBLE
+            } else {
+                editObra.visibility = View.GONE // Oculta se não for funcionário
+            }
         }
+
     }
 }

@@ -44,14 +44,14 @@ class MAAddObra : AppCompatActivity() {
     }
     private fun Salvar() {
         Log.d("Salvar", "Salvar nova obra")
-        Toast.makeText(this, "Exposição savla", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Obra savla", Toast.LENGTH_SHORT).show()
         val intent = Intent(this, MAExposicaoFuncionario::class.java)
         startActivity(intent)
     }
 
     private fun Excluir() {
         Log.d("Excluir", "Excluir obra")
-        Toast.makeText(this, "Exposição excluida", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Obra excluida", Toast.LENGTH_SHORT).show()
         val intent = Intent(this, MAExposicaoFuncionario::class.java)
         startActivity(intent)
     }

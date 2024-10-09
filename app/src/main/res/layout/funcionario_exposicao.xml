@@ -61,6 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/busca"
         tools:itemCount="1"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/list_sobre_exposicao_view"></androidx.recyclerview.widget.RecyclerView>
 
 

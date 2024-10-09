@@ -1,12 +1,16 @@
 package com.example.projeto.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.projeto.MAAddExposicao
+import com.example.projeto.MAExposicaoFuncionario
+import com.example.projeto.MAExposicaoUsuario
 import com.example.projeto.R
 import com.example.projeto.model.Exposicao
 
@@ -42,8 +46,19 @@ class AdapterExposicaoHome(
     // Liga os dados do item à ViewHolder (chamado repetidamente para cada item da lista)
     override fun onBindViewHolder(holder: ExposicaoViewHolder, position: Int) {
         val exposicao = exposicoes[position]
+        // Chama o método bind para associar os dados ao ViewHolder
         holder.bind(exposicao)
+
+        holder.itemView.findViewById<ImageView>(R.id.imagemExposicao).setOnClickListener {
+            holder.itemView.context.startActivity(Intent( holder.itemView.context,MAExposicaoFuncionario::class.java))
+        }
+
+        holder.itemView.findViewById<ImageView>(R.id.editExposicao).setOnClickListener {
+            holder.itemView.context.startActivity(Intent( holder.itemView.context,MAAddExposicao::class.java))
+        }
+
     }
+
 
     // Retorna o número total de itens na lista
     override fun getItemCount(): Int = exposicoes.size
@@ -58,11 +73,11 @@ class AdapterExposicaoHome(
         fun bind(exposicao: Exposicao) {
             nomeExposicao.text = exposicao.nomeExposicao
             imagemExposicao.setImageResource(exposicao.imagemExposicao)
-
             // Se for a view do funcionário, mostra o botão de editar
             if (isFuncionarioView) {
                 editExposicao.setImageResource(exposicao.editExposicao)
                 editExposicao.visibility = View.VISIBLE
+
             } else {
                 editExposicao.visibility = View.GONE // Oculta se não for funcionário
             }

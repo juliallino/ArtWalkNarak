@@ -32,10 +32,11 @@
         android:id="@+id/editExposicao"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_alignTop="@+id/imagemExposicao"
+        android:layout_alignTop="@id/imagemExposicao"
         android:layout_marginLeft="15dp"
-        android:layout_toEndOf="@+id/imagemExposicao"
+        android:layout_toEndOf="@id/imagemExposicao"
         android:backgroundTint="#00FFFFFF"
         android:contentDescription="Botão para editar a exposição"
-        android:src="@drawable/baseline_edit_24"></ImageButton>
+        android:src="@drawable/baseline_edit_24"
+        ></ImageButton>
 </RelativeLayout>

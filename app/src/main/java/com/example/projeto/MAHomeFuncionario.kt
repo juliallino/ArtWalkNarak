@@ -18,7 +18,7 @@ class MAHomeFuncionario : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.funcionario_home)  // Verifique se o layout está correto
+        setContentView(R.layout.funcionario_home)
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -35,7 +35,7 @@ class MAHomeFuncionario : AppCompatActivity() {
         recyclerViewExposicoes.adapter = adapterExposicao
 
         // Exemplo de criação de uma nova Exposição
-        val centelhasEmMovimento = Exposicao(1, "CENTELHAS EM MOVIMENTO", R.drawable.centelhas, R.drawable.edit, "Descrição da exposição.")
+        val centelhasEmMovimento = Exposicao(1, "CENTELHAS EM MOVIMENTO", R.drawable.centelhas, R.drawable.baseline_edit_24, "Descrição da exposição.")
         listaExposicoes.add(centelhasEmMovimento)
 
         // Botão para adicionar exposição
@@ -52,15 +52,4 @@ class MAHomeFuncionario : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun EntrarExposicao() {
-        Log.d("Entrar", "Indo para tela da exposição")
-        val intent = Intent(this, MAExposicaoFuncionario::class.java)
-        startActivity(intent)
-    }
-
-    private fun EditarExposicao() {
-        Log.d("Editar", "Indo para tela da exposição")
-        val intent = Intent(this, MAAddExposicao::class.java)
-        startActivity(intent)
-    }
 }
