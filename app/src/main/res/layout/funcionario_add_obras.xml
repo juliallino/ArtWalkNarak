@@ -20,13 +20,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/azulclaro"
-            android:src="@drawable/baseline_arrow_circle_left_24"></ImageButton>
+            android:src="@drawable/baseline_arrow_circle_left_24"
+            app:rippleColor="@color/azulmedio"></ImageButton>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Edição da Obra"
+            android:text="Editar/Add Obras"
             android:textColor="@color/azulescuro"
             android:textSize="20dp"
             android:textStyle="bold"></TextView>
@@ -48,10 +49,10 @@
     <EditText
         android:id="@+id/nomeObraEdit"
         android:layout_width="325dp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_below="@+id/nomeExposicao"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:background="@color/azulclaro"
         android:drawableLeft="@drawable/baseline_filter_frames_24"
         android:drawablePadding="10dp"
@@ -74,10 +75,10 @@
     <EditText
         android:id="@+id/descricaoObraEdit"
         android:layout_width="325dp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_below="@+id/descricaoObra"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:background="@color/azulclaro"
         android:drawableLeft="@drawable/baseline_description_24"
         android:drawablePadding="10dp"
@@ -100,10 +101,10 @@
     <EditText
         android:id="@+id/imagemObraEdit"
         android:layout_width="325dp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_below="@+id/urlObra"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:background="@color/azulclaro"
         android:drawableLeft="@drawable/baseline_link_24"
         android:drawablePadding="10dp"
@@ -149,7 +150,8 @@
             android:backgroundTint="@color/azulmedio"
             android:text="SALVAR MUDANÇAS"
             android:textColor="@color/azulclaro"
-            android:textStyle="bold"></Button>
+            android:textStyle="bold"
+            app:rippleColor="@color/azulclaro"></Button>
 
         <Button
             android:id="@+id/excluirBotao"
@@ -159,7 +161,8 @@
 
             android:text="EXCLUIR OBRA"
             android:textColor="@color/azulclaro"
-            android:textStyle="bold"></Button>
+            android:textStyle="bold"
+            app:rippleColor="@color/azulclaro"></Button>
     </LinearLayout>
 
 

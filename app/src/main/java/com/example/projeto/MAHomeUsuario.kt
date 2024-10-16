@@ -7,7 +7,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.projeto.adapter.AdapterExposicaoHome
+import com.example.projeto.adapter.AdapterExposicaoHomeUsu
 import com.example.projeto.model.Exposicao
 
 class MAHomeUsuario : AppCompatActivity() {
@@ -28,13 +28,12 @@ class MAHomeUsuario : AppCompatActivity() {
         recyclerViewExposicoes.setHasFixedSize(true)
 
         val listaExposicoes: MutableList<Exposicao> = mutableListOf()
-        val adapterExposicao = AdapterExposicaoHome(this, listaExposicoes, false)
+        val adapterExposicao = AdapterExposicaoHomeUsu(this, listaExposicoes)
         recyclerViewExposicoes.adapter = adapterExposicao
 
         // Exemplo de criação de uma nova Exposição
         val centelhasEmMovimento = Exposicao(1, "CENTELHAS EM MOVIMENTO", R.drawable.centelhas, R.drawable.edit, "Descrição da exposição.")
         listaExposicoes.add(centelhasEmMovimento)
-
 
     }
 

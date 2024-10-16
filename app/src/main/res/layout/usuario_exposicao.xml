@@ -20,14 +20,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/azulclaro"
-            android:src="@drawable/baseline_arrow_circle_left_24"></ImageButton>
+            android:src="@drawable/baseline_arrow_circle_left_24"
+            app:rippleColor="@color/azulmedio"></ImageButton>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:paddingLeft="15dp"
-            android:text="Sobre a exposição"
+            android:text="Sobre "
             android:textColor="@color/azulescuro"
             android:textSize="20dp"
             android:textStyle="bold"></TextView>
@@ -41,17 +41,17 @@
 
         android:layout_below="@id/sobreExposicaoTool"
         android:layout_marginLeft="150dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="13dp"
         android:background="#E2EEFF"
         android:drawableRight="@drawable/baseline_search_24"
         android:drawablePadding="10dp"
+        android:hint="Busque por exposição..."
         android:paddingLeft="15dp"
         android:paddingTop="5dp"
         android:paddingRight="10dp"
+
+
         android:paddingBottom="5dp"
-
-
-        android:hint="Busque por exposição..."
         android:textColorHint="@color/azulmedio"
         android:textSize="16dp"
 
@@ -59,25 +59,24 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/sobreExposicaoRecyclerView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/busca"
-        tools:itemCount="1"
-        tools:listitem="@layout/list_sobre_exposicao_view"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        ></androidx.recyclerview.widget.RecyclerView>
+        tools:itemCount="1"
+        tools:listitem="@layout/list_sobre_exposicao_view"></androidx.recyclerview.widget.RecyclerView>
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/obrasRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="367dp"
+        android:layout_height="234dp"
         android:layout_below="@id/sobreExposicaoRecyclerView"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="5"
         app:rippleColor="@color/azulclaro"
+        app:spanCount="5"
         tools:itemCount="8"
         tools:listitem="@layout/usuario_list_obras_view"></androidx.recyclerview.widget.RecyclerView>
 
@@ -93,13 +92,13 @@
         android:text="Possui alguma pergunta? Pergunte ao GEMINI:"
         android:textColor="@color/azulescuro"
         android:textStyle="bold"
-
+        app:rippleColor="@color/azulclaro"
         ></TextView>
 
     <EditText
         android:id="@+id/chatIA"
-        android:layout_width="315dp"
-        android:layout_height="60dp"
+        android:layout_width="311dp"
+        android:layout_height="73dp"
         android:layout_below="@id/tituloChatIA"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
@@ -109,6 +108,7 @@
         android:textSize="12dp"></EditText>
 
     <Button
+        android:id="@+id/enviar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/chatIA"
@@ -119,7 +119,8 @@
         android:backgroundTint="@color/azulescuro"
         android:text="Enviar"
         android:textSize="16dp"
-        android:textStyle="bold"></Button>
+        android:textStyle="bold"
+        app:rippleColor="@color/azulclaro"></Button>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/scanObra"
@@ -137,10 +138,23 @@
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationBar"
+        android:layout_alignParentEnd="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/azulclaro"
-        android:padding="10dp"></com.google.android.material.navigation.NavigationView>
+        android:padding="10dp">
+
+        <ImageButton
+            android:id="@+id/acessibilidadeExposicao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:backgroundTint="#00FFFFFF"
+            android:padding="0dp"
+            android:src="@drawable/baseline_volume_up_24"
+            android:layout_gravity="right"
+            ></ImageButton>
+    </com.google.android.material.navigation.NavigationView>
 
 </RelativeLayout>

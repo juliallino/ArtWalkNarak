@@ -20,14 +20,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/azulclaro"
-            android:src="@drawable/baseline_arrow_circle_left_24"></ImageButton>
+            android:src="@drawable/baseline_arrow_circle_left_24"
+            app:rippleColor="@color/azulmedio"></ImageButton>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:paddingLeft="15dp"
-            android:text="Sobre a Obra"
+            android:text="Sobre a obra"
             android:textColor="@color/azulescuro"
             android:textSize="20dp"
             android:textStyle="bold"></TextView>
@@ -35,12 +36,14 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/obrasRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/sobreObrasRecyclerView"
+        android:layout_width="wrap_content"
+        android:layout_height="467dp"
         android:layout_below="@id/sobreExposicaoTool"
         android:layout_marginLeft="15dp"
+        android:layout_marginTop="0dp"
         android:layout_marginRight="15dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:itemCount="1"
         tools:listitem="@layout/usuario_list_sobre_obra_view"></androidx.recyclerview.widget.RecyclerView>
 
@@ -48,7 +51,7 @@
         android:id="@+id/tituloChatIA"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/obrasRecyclerView"
+        android:layout_below="@id/sobreObrasRecyclerView"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="20dp"
         android:drawableLeft="@drawable/baseline_smart_toy_24"
@@ -67,12 +70,13 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
         android:background="@color/azulclaro"
-        android:text="Digite sua pergunta...."
-        android:textColor="@color/azulescuro"
+        android:hint="Digite sua pergunta...."
+        android:textColorHint="@color/azulescuro"
         android:textSize="12dp"></EditText>
 
 
     <Button
+        android:id="@+id/enivar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/chatIA"
@@ -83,7 +87,9 @@
         android:backgroundTint="@color/azulescuro"
         android:text="Enviar"
         android:textSize="16dp"
-        android:textStyle="bold"></Button>
+        android:textStyle="bold"
+        app:rippleColor="@color/azulclaro"
+        ></Button>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationBar"
@@ -91,6 +97,18 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/azulclaro"
-        android:padding="10dp"></com.google.android.material.navigation.NavigationView>
+        android:padding="10dp"
+        >
+        <ImageButton
+            android:id="@+id/acessibilidadeObra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:backgroundTint="#00FFFFFF"
+            android:padding="0dp"
+            android:src="@drawable/baseline_volume_up_24"
+            android:layout_gravity="right"
+            ></ImageButton>
+    </com.google.android.material.navigation.NavigationView>
 
 </RelativeLayout>

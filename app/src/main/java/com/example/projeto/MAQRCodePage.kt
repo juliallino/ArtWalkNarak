@@ -29,6 +29,6 @@ class MAQRCodePage : AppCompatActivity() {
     }
     private fun VoltarTela() {
         Log.d("Voltar", "Voltando para tela da Obra")
-        startActivity(Intent(this, MAObraUsuario::class.java))
+        startActivity(Intent(this, MAExposicaoUsuario::class.java))
     }
 }

@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".MAAddExposicao">
 
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/sobreExposicaoTool"
         android:layout_width="match_parent"
@@ -15,19 +16,21 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme">
 
+
         <ImageButton
             android:id="@+id/voltarParaTelaHome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/azulclaro"
-            android:src="@drawable/baseline_arrow_circle_left_24"></ImageButton>
+            android:src="@drawable/baseline_arrow_circle_left_24"
+            app:rippleColor="@color/azulmedio"></ImageButton>
 
         <TextView
             android:id="@+id/tituloEdicao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Edição da Exposição"
+            android:text="Editar/Add Exposições"
             android:textColor="@color/azulescuro"
             android:textSize="20dp"
             android:textStyle="bold"></TextView>
@@ -48,10 +51,10 @@
     <EditText
         android:id="@+id/nomeObraEdit"
         android:layout_width="325dp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_below="@+id/nomeExposicao"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:background="@color/azulclaro"
         android:drawableLeft="@drawable/baseline_filter_frames_24"
         android:drawablePadding="10dp"
@@ -74,10 +77,10 @@
     <EditText
         android:id="@+id/descricaoObraEdit"
         android:layout_width="325dp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_below="@+id/descricaoObra"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:background="@color/azulclaro"
         android:drawableLeft="@drawable/baseline_description_24"
         android:drawablePadding="10dp"
@@ -100,10 +103,10 @@
     <EditText
         android:id="@+id/imagemObraEdit"
         android:layout_width="325dp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_below="@+id/urlObra"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:background="@color/azulclaro"
         android:drawableLeft="@drawable/baseline_link_24"
         android:drawablePadding="10dp"
@@ -148,7 +151,8 @@
             android:backgroundTint="@color/verdeclaro"
             android:text="EM ANDAMENTO"
             android:textColor="@color/azulclaro"
-            android:textStyle="bold"></Button>
+            android:textStyle="bold"
+            app:rippleColor="@color/white"></Button>
 
         <Button
             android:id="@+id/EncerradaBotao"
@@ -157,7 +161,8 @@
             android:backgroundTint="@color/vermelhoclaro"
             android:text="ENCERRADA"
             android:textColor="@color/azulclaro"
-            android:textStyle="bold"></Button>
+            android:textStyle="bold"
+            app:rippleColor="@color/white"></Button>
     </LinearLayout>
 
     <TextView
@@ -188,7 +193,8 @@
             android:backgroundTint="@color/azulmedio"
             android:text="SALVAR MUDANÇAS"
             android:textColor="@color/azulclaro"
-            android:textStyle="bold"></Button>
+            android:textStyle="bold"
+            app:rippleColor="@color/white"></Button>
 
         <Button
             android:id="@+id/excluirBotao"
@@ -197,16 +203,16 @@
             android:backgroundTint="@color/black"
             android:text="EXCLUIR EXPOSIÇÃO"
             android:textColor="@color/azulclaro"
-            android:textStyle="bold"></Button>
+            android:textStyle="bold"
+            app:rippleColor="@color/white"></Button>
     </LinearLayout>
 
-
     <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigationBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/azulclaro"
         android:padding="10dp"></com.google.android.material.navigation.NavigationView>
-
 
 </RelativeLayout>

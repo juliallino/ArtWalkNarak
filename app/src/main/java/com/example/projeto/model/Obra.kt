@@ -6,5 +6,5 @@ data class Obra(
     //  val imagemObra: String por ser url
     val imagemObra: Int,
     val editObra: Int,
-    val descricao: String
+    val descricaoObra: String
 )

@@ -6,9 +6,9 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logounifor"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logounifor"
         android:supportsRtl="true"
         android:theme="@style/Theme.Projeto"
         tools:targetApi="35">
@@ -19,7 +19,7 @@
             android:name=".MAObraUsuario"
             android:exported="false" />
         <activity
-            android:name=".exposicao_funcionario"
+            android:name=".MAExposicaoUsuario"
             android:exported="false" />
         <activity
             android:name=".MAHomeUsuario"

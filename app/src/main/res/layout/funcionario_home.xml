@@ -86,10 +86,10 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerviewExposicoesFuncionarios"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="377dp"
+        android:layout_height="317dp"
         android:layout_below="@id/subtitulo"
-        tools:itemCount="1"
+        tools:itemCount="2"
         tools:listitem="@layout/funcionario_list_exposicoes_home_view"></androidx.recyclerview.widget.RecyclerView>
 
     <ImageButton

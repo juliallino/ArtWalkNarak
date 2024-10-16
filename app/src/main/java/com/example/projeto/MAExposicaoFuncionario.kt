@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projeto.adapter.AdapterExposicao
-import com.example.projeto.adapter.AdapterObra
+import com.example.projeto.adapter.AdapterObraFunc
 import com.example.projeto.model.Exposicao
 import com.example.projeto.model.Obra
 
@@ -52,7 +52,7 @@ class MAExposicaoFuncionario : AppCompatActivity() {
         recyclerViewObras.setHasFixedSize(true)
 
         val obras: MutableList<Obra> = mutableListOf()
-        val adapterObra = AdapterObra(this, obras, true) // Permite edição
+        val adapterObra = AdapterObraFunc(this, obras)
         recyclerViewObras.adapter = adapterObra
 
         // Adicionando obras manualmente
@@ -99,6 +99,18 @@ class MAExposicaoFuncionario : AppCompatActivity() {
             "Super-Herói da Marvel, seu nome é Steve Rorgers, seu sonho era entrar no exército para lutar por seu país, porem por sua condição física o impossibilitava, então se voluntariou a uma experoência e acabpu se tornando um super soldado."
         )
 
+        obras.add(batman)
+        obras.add(arqueiro)
+        obras.add(arsenal)
+        obras.add(asanoturna)
+        obras.add(homemdeferro)
+        obras.add(capitaoamerica)
+        obras.add(batman)
+        obras.add(arqueiro)
+        obras.add(arsenal)
+        obras.add(asanoturna)
+        obras.add(homemdeferro)
+        obras.add(capitaoamerica)
         obras.add(batman)
         obras.add(arqueiro)
         obras.add(arsenal)
