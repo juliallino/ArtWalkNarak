@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "231094752833",
+    "project_id": "artwalk-88bb5",
+    "storage_bucket": "artwalk-88bb5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:231094752833:android:ed939f9f20450e752c18c0",
+        "android_client_info": {
+          "package_name": "com.example.projeto"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcSrB2veFbjp9Jcn6QqLYq9_T097u5dQU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

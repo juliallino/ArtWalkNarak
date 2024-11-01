@@ -20,11 +20,7 @@ class MAObraUsuario : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.usuario_obra)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+
 
         val recyclerViewObras = findViewById<RecyclerView>(R.id.sobreObrasRecyclerView)
         recyclerViewObras.layoutManager = LinearLayoutManager(this)
