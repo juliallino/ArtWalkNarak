@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".MAAddExposicao">
 
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/sobreExposicaoTool"
         android:layout_width="match_parent"
@@ -16,21 +15,19 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme">
 
-
         <ImageButton
             android:id="@+id/voltarParaTelaHome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/azulclaro"
-            android:src="@drawable/baseline_arrow_circle_left_24"
-            app:rippleColor="@color/azulmedio"></ImageButton>
+            android:src="@drawable/baseline_arrow_circle_left_24"></ImageButton>
 
         <TextView
             android:id="@+id/tituloEdicao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Editar/Add Exposições"
+            android:text="Edição Exposições"
             android:textColor="@color/azulescuro"
             android:textSize="20dp"
             android:textStyle="bold"></TextView>
@@ -49,24 +46,24 @@
         android:textStyle="bold"></TextView>
 
     <EditText
-        android:id="@+id/nomeObraEdit"
+        android:id="@+id/nomeExposicaoEdit"
         android:layout_width="325dp"
-        android:layout_height="40dp"
-        android:layout_below="@+id/nomeExposicao"
+        android:layout_height="50dp"
+        android:layout_below="@id/nomeExposicao"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:background="@color/azulclaro"
         android:drawableLeft="@drawable/baseline_filter_frames_24"
         android:drawablePadding="10dp"
         android:paddingLeft="15dp"
-        android:hint="Nome da exposição..."
-        android:textColorHint="#1E88E5"></EditText>
+        android:text="Nome da exposição..."
+        android:textColor="#1E88E5"></EditText>
 
     <TextView
-        android:id="@+id/descricaoObra"
+        android:id="@+id/descricaoExposicao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/nomeObraEdit"
+        android:layout_below="@+id/nomeExposicaoEdit"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         android:text="Descrição da Exposição:"
@@ -75,59 +72,60 @@
         android:textStyle="bold"></TextView>
 
     <EditText
-        android:id="@+id/descricaoObraEdit"
+        android:id="@+id/descricaoExposicaoEdit"
         android:layout_width="325dp"
-        android:layout_height="40dp"
-        android:layout_below="@+id/descricaoObra"
+        android:layout_height="50dp"
+        android:layout_below="@id/descricaoExposicao"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:background="@color/azulclaro"
         android:drawableLeft="@drawable/baseline_description_24"
         android:drawablePadding="10dp"
         android:paddingLeft="15dp"
-        android:hint="Descrição da Exposição..."
-        android:textColorHint="#1E88E5"></EditText>
+        android:text="Descrição da Exposição..."
+        android:textColor="#1E88E5"></EditText>
 
     <TextView
-        android:id="@+id/urlObra"
+        android:id="@+id/imagemExposicaoTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/descricaoObraEdit"
+        android:layout_below="@id/descricaoExposicaoEdit"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        android:text="Url da imagem da Exposição:"
+        android:text="Imagem da Exposição:"
         android:textColor="@color/azulescuro"
         android:textSize="18dp"
         android:textStyle="bold"></TextView>
 
-    <EditText
-        android:id="@+id/imagemObraEdit"
-        android:layout_width="325dp"
-        android:layout_height="40dp"
-        android:layout_below="@+id/urlObra"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/azulclaro"
-        android:drawableLeft="@drawable/baseline_link_24"
-        android:drawablePadding="10dp"
-        android:paddingLeft="15dp"
-        android:hint="Url da imagem..."
-        android:textColorHint="#1E88E5"></EditText>
 
     <ImageView
-        android:id="@+id/imagemObra"
+        android:id="@+id/imagemExposicao"
         android:layout_width="325dp"
         android:layout_height="95dp"
-        android:layout_below="@+id/imagemObraEdit"
+        android:layout_below="@id/imagemExposicaoTitulo"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        android:background="@color/azulclaro"></ImageView>
+        android:background="@color/azulclaro"
+        ></ImageView>
+
+    <Button
+        android:id="@+id/uploadBotao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/imagemExposicao"
+        android:backgroundTint="@color/black"
+        android:text="UPLOAD"
+        android:textColor="@color/azulclaro"
+        android:textStyle="bold"
+        android:layout_centerInParent="true"></Button>
 
     <TextView
         android:id="@+id/statusExposicao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imagemObra"
+        android:layout_below="@id/uploadBotao"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         android:text="Status da Exposição:"
@@ -139,7 +137,7 @@
         android:id="@+id/botoesStatusLayouts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/statusExposicao"
+        android:layout_below="@id/statusExposicao"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp">
 
@@ -151,25 +149,23 @@
             android:backgroundTint="@color/verdeclaro"
             android:text="EM ANDAMENTO"
             android:textColor="@color/azulclaro"
-            android:textStyle="bold"
-            app:rippleColor="@color/white"></Button>
+            android:textStyle="bold"></Button>
 
         <Button
-            android:id="@+id/EncerradaBotao"
+            android:id="@+id/encerradaBotao"
             android:layout_width="160dp"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/vermelhoclaro"
+            android:backgroundTint="@color/cinza"
             android:text="ENCERRADA"
             android:textColor="@color/azulclaro"
-            android:textStyle="bold"
-            app:rippleColor="@color/white"></Button>
+            android:textStyle="bold"></Button>
     </LinearLayout>
 
     <TextView
         android:id="@+id/finalizarEdicao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/botoesStatusLayouts"
+        android:layout_below="@id/botoesStatusLayouts"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         android:text="Finalizar Edição:"
@@ -181,7 +177,7 @@
         android:id="@+id/botoesSalvarExcluirLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/finalizarEdicao"
+        android:layout_below="@id/finalizarEdicao"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp">
 
@@ -193,22 +189,20 @@
             android:backgroundTint="@color/azulmedio"
             android:text="SALVAR MUDANÇAS"
             android:textColor="@color/azulclaro"
-            android:textStyle="bold"
-            app:rippleColor="@color/white"></Button>
+            android:textStyle="bold"></Button>
 
         <Button
             android:id="@+id/excluirBotao"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/black"
+            android:backgroundTint="@color/vermelhoclaro"
             android:text="EXCLUIR EXPOSIÇÃO"
             android:textColor="@color/azulclaro"
-            android:textStyle="bold"
-            app:rippleColor="@color/white"></Button>
+            android:textStyle="bold"></Button>
     </LinearLayout>
 
+
     <com.google.android.material.navigation.NavigationView
-        android:id="@+id/navigationBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
