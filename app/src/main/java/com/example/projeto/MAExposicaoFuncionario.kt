@@ -37,8 +37,8 @@ class MAExposicaoFuncionario : AppCompatActivity() {
             "CENTELHAS EM MOVIMENTO",
             R.drawable.centelhas,
             R.drawable.edit,
-            "A exposição Centelhas em Movimento reúne cerca de 190 obras da coleção de Igor Queiroz Barroso, explorando a arte brasileira do século XX, com foco nas diferentes fases do modernismo."
-        )
+            "A exposição Centelhas em Movimento reúne cerca de 190 obras da coleção de Igor Queiroz Barroso, explorando a arte brasileira do século XX, com foco nas diferentes fases do modernismo.",
+            true)
         sobreExposicaoLista.add(centelhas)
 
         // RecyclerView para obras

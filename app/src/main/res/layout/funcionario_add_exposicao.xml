@@ -56,8 +56,8 @@
         android:drawableLeft="@drawable/baseline_filter_frames_24"
         android:drawablePadding="10dp"
         android:paddingLeft="15dp"
-        android:text="Nome da exposição..."
-        android:textColor="#1E88E5"></EditText>
+        android:hint="Nome da exposição..."
+        android:textColorHint="#1E88E5"></EditText>
 
     <TextView
         android:id="@+id/descricaoExposicao"
@@ -82,8 +82,8 @@
         android:drawableLeft="@drawable/baseline_description_24"
         android:drawablePadding="10dp"
         android:paddingLeft="15dp"
-        android:text="Descrição da Exposição..."
-        android:textColor="#1E88E5"></EditText>
+        android:hint="Descrição da Exposição..."
+        android:textColorHint="#1E88E5"></EditText>
 
     <TextView
         android:id="@+id/imagemExposicaoTitulo"
@@ -142,7 +142,7 @@
         android:layout_marginTop="20dp">
 
         <Button
-            android:id="@+id/EmAndamentoBotao"
+            android:id="@+id/emAndamentoBotao"
             android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="30dp"

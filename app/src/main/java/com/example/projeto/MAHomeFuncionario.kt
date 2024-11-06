@@ -30,7 +30,7 @@ class MAHomeFuncionario : AppCompatActivity() {
         recyclerViewExposicoes.adapter = adapterExposicao
 
         // Exemplo de criação de uma nova Exposição
-        val centelhasEmMovimento = Exposicao(1, "CENTELHAS EM MOVIMENTO", R.drawable.centelhas, R.drawable.baseline_edit_24, "Descrição da exposição.")
+        val centelhasEmMovimento = Exposicao(1, "CENTELHAS EM MOVIMENTO", R.drawable.centelhas, R.drawable.baseline_edit_24, "Descrição da exposição.", true)
         listaExposicoes.add(centelhasEmMovimento)
 
         // Botão para adicionar exposição

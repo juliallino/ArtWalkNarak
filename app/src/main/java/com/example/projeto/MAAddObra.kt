@@ -4,50 +4,68 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageButton
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+
 
 class MAAddObra : AppCompatActivity() {
+    lateinit var nomeObra : EditText
+    lateinit var descricaoObra: EditText
+
+    lateinit var botaoSalvar: Button
+    lateinit var botaoExcluir: Button
+    lateinit var fb: FirebaseFirestore
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.funcionario_add_obras)
 
-        //botões
+        nomeObra = findViewById(R.id.nomeObraEdit)
+        descricaoObra = findViewById(R.id.descricaoObraEdit)
+        botaoSalvar = findViewById(R.id.salvarBotao)
+        botaoExcluir = findViewById(R.id.excluirBotao)
+        fb = Firebase.firestore
+
+    }
+
+    override fun onStart() {
+        super.onStart()
         val botaoVoltarTela = findViewById<ImageButton>(R.id.voltarParaTelaExposicoes)
         botaoVoltarTela.setOnClickListener{
             VoltarTela()
         }
-        val salvarBotao = findViewById<Button>(R.id.salvarBotao)
-        salvarBotao.setOnClickListener {
-            Salvar()
+
+        botaoSalvar.setOnClickListener {
+            val nome = nomeObra.text.toString()
+            val descricao = descricaoObra.text.toString()
+
+            fb.collection("Obra")
+                .document(nome)
+                .set(mapOf(
+                    "nomeObra" to nome,
+                    "descricaoObra" to descricao,
+                ))
+            VoltarTela()
         }
-        val excluirBotao = findViewById<Button>(R.id.excluirBotao)
-        excluirBotao.setOnClickListener {
-            Excluir()
+
+        botaoExcluir.setOnClickListener {
+            val nome = nomeObra.text.toString()
+            fb.collection("Obra")
+                .document(nome)
+                .delete()
+            VoltarTela()
         }
     }
-
 
     private fun VoltarTela() {
         Log.d("Voltar", "Voltando para tela exposicções do funcionário")
         startActivity(Intent(this, MAExposicaoFuncionario::class.java))
     }
-    private fun Salvar() {
-        Log.d("Salvar", "Salvar nova obra")
-        Toast.makeText(this, "Obra savla", Toast.LENGTH_SHORT).show()
-        val intent = Intent(this, MAExposicaoFuncionario::class.java)
-        startActivity(intent)
-    }
-
-    private fun Excluir() {
-        Log.d("Excluir", "Excluir obra")
-        Toast.makeText(this, "Obra excluida", Toast.LENGTH_SHORT).show()
-        val intent = Intent(this, MAExposicaoFuncionario::class.java)
-        startActivity(intent)
-    }
 }
+

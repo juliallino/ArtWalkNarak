@@ -87,46 +87,48 @@
         android:textColorHint="#1E88E5"></EditText>
 
     <TextView
-        android:id="@+id/urlObra"
+        android:id="@+id/imagemTituloObra"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/descricaoObraEdit"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        android:text="Url da imagem da obra:"
+        android:text="Imagem da obra:"
         android:textColor="@color/azulescuro"
         android:textSize="18dp"
-        android:textStyle="bold"></TextView>
+        android:textStyle="bold"
+       ></TextView>
 
-    <EditText
-        android:id="@+id/imagemObraEdit"
-        android:layout_width="325dp"
-        android:layout_height="40dp"
-        android:layout_below="@+id/urlObra"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/azulclaro"
-        android:drawableLeft="@drawable/baseline_link_24"
-        android:drawablePadding="10dp"
-        android:paddingLeft="15dp"
-        android:hint="Url da imagem..."
-        android:textColorHint="#1E88E5"></EditText>
 
     <ImageView
         android:id="@+id/imagemObra"
         android:layout_width="124dp"
         android:layout_height="124dp"
-        android:layout_below="@+id/imagemObraEdit"
+        android:layout_below="@id/imagemTituloObra"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        android:background="@color/azulclaro"></ImageView>
+        android:background="@color/azulclaro"
+        android:layout_centerInParent="true"
+        ></ImageView>
 
+    <Button
+        android:id="@+id/uploadBotao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/imagemObra"
+        android:backgroundTint="@color/black"
+        android:text="UPLOAD"
+        android:textColor="@color/azulclaro"
+        android:textStyle="bold"
+        android:layout_centerInParent="true"></Button>
 
     <TextView
         android:id="@+id/finalizarEdicao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imagemObra"
+        android:layout_below="@id/uploadBotao"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         android:text="Finalizar Edição:"
@@ -157,7 +159,7 @@
             android:id="@+id/excluirBotao"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/black"
+            android:backgroundTint="@color/vermelhoclaro"
 
             android:text="EXCLUIR OBRA"
             android:textColor="@color/azulclaro"

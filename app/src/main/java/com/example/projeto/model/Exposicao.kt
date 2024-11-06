@@ -5,5 +5,6 @@ data class Exposicao(
     val nomeExposicao: String,
     val imagemExposicao: Int,
     val editExposicao: Int,
-    val descricaoExposicao: String
+    val descricaoExposicao: String,
+    val status: Boolean
 )
