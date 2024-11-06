@@ -38,7 +38,7 @@
 
 
     <EditText
-        android:id="@+id/numeroDeIdentificacao"
+        android:id="@+id/numeroEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
@@ -56,11 +56,11 @@
         android:padding="15dp"></EditText>
 
     <EditText
-        android:id="@+id/senha"
+        android:id="@+id/senhaEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:layout_below="@+id/numeroDeIdentificacao"
+        android:layout_below="@id/numeroEdit"
 
         android:layout_marginLeft="40dp"
         android:layout_marginTop="10dp"
@@ -79,7 +79,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_below="@id/senha"
+        android:layout_below="@id/senhaEdit"
         android:layout_centerHorizontal="true"
 
         android:layout_marginLeft="40dp"
