@@ -11,8 +11,10 @@
         android:roundIcon="@drawable/logounifor"
         android:supportsRtl="true"
         android:theme="@style/Theme.Projeto"
-        tools:targetApi="35"
-        >
+        tools:targetApi="35">
+        <activity
+            android:name=".MACadastroUsuario"
+            android:exported="false" />
         <activity
             android:name=".MAQRCodePage"
             android:exported="false" />
