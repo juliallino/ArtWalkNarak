@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_login"
-    tools:context=".MALoginUsuario">
-
+    tools:context=".MACadastroUsuario">
     <ImageView
         android:id="@+id/logo"
         android:layout_width="100dp"
@@ -15,11 +14,11 @@
         android:layout_marginLeft="25dp"
         android:layout_marginTop="50dp"
         android:layout_marginRight="25dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="120dp"
         android:src="@drawable/logounifor"></ImageView>
 
     <TextView
-        android:id="@+id/Titulo"
+        android:id="@+id/loginUserTitulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/logo"
@@ -28,22 +27,7 @@
         android:layout_marginRight="25dp"
         android:layout_marginBottom="0dp"
         android:gravity="center"
-        android:text="Seja bem-vindo(a),"
-        android:textColor="@color/azulescuro"
-        android:textSize="20dp"
-        android:textStyle="bold"></TextView>
-
-    <TextView
-        android:id="@+id/loginUserTitulo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/Titulo"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginRight="25dp"
-        android:layout_marginBottom="0dp"
-        android:gravity="center"
-        android:text="faça seu Login:"
+        android:text="Faça seu cadastro para começar"
         android:textColor="@color/azulescuro"
         android:textSize="20dp"
         android:textStyle="bold"></TextView>
@@ -80,17 +64,37 @@
         android:background="#70ffffff"
         android:drawableLeft="@drawable/baseline_password_24"
         android:drawablePadding="15dp"
-
         android:hint="Senha..."
         android:inputType="textPassword"
         android:padding="15dp"></EditText>
 
-    <Button
-        android:id="@+id/botaoDeEntrarUsuario"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/confirmeSenhaEdit"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
         android:layout_below="@id/senhaEdit"
+
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="10dp"
+        android:background="#70ffffff"
+        android:drawableLeft="@drawable/baseline_password_24"
+        android:drawablePadding="15dp"
+
+        android:hint="Confirme a senha..."
+        android:inputType="textPassword"
+        android:padding="15dp"></EditText>
+
+
+
+    <Button
+        android:id="@+id/botaoDeCadastro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_below="@id/confirmeSenhaEdit"
         android:layout_centerHorizontal="true"
 
         android:layout_marginLeft="40dp"
@@ -99,42 +103,26 @@
         android:layout_marginBottom="10dp"
         android:backgroundTint="@color/azulescuro"
         android:padding="10dp"
-        android:text="ENTRAR"
+        android:text="CADASTRE-SE"
         android:textSize="15dp"
-        tools:ignore="TextSizeCheck"></Button>
+        android:textStyle="bold"
+        ></Button>
 
     <Button
-        android:id="@+id/botaoDeCadastro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/botaoDeEntrarUsuario"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginBottom="10dp"
-        android:backgroundTint="#00FFFFFF"
-        android:padding="10dp"
-        android:text="Ou faça seu cadastro"
-        android:textColor="@color/azulescuro"
-        android:textSize="15dp"
-        android:textStyle="bold|italic"></Button>
-
-    <Button
-        android:id="@+id/botaoDeLoginComoFuncionario"
+        android:id="@+id/botaoDeLoginComoUsuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/botaoDeCadastro"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="40dp"
-        android:layout_marginTop="98dp"
+        android:layout_marginTop="89dp"
         android:layout_marginRight="40dp"
         android:layout_marginBottom="10dp"
-        android:backgroundTint="#00ffffff"
+        android:backgroundTint="@color/azulclaro"
         android:padding="10dp"
-        android:text="Login como funcionário"
+        android:text="Voltar para página de Login"
         android:textColor="@color/azulescuro"
         android:textSize="15dp"
-        android:textStyle="bold"></Button>
+        android:textStyle="bold|italic"></Button>
 
 </RelativeLayout>

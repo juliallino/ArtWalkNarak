@@ -1,0 +1,64 @@
+package com.example.projeto
+
+import android.content.Intent
+import android.os.Bundle
+import android.util.Log
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+
+class MACadastroUsuario : AppCompatActivity() {
+    private lateinit var auth: FirebaseAuth
+    private lateinit var email: EditText
+    private lateinit var senha: EditText
+    private lateinit var confirmarSenha: EditText
+    private lateinit var botaoCadastrar: Button
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContentView(R.layout.usuario_cadastro)
+        auth = FirebaseAuth.getInstance()
+        email = findViewById(R.id.emailEdit)
+        senha = findViewById(R.id.senhaEdit)
+        confirmarSenha = findViewById(R.id.confirmeSenhaEdit)
+        botaoCadastrar = findViewById(R.id.botaoDeCadastro)
+
+
+        val botaoVolatarLogin = findViewById<Button>(R.id.botaoDeLoginComoUsuario)
+        botaoVolatarLogin.setOnClickListener {
+            VoltarParaLogin()
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        botaoCadastrar.setOnClickListener {
+            if (email.text.toString().isNotEmpty() && senha.text.toString().isNotEmpty() && confirmarSenha.text.toString().isNotEmpty()){
+                if (senha.text.toString().equals(confirmarSenha.text.toString())){
+                auth.createUserWithEmailAndPassword(email.text.toString() , senha.text.toString()).addOnCompleteListener{
+                    if(it.isSuccessful){
+                        val intent = Intent(this, MALoginUsuario::class.java)
+                        startActivity(intent)
+                    }else{
+                        Toast.makeText(this, "Erro ao Cadastrar", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                }else{
+                    Toast.makeText(this, "As senhas não estão correspondentes", Toast.LENGTH_SHORT).show()
+                }
+            }else{
+                Toast.makeText(this, "Existe algum campo em vazio", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun VoltarParaLogin() {
+        Log.d("Login", "Indo para tela de login do usuario")
+        val intent = Intent(this, MALoginUsuario::class.java)
+        startActivity(intent)
+    }
+}
