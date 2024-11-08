@@ -38,11 +38,11 @@
 
 
     <EditText
-        android:id="@+id/numeroEdit"
+        android:id="@+id/emailEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:layout_below="@+id/loginFuncionarioTitulo"
+        android:layout_below="@id/loginFuncionarioTitulo"
 
         android:layout_marginLeft="40dp"
         android:layout_marginTop="20dp"
@@ -52,7 +52,7 @@
         android:drawableLeft="@drawable/baseline_person_outline_24"
         android:drawablePadding="15dp"
 
-        android:hint="Númedo de identificação..."
+        android:hint="Email..."
         android:padding="15dp"></EditText>
 
     <EditText
@@ -60,7 +60,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:layout_below="@id/numeroEdit"
+        android:layout_below="@id/emailEdit"
 
         android:layout_marginLeft="40dp"
         android:layout_marginTop="10dp"

@@ -22,7 +22,7 @@ class MAExposicaoFuncionario : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.funcionario_exposicao)
 
-
+        // RecyclerView para exposições
         val recyclerViewSobreExposicoes = findViewById<RecyclerView>(R.id.sobreExposicaoRecyclerView)
         recyclerViewSobreExposicoes.layoutManager = LinearLayoutManager(this)
         recyclerViewSobreExposicoes.setHasFixedSize(true)
@@ -31,92 +31,17 @@ class MAExposicaoFuncionario : AppCompatActivity() {
         val adapterExposicao = AdapterExposicao(this, sobreExposicaoLista)
         recyclerViewSobreExposicoes.adapter = adapterExposicao
 
-        // Adicionando exposições manualmente
-        val centelhas = Exposicao(
-            1,
-            "CENTELHAS EM MOVIMENTO",
-            R.drawable.centelhas,
-            R.drawable.edit,
-            "A exposição Centelhas em Movimento reúne cerca de 190 obras da coleção de Igor Queiroz Barroso, explorando a arte brasileira do século XX, com foco nas diferentes fases do modernismo.",
-            true)
-        sobreExposicaoLista.add(centelhas)
-
         // RecyclerView para obras
         val recyclerViewObras = findViewById<RecyclerView>(R.id.obrasRecyclerView)
         recyclerViewObras.layoutManager = GridLayoutManager(this, 5)
         recyclerViewObras.setHasFixedSize(true)
-
+        // Configurar adapter para obras
         val obras: MutableList<Obra> = mutableListOf()
         val adapterObra = AdapterObraFunc(this, obras)
         recyclerViewObras.adapter = adapterObra
 
-        // Adicionando obras manualmente
-        val batman = Obra(
-            1,
-            "Batman",
-            R.drawable.batman,
-            R.drawable.edit,
-            "Super-Herói de Gotham, seu nome é Bruce Wayne, trumatizado pela morte dos seus pais, buscou curar seu luto através da vigança e acabou como herói."
-        )
-        val arqueiro = Obra(
-            2,
-            "Aruqueiro Verde",
-            R.drawable.arqueiro,
-            R.drawable.edit,
-            "Super-Herói de StarCity, seu nome é Oliver Queen, ficou preso em uma ilha chamada em Lian Yu por 6 anos, mas não foi só isso que aconteceu... "
-        )
-        val arsenal = Obra(
-            3,
-            "Arsenal",
-            R.drawable.arsenal,
-            R.drawable.edit,
-            "Super-Herói de StarCity, seu nome é Roy Harper,  anteriormente tarablahava como ajudante do Arqueiro Verde como Ricardito."
-        )
-        val asanoturna = Obra(
-            4,
-            "Asa Noturna",
-            R.drawable.asanoturna,
-            R.drawable.edit,
-            "Super-Herói de CentralCity, seu nome é Dick Grayson, anteriormente tarablahava como ajudante do Batman como Robin."
-        )
-        val homemdeferro = Obra(
-            5,
-            "Homem de Ferro",
-            R.drawable.homemdeferro,
-            R.drawable.edit,
-            "Super-Herói da Marvel, seu nome é Tony Stark, herdou as empresas multibilionárias de armas de fogo do pai, porém após um evento traumárico sua concepção de vida mudou e resolveu mudar o legado do nome de sua família."
-        )
-        val capitaoamerica = Obra(
-            6,
-            "Capitão América",
-            R.drawable.capitaoamerica,
-            R.drawable.edit,
-            "Super-Herói da Marvel, seu nome é Steve Rorgers, seu sonho era entrar no exército para lutar por seu país, porem por sua condição física o impossibilitava, então se voluntariou a uma experoência e acabpu se tornando um super soldado."
-        )
 
-        obras.add(batman)
-        obras.add(arqueiro)
-        obras.add(arsenal)
-        obras.add(asanoturna)
-        obras.add(homemdeferro)
-        obras.add(capitaoamerica)
-        obras.add(batman)
-        obras.add(arqueiro)
-        obras.add(arsenal)
-        obras.add(asanoturna)
-        obras.add(homemdeferro)
-        obras.add(capitaoamerica)
-        obras.add(batman)
-        obras.add(arqueiro)
-        obras.add(arsenal)
-        obras.add(asanoturna)
-        obras.add(homemdeferro)
-        obras.add(capitaoamerica)
 
-        // Atualizar a lista para o adapter
-        adapterObra.notifyDataSetChanged()
-
-        // Botões
         val botaoVoltarTela = findViewById<ImageButton>(R.id.voltarParaTelaHome)
         botaoVoltarTela.setOnClickListener{
             VoltarTela()

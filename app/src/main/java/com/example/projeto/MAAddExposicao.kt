@@ -62,8 +62,7 @@ class MAAddExposicao : AppCompatActivity() {
             val descricao = descricaoExposicao.text.toString()
 
            fb.collection("Exposicao")
-                .document(nome)
-                .set(mapOf(
+                .add(mapOf(
                     "nomeExposicao" to nome,
                     "descricaoExposicao" to descricao,
                     "status" to status
