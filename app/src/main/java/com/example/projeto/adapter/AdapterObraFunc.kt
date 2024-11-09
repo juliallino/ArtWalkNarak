@@ -35,12 +35,12 @@ class AdapterObraFunc(
 
 
     inner class ObrasViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val imagemObra: ImageView = itemView.findViewById(R.id.imagemObra)
+        val imagemObra: TextView = itemView.findViewById(R.id.imagemObra)
         val editObra: ImageView = itemView.findViewById(R.id.editObra)
 
         // Método para associar os dados da exposição ao item da view
         fun bind(obra: Obra) {
-            imagemObra.setImageResource(obra.imagemObra)
+            imagemObra.text = obra.imagemObra
             editObra.setImageResource(obra.editObra)
         }
     }

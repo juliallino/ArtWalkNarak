@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projeto.MAObraUsuario
 import com.example.projeto.R
@@ -32,11 +33,11 @@ class AdapterObraUsu(
     }
 
     inner class ObrasViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val imagemObra: ImageView = itemView.findViewById(R.id.imagemObra)
+        val imagemObra: TextView = itemView.findViewById(R.id.imagemObra)
 
         // Método para associar os dados da exposição ao item da view
         fun bind(obra: Obra) {
-            imagemObra.setImageResource(obra.imagemObra)
+            imagemObra.text = obra.imagemObra
         }
     }
 }

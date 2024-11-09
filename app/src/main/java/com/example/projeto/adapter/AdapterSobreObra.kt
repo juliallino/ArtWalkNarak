@@ -30,11 +30,11 @@ class AdapterSobreObra (
 
     inner class ObrasViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nomeObra: TextView = itemView.findViewById(R.id.nomeObra)
-        val imagemObra: ImageView = itemView.findViewById(R.id.imagemObra)
+        val imagemObra: TextView = itemView.findViewById(R.id.imagemObra)
         val descricaoObra: TextView = itemView.findViewById(R.id.descricaoObra)
         fun bind(obra: Obra) {
             nomeObra.text = obra.nomeObra
-            imagemObra.setImageResource(obra.imagemObra)
+            imagemObra.text = obra.imagemObra
             descricaoObra.text = obra.descricaoObra
         }
     }

@@ -29,16 +29,7 @@ class MAObraUsuario : AppCompatActivity() {
         val adapterObra = AdapterSobreObra(this, obras)
         recyclerViewObras.adapter = adapterObra
 
-        val batman = Obra(
-            1,
-            "Batman",
-            R.drawable.batman,
-            0,
-            "Super-Herói de Gotham, seu nome é Bruce Wayne, traumatizado pela morte dos seus pais resolveu sair pelas ruas de Gotham atrás de vingança. Posteriormente reolveu salvar a cidade que seu pai tanto amava. Antes da perda de seus pais, Bruce Wayne era uma criança alegre e feliz, guardando boas memórias do tempo em que viveu na Mansão Wayne. Tendo se tornado introvertido e antissocial na adolescência, Bruce preferia a companhia de livros a pessoas. Ele tinha interesse em garotas, mas não se preocupava em gastar tempo com elas. Apesar das Indústrias Wayne serem capazes de lhe proporcionar grandes aposentos e o melhor conforto possível, \\n\\nBruce mantinha seu quarto na Torre Wayne o mais simples possível, acreditando que a praticidade de achar coisas mais rápido compensava o conforto exagerado que poderia ter com seu dinheiro. Bruce também sempre foi dedicado em sua vida estudantil, tirando as melhores notas possíveis, mas não se preocupando muito com tal resultado―ele de fato estudava por gosto, não pelo resultado"
-        )
 
-        obras.add(batman)
-        adapterObra.notifyDataSetChanged()
 
         val botaoVoltarTela = findViewById<ImageButton>(R.id.voltarParaTelaHome)
         botaoVoltarTela.setOnClickListener{

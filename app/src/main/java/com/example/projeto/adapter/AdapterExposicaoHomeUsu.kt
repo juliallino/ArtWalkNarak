@@ -41,13 +41,13 @@ class AdapterExposicaoHomeUsu(
     // Classe interna ViewHolder, responsável por armazenar as Views de cada item
     inner class ExposicaoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nomeExposicao: TextView = itemView.findViewById(R.id.nomeExposicao)
-        val imagemExposicao: ImageView = itemView.findViewById(R.id.imagemExposicao)
+        val imagemExposicao: TextView = itemView.findViewById(R.id.imagemExposicao)
 
 
         // Método para associar os dados da exposição ao item da view
         fun bind(exposicao: Exposicao) {
             nomeExposicao.text = exposicao.nomeExposicao
-            imagemExposicao.setImageResource(exposicao.imagemExposicao)
+            imagemExposicao.text = exposicao.imagemExposicao
         }
     }
 }
