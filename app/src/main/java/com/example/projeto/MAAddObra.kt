@@ -9,6 +9,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -24,6 +25,7 @@ class MAAddObra : AppCompatActivity() {
     lateinit var botaoUploadImagem: Button
     lateinit var botaoSalvar: Button
     lateinit var botaoExcluir: Button
+    lateinit var imagemObra : ImageView
     lateinit var fb: FirebaseFirestore
     var imagemBase64: String? = null
 
@@ -41,6 +43,7 @@ class MAAddObra : AppCompatActivity() {
         descricaoObra = findViewById(R.id.descricaoObraEdit)
         botaoSalvar = findViewById(R.id.salvarBotao)
         botaoExcluir = findViewById(R.id.excluirBotao)
+        imagemObra = findViewById(R.id.imagemObra)
         fb = Firebase.firestore
 
         botaoUploadImagem = findViewById(R.id.uploadBotao)
@@ -83,6 +86,11 @@ class MAAddObra : AppCompatActivity() {
                 "imagemExposicao" to imagemBase64
             )
 
+            // Exibir a imagem na ImageView antes de salvar
+            imagemBase64?.let { base64String ->
+                val bitmap = base64ToBitmap(base64String)
+                imagemObra.setImageBitmap(bitmap)
+            }
             fb.collection("Obra")
                 .add(exposicaoData)
                 .addOnSuccessListener {
@@ -103,7 +111,15 @@ class MAAddObra : AppCompatActivity() {
         }
 
     }
-
+    private fun base64ToBitmap(base64String: String): Bitmap? {
+        return try {
+            val decodedString: ByteArray = Base64.decode(base64String, Base64.DEFAULT)
+            BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
+    }
     private fun VoltarTela() {
         Log.d("Voltar", "Voltando para tela exposicções do funcionário")
         startActivity(Intent(this, MAExposicaoFuncionario::class.java))

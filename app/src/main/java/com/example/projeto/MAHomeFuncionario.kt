@@ -68,16 +68,20 @@ class MAHomeFuncionario : AppCompatActivity() {
         botaoAddExposicao.setOnClickListener {
             AddExposicao()
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
         btnSair.setOnClickListener{
             auth.signOut()
             startActivity(Intent(this, MALoginUsuario::class.java))
         }
     }
 
+
     private fun AddExposicao() {
         Log.d("ADD", "Tela add Exposição")
         val intent = Intent(this, MAAddExposicao::class.java)
         startActivity(intent)
     }
-
 }

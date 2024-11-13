@@ -95,27 +95,33 @@ class MAAddExposicao : AppCompatActivity() {
             Toast.makeText(this, "ENCERRADA", Toast.LENGTH_SHORT).show()
         }
 
-       botaoSalvar.setOnClickListener {
-           val nome = nomeExpo.text.toString()
-           val descricao = descricaoExposicao.text.toString()
+        botaoSalvar.setOnClickListener {
+            val nome = nomeExpo.text.toString()
+            val descricao = descricaoExposicao.text.toString()
 
-           val exposicaoData = hashMapOf(
-               "nomeExposicao" to nome,
-               "descricaoExposicao" to descricao,
-               "status" to status,
-               "imagemExposicao" to imagemBase64
-           )
+            val exposicaoData = hashMapOf(
+                "nomeExposicao" to nome,
+                "descricaoExposicao" to descricao,
+                "status" to status,
+                "imagemExposicao" to imagemBase64
+            )
 
-           fb.collection("Exposicao")
-               .add(exposicaoData)
-               .addOnSuccessListener {
-                   Toast.makeText(this, "Exposição salva com sucesso!", Toast.LENGTH_SHORT).show()
-                   VoltarTela()
-               }
-               .addOnFailureListener {
-                   Toast.makeText(this, "Erro ao salvar exposição.", Toast.LENGTH_SHORT).show()
-               }
-       }
+            // Exibir a imagem na ImageView antes de salvar
+            imagemBase64?.let { base64String ->
+                val bitmap = base64ToBitmap(base64String)
+                imagemExposicao.setImageBitmap(bitmap)
+            }
+
+            fb.collection("Exposicao")
+                .add(exposicaoData)
+                .addOnSuccessListener {
+                    Toast.makeText(this, "Exposição salva com sucesso!", Toast.LENGTH_SHORT).show()
+                    VoltarTela()
+                }
+                .addOnFailureListener {
+                    Toast.makeText(this, "Erro ao salvar exposição.", Toast.LENGTH_SHORT).show()
+                }
+        }
 
         botaoExcluir.setOnClickListener {
             val nome = nomeExpo.text.toString()
@@ -125,6 +131,17 @@ class MAAddExposicao : AppCompatActivity() {
             VoltarTela()
         }
     }
+
+    private fun base64ToBitmap(base64String: String): Bitmap? {
+        return try {
+            val decodedString: ByteArray = Base64.decode(base64String, Base64.DEFAULT)
+            BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
+    }
+
 
     private fun VoltarTela() {
         Log.d("Voltar", "Voltando para tela inicial do funcionário")

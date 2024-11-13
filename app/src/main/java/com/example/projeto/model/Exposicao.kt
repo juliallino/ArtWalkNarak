@@ -6,6 +6,4 @@ data class Exposicao(
     val imagemExposicao: String? = null,
     val descricaoExposicao: String? = null,
     val status: Boolean? = null
-){
-    constructor() : this(null, null, null, null, null)
-}
+)

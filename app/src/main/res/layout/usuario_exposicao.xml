@@ -60,7 +60,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/sobreExposicaoRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="226dp"
         android:layout_below="@id/busca"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:itemCount="1"
@@ -69,8 +69,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/obrasRecyclerView"
-        android:layout_width="378dp"
-        android:layout_height="299dp"
+        android:layout_width="395dp"
+        android:layout_height="282dp"
         android:layout_below="@id/sobreExposicaoRecyclerView"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"

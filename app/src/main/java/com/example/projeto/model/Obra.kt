@@ -5,6 +5,4 @@ data class Obra(
     val nomeObra: String? = null,
     val imagemObra: String? = null,
     val descricaoObra: String? = null,
-){
-    constructor() : this(null, null, null, null)
-}
+)
