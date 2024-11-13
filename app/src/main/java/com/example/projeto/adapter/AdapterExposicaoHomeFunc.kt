@@ -48,13 +48,14 @@ class AdapterExposicaoHomeFunc(
     inner class ExposicaoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nomeExposicao: TextView = itemView.findViewById(R.id.nomeExposicao)
         val imagemExposicao: TextView = itemView.findViewById(R.id.imagemExposicao)
-        val editExposicao: ImageView = itemView.findViewById(R.id.editExposicao)
+        val editExposicao: ImageView = itemView.findViewWithTag(R.drawable.baseline_edit_24)
+
 
         // Método para associar os dados da exposição ao item da view
         fun bind(exposicao: Exposicao) {
             nomeExposicao.text = exposicao.nomeExposicao
-            imagemExposicao.text = exposicao.nomeExposicao
-            editExposicao.setImageResource(exposicao.editExposicao)
+            imagemExposicao.text = exposicao.imagemExposicao
+            editExposicao.setImageResource(R.drawable.baseline_edit_24)
         }
     }
 }

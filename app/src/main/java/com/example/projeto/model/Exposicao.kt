@@ -1,10 +1,11 @@
 package com.example.projeto.model
 
 data class Exposicao(
-    val idExposicao: String,
-    val nomeExposicao: String,
-    val imagemExposicao: String,
-    val editExposicao: Int,
-    val descricaoExposicao: String,
-    val status: Boolean
-)
+    val idExposicao: String? = null,
+    val nomeExposicao: String? = null,
+    val imagemExposicao: String? = null,
+    val descricaoExposicao: String? = null,
+    val status: Boolean? = null
+){
+    constructor() : this(null, null, null, null, null)
+}

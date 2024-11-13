@@ -69,8 +69,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/obrasRecyclerView"
-        android:layout_width="367dp"
-        android:layout_height="234dp"
+        android:layout_width="378dp"
+        android:layout_height="299dp"
         android:layout_below="@id/sobreExposicaoRecyclerView"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
@@ -80,47 +80,6 @@
         tools:itemCount="8"
         tools:listitem="@layout/usuario_list_obras_view"></androidx.recyclerview.widget.RecyclerView>
 
-
-    <TextView
-        android:id="@+id/tituloChatIA"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/obrasRecyclerView"
-        android:layout_marginLeft="15dp"
-        android:drawableLeft="@drawable/baseline_smart_toy_24"
-        android:drawablePadding="10dp"
-        android:text="Possui alguma pergunta? Pergunte ao GEMINI:"
-        android:textColor="@color/azulescuro"
-        android:textStyle="bold"
-        app:rippleColor="@color/azulclaro"
-        ></TextView>
-
-    <EditText
-        android:id="@+id/chatIA"
-        android:layout_width="311dp"
-        android:layout_height="73dp"
-        android:layout_below="@id/tituloChatIA"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
-        android:background="@color/azulclaro"
-        android:hint="Digite sua pergunta...."
-        android:textColorHint="@color/azulescuro"
-        android:textSize="12dp"></EditText>
-
-    <Button
-        android:id="@+id/enviar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/chatIA"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="15dp"
-        android:backgroundTint="@color/azulescuro"
-        android:text="Enviar"
-        android:textSize="16dp"
-        android:textStyle="bold"
-        app:rippleColor="@color/azulclaro"></Button>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/scanObra"

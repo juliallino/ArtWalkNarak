@@ -24,8 +24,8 @@ class AdapterExposicao(
 
     // Liga os dados do item à ViewHolder
     override fun onBindViewHolder(holder: ExposicaoViewHolder, position: Int) {
-        val exposicao = exposicoes[position]
-        holder.bind(exposicao)
+        holder.nomeExposicao.text = exposicoes[position].nomeExposicao
+        holder.descricaoExposicao.text = exposicoes[position].descricaoExposicao
     }
 
     // Retorna o número total de itens na lista
@@ -33,8 +33,8 @@ class AdapterExposicao(
 
     // Classe interna ViewHolder, responsável por armazenar as Views de cada item
     inner class ExposicaoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val nomeExposicao: TextView = itemView.findViewById(R.id.nomeExposicao)
-        private val descricaoExposicao: TextView = itemView.findViewById(R.id.descricaoExposicao)
+        val nomeExposicao: TextView = itemView.findViewById(R.id.nomeExposicao)
+        val descricaoExposicao: TextView = itemView.findViewById(R.id.descricaoExposicao)
 
         // Método para associar os dados da exposição ao item da view
         fun bind(exposicao: Exposicao) {
