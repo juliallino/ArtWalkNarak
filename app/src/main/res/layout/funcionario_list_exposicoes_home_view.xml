@@ -39,4 +39,16 @@
         android:contentDescription="Botão para editar a exposição"
         android:src="@drawable/baseline_edit_24"
         ></ImageButton>
+
+    <ImageButton
+        android:id="@+id/deleteExposicao"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignBottom="@id/imagemExposicao"
+        android:layout_marginLeft="15dp"
+        android:layout_toEndOf="@id/imagemExposicao"
+        android:backgroundTint="#00FFFFFF"
+        android:contentDescription="Botão para deletar a exposição"
+        android:src="@drawable/baseline_delete_forever_24"
+        ></ImageButton>
 </RelativeLayout>

@@ -41,7 +41,7 @@
         android:layout_height="467dp"
         android:layout_below="@id/sobreExposicaoTool"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="-1dp"
         android:layout_marginRight="15dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:itemCount="1"

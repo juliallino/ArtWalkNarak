@@ -45,7 +45,7 @@ class AdapterObraFunc(
     // Classe interna ViewHolder, responsável por armazenar as Views de cada item
     inner class ObrasViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imagemObra: ImageView = itemView.findViewById(R.id.imagemObra)
-        val editObra: ImageView = itemView.findViewById(R.id.editObra)  // Usando findViewById corretamente
+        val editObra: ImageView = itemView.findViewById(R.id.editObra)
 
         // Método para associar os dados da obra ao item da view
         fun bind(obra: Obra) {

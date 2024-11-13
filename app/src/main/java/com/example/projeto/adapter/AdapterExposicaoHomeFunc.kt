@@ -43,6 +43,7 @@ class AdapterExposicaoHomeFunc(
         holder.editExposicao.setOnClickListener {
             context.startActivity(Intent(context, MAAddExposicao::class.java))
         }
+
     }
 
     // Retorna o número total de itens na lista
@@ -53,6 +54,7 @@ class AdapterExposicaoHomeFunc(
         val nomeExposicao: TextView = itemView.findViewById(R.id.nomeExposicao)
         val imagemExposicao: ImageView = itemView.findViewById(R.id.imagemExposicao)
         val editExposicao: ImageView = itemView.findViewById(R.id.editExposicao)
+        val deleteExposicao: ImageView = itemView.findViewById(R.id.deleteExposicao)
 
         // Método para associar os dados da exposição ao item da view
         fun bind(exposicao: Exposicao) {
@@ -67,6 +69,7 @@ class AdapterExposicaoHomeFunc(
 
             // Define o ícone de edição
             editExposicao.setImageResource(R.drawable.baseline_edit_24)
+            deleteExposicao.setImageResource(R.drawable.baseline_delete_forever_24)
         }
 
         // Função para converter a string Base64 para Bitmap
