@@ -18,7 +18,8 @@ import com.example.projeto.model.Exposicao
 
 class AdapterExposicaoHomeFunc(
     private val context: Context,
-    private val exposicoes: MutableList<Exposicao>
+    private val exposicoes: MutableList<Exposicao>,
+    private val onClick: (String) -> Unit
 ) : RecyclerView.Adapter<AdapterExposicaoHomeFunc.ExposicaoViewHolder>() {
 
     // Cria uma nova View para o item da lista (chamado quando necessário)
@@ -36,12 +37,15 @@ class AdapterExposicaoHomeFunc(
 
         // Configura o clique na imagem para abrir a tela MAExposicaoFuncionario
         holder.imagemExposicao.setOnClickListener {
-            context.startActivity(Intent(context, MAExposicaoFuncionario::class.java))
+            val intent = Intent(context, MAExposicaoFuncionario::class.java)
+            exposicao.idExposicao?.let { id -> onClick(id)
+            }
+            context.startActivity(intent)
         }
-
         // Configura o clique no ícone de edição para abrir a tela MAAddExposicao
         holder.editExposicao.setOnClickListener {
-            context.startActivity(Intent(context, MAAddExposicao::class.java))
+            var intent = Intent(context, MAAddExposicao::class.java)
+            context.startActivity(intent)
         }
 
     }

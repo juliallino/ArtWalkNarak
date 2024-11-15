@@ -66,7 +66,6 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="15dp"
-        android:layout_marginBottom="20dp"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -97,13 +96,14 @@
         android:layout_height="match_parent"
         android:layout_below="@id/sobreExposicao"
         android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="15dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:rippleColor="@color/azulclaro"
         app:spanCount="5"
         tools:itemCount="8"
-        tools:listitem="@layout/usuario_list_obras_view"></androidx.recyclerview.widget.RecyclerView>
-
+        tools:listitem="@layout/usuario_list_obras_view"
+        ></androidx.recyclerview.widget.RecyclerView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/scanObra"

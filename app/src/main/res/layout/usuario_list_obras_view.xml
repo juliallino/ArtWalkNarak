@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="60dp"
+    android:layout_height="60dp"
+    android:gravity="center"
+    android:layout_margin="10dp"
+    android:backgroundTint="@color/azulclaro">
+<RelativeLayout
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:gravity="center">
-
+    android:layout_height="wrap_content">
     <ImageButton
         android:id="@+id/imagemObra"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginRight="7dp"
-        android:layout_marginBottom="15dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:contentDescription="Botão da imagem"
         android:scaleType="centerCrop"
         android:src="@drawable/batman"
-        android:backgroundTint="@color/azulclaro"></ImageButton>
-
+        android:backgroundTint="@color/white"
+        android:background="@color/azulclaro"></ImageButton>
 </RelativeLayout>
+</androidx.cardview.widget.CardView>

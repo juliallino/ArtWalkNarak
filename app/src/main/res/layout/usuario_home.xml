@@ -89,9 +89,11 @@
         android:layout_width="wrap_content"
         android:layout_height="439dp"
         android:layout_below="@id/subtitulo"
-        tools:itemCount="1"
+        android:layout_marginTop="0dp"
+        tools:itemCount="2"
         tools:listitem="@layout/usuario_list_exposicoes_home_view"></androidx.recyclerview.widget.RecyclerView>
-<Button
+
+    <Button
     android:id="@+id/botaoSair"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -101,7 +103,7 @@
     android:backgroundTint="@color/azulclaro"
     android:textStyle="bold"
     android:layout_alignParentEnd="true"
-    android:layout_marginTop="30dp"
+    android:layout_marginTop="20dp"
     android:layout_marginRight="20dp"
     ></Button>
 
