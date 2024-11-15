@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.projeto.adapter.AdapterExposicao
 import com.example.projeto.adapter.AdapterObraUsu
 import com.example.projeto.model.Exposicao
 import com.example.projeto.model.Obra
@@ -21,7 +20,7 @@ import com.google.firebase.ktx.Firebase
 
 
 class MAExposicaoUsuario : AppCompatActivity() {
-    private lateinit var recyclerViewSobreExposicoes: RecyclerView
+//    private lateinit var recyclerViewSobreExposicoes: RecyclerView
     private lateinit var recyclerViewObras: RecyclerView
     private var db = Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,13 +28,13 @@ class MAExposicaoUsuario : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.usuario_exposicao)
 
-        // RecyclerView para EXPOSIÇÕES
-         recyclerViewSobreExposicoes = findViewById<RecyclerView>(R.id.sobreExposicaoRecyclerView)
-        recyclerViewSobreExposicoes.layoutManager = LinearLayoutManager(this)
-        recyclerViewSobreExposicoes.setHasFixedSize(true)
-
-        // Configurar adapter para exposições
-        val sobreExposicaoLista: MutableList<Exposicao> = mutableListOf()
+//        // RecyclerView para EXPOSIÇÕES
+//         recyclerViewSobreExposicoes = findViewById<RecyclerView>(R.id.sobreExposicaoRecyclerView)
+//        recyclerViewSobreExposicoes.layoutManager = LinearLayoutManager(this)
+//        recyclerViewSobreExposicoes.setHasFixedSize(true)
+//
+//        // Configurar adapter para exposições
+//        val sobreExposicaoLista: MutableList<Exposicao> = mutableListOf()
 
         // RecyclerView para obras
         recyclerViewObras = findViewById<RecyclerView>(R.id.obrasRecyclerView)
@@ -46,23 +45,23 @@ class MAExposicaoUsuario : AppCompatActivity() {
 
         db = FirebaseFirestore.getInstance()
 
-        db.collection("Exposicao")
-            .get()
-            .addOnSuccessListener {
-                if(!it.isEmpty){
-                    for(data in it.documents){
-                        val exposicao: Exposicao? = data.toObject(Exposicao::class.java)
-                        if(exposicao != null){
-                            sobreExposicaoLista.add(exposicao)
-                        }
-                    }
-                    val adapterExposicao = AdapterExposicao(this, sobreExposicaoLista)
-                    recyclerViewSobreExposicoes.adapter = adapterExposicao
-                }
-            }
-            .addOnFailureListener {
-                Toast.makeText(this,it.toString(), Toast.LENGTH_SHORT).show()
-            }
+//        db.collection("Exposicao")
+//            .get()
+//            .addOnSuccessListener {
+//                if(!it.isEmpty){
+//                    for(data in it.documents){
+//                        val exposicao: Exposicao? = data.toObject(Exposicao::class.java)
+//                        if(exposicao != null){
+//                            sobreExposicaoLista.add(exposicao)
+//                        }
+//                    }
+//                    val adapterExposicao = AdapterExposicao(this, sobreExposicaoLista)
+//                    recyclerViewSobreExposicoes.adapter = adapterExposicao
+//                }
+//            }
+//            .addOnFailureListener {
+//                Toast.makeText(this,it.toString(), Toast.LENGTH_SHORT).show()
+//            }
 
         db.collection("Obra")
             .get()

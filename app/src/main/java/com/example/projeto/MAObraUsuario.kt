@@ -13,7 +13,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projeto.adapter.AdapterObraUsu
-import com.example.projeto.adapter.AdapterSobreObra
 import com.example.projeto.model.Obra
 import com.google.ai.client.generativeai.GenerativeModel
 import com.google.firebase.firestore.ktx.firestore
@@ -23,7 +22,7 @@ import kotlinx.coroutines.launch
 class MAObraUsuario : AppCompatActivity() {
     lateinit var botaoenviar:Button
     lateinit var chatIA: EditText
-    private lateinit var recyclerViewObras: RecyclerView
+//    private lateinit var recyclerViewObras: RecyclerView
     private var db = Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,32 +32,32 @@ class MAObraUsuario : AppCompatActivity() {
         chatIA = findViewById(R.id.chatIA)
         botaoenviar = findViewById(R.id.enivar)
 
-        recyclerViewObras = findViewById<RecyclerView>(R.id.sobreObrasRecyclerView)
-        recyclerViewObras.layoutManager = LinearLayoutManager(this)
-        recyclerViewObras.setHasFixedSize(true)
-
-        val obrasList: MutableList<Obra> = mutableListOf()
-
-        db.collection("Obra")
-            .get()
-            .addOnSuccessListener {
-                if(!it.isEmpty){
-                    for(data in it.documents){
-                        val obra: Obra? = data.toObject(Obra::class.java)
-                        if(obra != null){
-                            obrasList.add(obra)
-                            Log.d("Firestore", "Obra: ${obra.nomeObra}, Descrição: ${obra.descricaoObra}")
-                        }
-                    }
-                    val adapterObra = AdapterSobreObra(this, obrasList)
-                    recyclerViewObras.adapter = adapterObra
-                    adapterObra.notifyDataSetChanged()
-
-                }
-            }
-            .addOnFailureListener {
-                Toast.makeText(this,it.toString(), Toast.LENGTH_SHORT).show()
-            }
+//        recyclerViewObras = findViewById<RecyclerView>(R.id.sobreObrasRecyclerView)
+//        recyclerViewObras.layoutManager = LinearLayoutManager(this)
+//        recyclerViewObras.setHasFixedSize(true)
+//
+//        val obrasList: MutableList<Obra> = mutableListOf()
+//
+//        db.collection("Obra")
+//            .get()
+//            .addOnSuccessListener {
+//                if(!it.isEmpty){
+//                    for(data in it.documents){
+//                        val obra: Obra? = data.toObject(Obra::class.java)
+//                        if(obra != null){
+//                            obrasList.add(obra)
+//                            Log.d("Firestore", "Obra: ${obra.nomeObra}, Descrição: ${obra.descricaoObra}")
+//                        }
+//                    }
+//                    val adapterObra = AdapterSobreObra(this, obrasList)
+//                    recyclerViewObras.adapter = adapterObra
+//                    adapterObra.notifyDataSetChanged()
+//
+//                }
+//            }
+//            .addOnFailureListener {
+//                Toast.makeText(this,it.toString(), Toast.LENGTH_SHORT).show()
+//            }
 
         val botaoVoltarTela = findViewById<ImageButton>(R.id.voltarParaTelaHome)
         botaoVoltarTela.setOnClickListener{

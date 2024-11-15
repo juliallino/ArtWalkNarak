@@ -8,14 +8,10 @@ import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.GridLayoutManager
-
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.projeto.adapter.AdapterExposicao
 import com.example.projeto.adapter.AdapterExposicaoHomeFunc
 import com.example.projeto.model.Exposicao
-import com.example.projeto.model.Obra
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
