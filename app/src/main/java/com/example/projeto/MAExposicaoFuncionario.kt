@@ -27,7 +27,7 @@ class MAExposicaoFuncionario : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.funcionario_exposicao)
 
-        nomeExposicao= findViewById(R.id.nomeExposicao)
+        nomeExposicao = findViewById(R.id.nomeExposicao)
         descricaoExposicao = findViewById(R.id.descricaoExposicao)
 
         recyclerViewObras = findViewById<RecyclerView>(R.id.obrasRecyclerView)
@@ -61,27 +61,26 @@ class MAExposicaoFuncionario : AppCompatActivity() {
 
         val obrasList: MutableList<Obra> = mutableListOf()
 
-            db.collection("Obra")
-                .whereEqualTo("idExposicao", exposicaoId)
-                .get()
-                .addOnSuccessListener { documents ->
-                    if (!documents.isEmpty) {
-                        for (data in documents) {
-                            val obra: Obra? = data.toObject(Obra::class.java)
-                            if (obra != null) {
-                                obrasList.add(obra)
-                            }
+        db.collection("Obra")
+            .whereEqualTo("idExposicao", exposicaoId)
+            .get()
+            .addOnSuccessListener { documents ->
+                if (!documents.isEmpty) {
+                    for (data in documents) {
+                        val obra: Obra? = data.toObject(Obra::class.java)
+                        if (obra != null) {
+                            obrasList.add(obra)
                         }
-                        val adapterObrasFunc = AdapterObraFunc(this, obrasList)
-                        recyclerViewObras.adapter = adapterObrasFunc
-                    } else {
-                        Log.d("Debug", "Nenhuma obra encontrada para esta Exposição.")
                     }
+                    val adapterObrasFunc = AdapterObraFunc(this, obrasList)
+                    recyclerViewObras.adapter = adapterObrasFunc
+                } else {
+                    Log.d("Debug", "Nenhuma obra encontrada para esta Exposição.")
                 }
-                .addOnFailureListener { exception ->
-                    Toast.makeText(this, exception.toString(), Toast.LENGTH_SHORT).show()
-                }
-
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(this, exception.toString(), Toast.LENGTH_SHORT).show()
+            }
 
 
         val botaoVoltarTela = findViewById<ImageButton>(R.id.voltarParaTelaHome)
@@ -101,8 +100,12 @@ class MAExposicaoFuncionario : AppCompatActivity() {
     }
 
     private fun AddObra() {
+        val exposicaoId = intent.getStringExtra("idExposicao")
         Log.d("ADD", "tela add obra")
-        startActivity(Intent(this, MAAddObra::class.java))
+        val intent = Intent(this, MAAddObra::class.java)
+        intent.putExtra("idExposicao", exposicaoId)
+        Log.d("Debug", "ID enviado: $exposicaoId")
+        startActivity(intent)
     }
 
 }

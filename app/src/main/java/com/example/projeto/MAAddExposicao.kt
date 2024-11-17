@@ -60,7 +60,10 @@ class MAAddExposicao : AppCompatActivity() {
             startActivityForResult(intent, REQUEST_CODE_IMAGE_PICK)
         }
 
-
+        val botaoVoltarTela = findViewById<ImageButton>(R.id.voltarParaTelaHome)
+        botaoVoltarTela.setOnClickListener {
+            VoltarTela()
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -81,11 +84,6 @@ class MAAddExposicao : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        val botaoVoltarTela = findViewById<ImageButton>(R.id.voltarParaTelaHome)
-        botaoVoltarTela.setOnClickListener {
-            VoltarTela()
-        }
-
         botaoEmAndamento.setOnClickListener {
             status = true
             Toast.makeText(this, "EM ANDAMENTO", Toast.LENGTH_SHORT).show()
