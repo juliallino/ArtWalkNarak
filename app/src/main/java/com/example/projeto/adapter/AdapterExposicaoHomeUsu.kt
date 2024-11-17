@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.projeto.MAExposicaoFuncionario
 import com.example.projeto.MAExposicaoUsuario
 import com.example.projeto.R
 import com.example.projeto.model.Exposicao
@@ -21,7 +22,8 @@ class AdapterExposicaoHomeUsu(
 ) : RecyclerView.Adapter<AdapterExposicaoHomeUsu.ExposicaoViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExposicaoViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.usuario_list_exposicoes_home_view, parent, false)
+        val view = LayoutInflater.from(context)
+            .inflate(R.layout.usuario_list_exposicoes_home_view, parent, false)
         return ExposicaoViewHolder(view)
     }
 
@@ -34,8 +36,10 @@ class AdapterExposicaoHomeUsu(
 
         // Configura o clique na imagem para abrir a tela MAExposicaoUsuario
         holder.imagemExposicao.setOnClickListener {
-            context.startActivity(Intent(context, MAExposicaoUsuario::class.java))
-        }
+            val exposicaoId = exposicao.idExposicao
+            val intent = Intent(context, MAExposicaoUsuario::class.java)
+            intent.putExtra("idExposicao", exposicaoId)
+            context.startActivity(intent)        }
     }
 
     // Classe interna ViewHolder, responsável por armazenar as Views de cada item

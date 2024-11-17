@@ -42,6 +42,7 @@ class MAHomeUsuario : AppCompatActivity() {
                 if(!it.isEmpty){
                     for(data in it.documents){
                         val exposicao: Exposicao? = data.toObject(Exposicao::class.java)
+                        exposicao?.idExposicao = data.id
                         if(exposicao != null){
                             listaExposicoes.add(exposicao)
                         }
