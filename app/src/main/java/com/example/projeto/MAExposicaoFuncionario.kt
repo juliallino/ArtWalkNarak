@@ -68,6 +68,7 @@ class MAExposicaoFuncionario : AppCompatActivity() {
                 if (!documents.isEmpty) {
                     for (data in documents) {
                         val obra: Obra? = data.toObject(Obra::class.java)
+                        obra?.idObra = data.id
                         if (obra != null) {
                             obrasList.add(obra)
                         }

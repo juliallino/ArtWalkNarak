@@ -53,10 +53,19 @@ class MAAddObra : AppCompatActivity() {
             intent.type = "image/*"
             startActivityForResult(intent, REQUEST_CODE_IMAGE_PICK)
         }
+
+        val obraId = intent.getStringExtra("idObra")
+        Log.d("Debug", "ID recebido: $obraId")
+
+        if (obraId != null) {
+            carregarDadosObra()
+        }
         val botaoVoltarTela = findViewById<ImageButton>(R.id.voltarParaTelaExposicoes)
         botaoVoltarTela.setOnClickListener{
             VoltarTela()
         }
+
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -74,53 +83,26 @@ class MAAddObra : AppCompatActivity() {
         }
     }
 
+
     override fun onStart() {
         super.onStart()
-        val exposicaoId = intent.getStringExtra("idExposicao")
-        Log.d("Debug", "ID recebido: $exposicaoId")
+        val obraId = intent.getStringExtra("idObra")
 
-         botaoSalvar.setOnClickListener {
-            val nome = nomeObra.text.toString()
-            val descricao = descricaoObra.text.toString()
-            imagemBase64?.let { base64String ->
-                val bitmap = base64ToBitmap(base64String)
-                imagemObra.setImageBitmap(bitmap)
-            }
-
-            if (exposicaoId != null) {
-                val obraData = hashMapOf(
-                    "nomeObra" to nome,
-                    "descricaoObra" to descricao,
-                    "imagemObra" to imagemBase64,
-                    "idExposicao" to exposicaoId
-                )
-
-                // Salvando a obra na coleção Obra
-                db.collection("Obra")
-                    .add(obraData)
-                    .addOnSuccessListener {
-                        Toast.makeText(this, "Obra salva com sucesso!", Toast.LENGTH_SHORT).show()
-                    }
-                    .addOnFailureListener { exception ->
-                        Log.e("ErroSalvamento", "Erro ao salvar obra", exception)
-                        Toast.makeText(this, "Erro ao salvar obra: ${exception.message}", Toast.LENGTH_SHORT).show()
-                    }
+        botaoSalvar.setOnClickListener {
+            if (obraId != null) {
+                atualizarObra(obraId)
             } else {
-                Toast.makeText(this, "Erro: Exposição não encontrada.", Toast.LENGTH_SHORT).show()
+                adicionarObra()
             }
-            VoltarTela()
         }
-
-
         botaoExcluir.setOnClickListener {
-            db.collection("Obra")
-                .document()
-                .delete()
-            VoltarTela()
+            if (obraId != null) {
+                excluirObra(obraId)
+            } else {
+                Toast.makeText(this, "Essa exposição não existe.", Toast.LENGTH_SHORT).show()
+            }
         }
-
     }
-
     private fun base64ToBitmap(base64String: String): Bitmap? {
         return try {
             val decodedString: ByteArray = Base64.decode(base64String, Base64.DEFAULT)
@@ -130,13 +112,102 @@ class MAAddObra : AppCompatActivity() {
             null
         }
     }
-    private fun VoltarTela() {
-        val exposicaoId = intent.getStringExtra("idExposicao")
-        val intent = Intent(this, MAExposicaoFuncionario::class.java)
-        intent.putExtra("idExposicao", exposicaoId) // Passando o ID da Exposição de volta
-        startActivity(intent)
+    private fun carregarDadosObra() {
+        val idObra = intent.getStringExtra("idObra")
+
+        if (idObra != null) {
+            db.collection("Obra").document(idObra).get()
+                .addOnSuccessListener { document ->
+                    if (document != null) {
+                        nomeObra.setText(document.getString("nomeObra"))
+                        descricaoObra.setText(document.getString("descricaoObra"))
+                        // Carregar imagem se existir
+                        val imagemBase64 = document.getString("imagemObra")
+                        if (imagemBase64 != null) {
+                            val bitmap = base64ToBitmap(imagemBase64)
+                            imagemObra.setImageBitmap(bitmap)
+                        }
+                    }
+                }
+                .addOnFailureListener {
+                    Toast.makeText(this, "Erro ao carregar dados da exposição.", Toast.LENGTH_SHORT).show()
+                }
+        }
     }
 
+
+    private fun atualizarObra(id: String) {
+        val nome = nomeObra.text.toString()
+        val descricao = descricaoObra.text.toString()
+        val exposicaoId = intent.getStringExtra("idExposicao")
+
+        val obraData = mapOf(
+            "nomeObra" to nome,
+            "descricaoObra" to descricao,
+            "imagemObra" to imagemBase64,
+            "idExposicao" to exposicaoId
+        )
+        db.collection("Obra").document(id)
+            .set(obraData)
+            .addOnSuccessListener {
+                Toast.makeText(this, "Obra atualizada com sucesso!", Toast.LENGTH_SHORT).show()
+                VoltarTela()
+            }
+            .addOnFailureListener {
+                Toast.makeText(this, "Erro ao atualizar a obra.", Toast.LENGTH_SHORT).show()
+            }
     }
+
+    private fun adicionarObra() {
+        val nome = nomeObra.text.toString()
+        val descricao = descricaoObra.text.toString()
+        val exposicaoId = intent.getStringExtra("idExposicao")
+
+        val obraData = mapOf(
+            "nomeObra" to nome,
+            "descricaoObra" to descricao,
+            "imagemObra" to imagemBase64,
+            "idExposicao" to exposicaoId
+
+        )
+
+        db.collection("Obra")
+            .add(obraData)
+            .addOnSuccessListener {
+                Toast.makeText(this, "Obra salva com sucesso!", Toast.LENGTH_SHORT).show()
+                VoltarTela()
+            }
+            .addOnFailureListener {
+                Toast.makeText(this, "Erro ao salvar obra.", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun excluirObra(id: String) {
+            db.collection("Obra").document(id)
+                .delete()
+                .addOnSuccessListener {
+                    Toast.makeText(this, "Obra excluída com sucesso!", Toast.LENGTH_SHORT).show()
+                    VoltarTela()
+                }
+                .addOnFailureListener {
+                    Toast.makeText(this, "Erro ao excluir a obra.", Toast.LENGTH_SHORT).show()
+                    VoltarTela()
+
+                }
+    }
+
+
+    private fun VoltarTela() {
+        val exposicaoId = intent.getStringExtra("idExposicao")
+        Log.d("Debug", "ID de Exposição recebido: $exposicaoId")
+        if (exposicaoId != null) {
+            val intent = Intent(this, MAExposicaoFuncionario::class.java)
+            intent.putExtra("idExposicao", exposicaoId)
+            startActivity(intent)
+        } else {
+            Log.d("Debug", "ID de Exposição não encontrado")
+        }
+    }
+}
 
 

@@ -34,32 +34,11 @@
     </androidx.appcompat.widget.Toolbar>
 
 
-    <EditText
-        android:id="@+id/busca"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-
-        android:layout_below="@id/sobreExposicaoTool"
-        android:layout_marginLeft="150dp"
-        android:layout_marginTop="30dp"
-        android:background="#E2EEFF"
-        android:drawableRight="@drawable/baseline_search_24"
-        android:drawablePadding="10dp"
-        android:hint="Busque por exposição..."
-        android:paddingLeft="15dp"
-        android:paddingTop="5dp"
-        android:paddingRight="10dp"
-        android:paddingBottom="5dp"
-        android:textColorHint="@color/azulmedio"
-        android:textSize="16dp"
-
-        tools:ignore="TextContrastCheck"></EditText>
-
     <LinearLayout
         android:id="@+id/sobreExposicao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/busca"
+        android:layout_below="@id/sobreExposicaoTool"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="15dp"
@@ -69,7 +48,7 @@
 
         <TextView
             android:id="@+id/nomeExposicao"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="10dp"
@@ -83,6 +62,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center"
+            android:gravity="center"
             android:text="A exposição Centelhas em Movimento reúne cerca de 190 obras da coleção de Igor Queiroz Barroso, explorando a arte brasileira do século XX, com foco nas diferentes fases do modernismo.\n\n A curadoria, assinada por Paulo Miyada e Tiago Gualberto, busca criar diálogos visuais entre as obras, sem seguir uma ordem cronológica, estimulando reflexões sobre o movimento modernista e suas transformações."
             android:textSize="16dp"></TextView>
     </LinearLayout>
@@ -91,7 +71,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/obrasRecyclerView"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="368dp"
         android:layout_below="@id/sobreExposicao"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="-1dp"

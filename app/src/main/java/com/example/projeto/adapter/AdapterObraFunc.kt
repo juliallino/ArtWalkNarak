@@ -30,15 +30,21 @@ class AdapterObraFunc(
         val obra = obras[position]
         holder.bind(obra)
 
-        // Configura o clique na imagem para abrir a tela MAAddObra
         holder.imagemObra.setOnClickListener {
+            val obraId = obra.idObra
+            val exposicaoId = obra.idExposicao
             val intent = Intent(context, MAAddObra::class.java)
+            intent.putExtra("idObra", obraId)
+            intent.putExtra("idExposicao", exposicaoId)
             context.startActivity(intent)
         }
 
-        // Configura o clique no ícone de edição para abrir a tela MAAddObra
         holder.editObra.setOnClickListener {
+            val obraId = obra.idObra
+            val exposicaoId = obra.idExposicao
             val intent = Intent(context, MAAddObra::class.java)
+            intent.putExtra("idObra", obraId)
+            intent.putExtra("idExposicao", exposicaoId)
             context.startActivity(intent)
         }
     }

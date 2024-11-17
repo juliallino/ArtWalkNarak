@@ -5,11 +5,13 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Base64
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.projeto.MAAddObra
 import com.example.projeto.MAObraUsuario
 import com.example.projeto.R
 import com.example.projeto.model.Obra
@@ -24,17 +26,22 @@ class AdapterObraUsu(
         return ObrasViewHolder(view)
     }
 
-    // Retorna o número total de itens na lista
     override fun getItemCount(): Int = obras.size
 
     override fun onBindViewHolder(holder: ObrasViewHolder, position: Int) {
         val obra = obras[position]
         holder.bind(obra)
 
-        // Configura o clique na imagem para abrir a tela MAObraUsuario
         holder.imagemObra.setOnClickListener {
-            context.startActivity(Intent(context, MAObraUsuario::class.java))
+            val obraId = obra.idObra
+            val exposicaoId = obra.idExposicao
+            val intent = Intent(context, MAObraUsuario::class.java)
+            intent.getStringExtra("idExposicao")
+            intent.putExtra("idExposicao", exposicaoId)
+            intent.putExtra("idObra", obraId)
+            context.startActivity(intent)
         }
+
     }
 
     // Classe interna ViewHolder, responsável por armazenar as Views de cada item

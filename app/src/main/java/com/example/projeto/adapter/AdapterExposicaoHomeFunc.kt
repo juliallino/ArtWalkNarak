@@ -34,7 +34,6 @@ class AdapterExposicaoHomeFunc(
         // Chama o método bind para associar os dados ao ViewHolder
         holder.bind(exposicao)
 
-        // Configura o clique na imagem para abrir a tela MAExposicaoFuncionario
         holder.imagemExposicao.setOnClickListener {
             val exposicaoId = exposicao.idExposicao
             val intent = Intent(context, MAExposicaoFuncionario::class.java)
@@ -42,11 +41,13 @@ class AdapterExposicaoHomeFunc(
             context.startActivity(intent)
         }
 
-        // Configura o clique no ícone de edição para abrir a tela MAAddExposicao
         holder.editExposicao.setOnClickListener {
-            var intent = Intent(context, MAAddExposicao::class.java)
+            val exposicaoId = exposicao.idExposicao
+            val intent = Intent(context, MAAddExposicao::class.java)
+            intent.putExtra("idExposicao", exposicaoId)
             context.startActivity(intent)
         }
+
 
     }
 
@@ -58,7 +59,6 @@ class AdapterExposicaoHomeFunc(
         val nomeExposicao: TextView = itemView.findViewById(R.id.nomeExposicao)
         val imagemExposicao: ImageView = itemView.findViewById(R.id.imagemExposicao)
         val editExposicao: ImageView = itemView.findViewById(R.id.editExposicao)
-        val deleteExposicao: ImageView = itemView.findViewById(R.id.deleteExposicao)
 
         // Método para associar os dados da exposição ao item da view
         fun bind(exposicao: Exposicao) {
@@ -71,7 +71,6 @@ class AdapterExposicaoHomeFunc(
             }
             // Define o ícone de edição
             editExposicao.setImageResource(R.drawable.baseline_edit_24)
-            deleteExposicao.setImageResource(R.drawable.baseline_delete_forever_24)
         }
 
         // Função para converter a string Base64 para Bitmap

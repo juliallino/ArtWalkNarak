@@ -54,7 +54,9 @@
             android:layout_marginTop="10dp"
             android:text="Batman"
             android:textSize="20dp"
-            android:textStyle="bold|italic"></TextView>
+            android:textStyle="bold|italic"
+            android:layout_gravity="center"
+            ></TextView>
 
         <ImageView
             android:id="@+id/imagemObra"
@@ -63,7 +65,10 @@
             android:layout_below="@id/nomeObra"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
-            android:src="@drawable/batman"></ImageView>
+            android:src="@drawable/batman"
+            android:scaleType="fitXY"
+            android:layout_gravity="center"
+            ></ImageView>
 
 
         <TextView
@@ -73,6 +78,7 @@
             android:layout_below="@id/imagemObra"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
+            android:layout_gravity="center"
             android:layout_marginRight="10dp"
             android:text="Antes da perda de seus pais, Bruce Wayne era uma criança alegre e feliz, guardando boas memórias do tempo em que viveu na Mansão Wayne. Tendo se tornado introvertido e antissocial na adolescência, Bruce preferia a companhia de livros a pessoas. Ele tinha interesse em garotas, mas não se preocupava em gastar tempo com elas. Apesar das Indústrias Wayne serem capazes de lhe proporcionar grandes aposentos e o melhor conforto possível, \n\nBruce mantinha seu quarto na Torre Wayne o mais simples possível, acreditando que a praticidade de achar coisas mais rápido compensava o conforto exagerado que poderia ter com seu dinheiro. Bruce também sempre foi dedicado em sua vida estudantil, tirando as melhores notas possíveis, mas não se preocupando muito com tal resultado―ele de fato estudava por gosto, não pelo resultado"></TextView>
     </LinearLayout>
@@ -88,7 +94,6 @@
         android:text="Possui alguma pergunta? Pergunte ao GEMINI:"
         android:textColor="@color/azulescuro"
         android:textStyle="bold"
-
         ></TextView>
 
     <EditText
@@ -125,7 +130,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/azulclaro"
-        android:padding="10dp">
+        android:padding="10dp"
+        android:scrollbars="vertical">
 
         <ImageButton
             android:id="@+id/acessibilidadeObra"

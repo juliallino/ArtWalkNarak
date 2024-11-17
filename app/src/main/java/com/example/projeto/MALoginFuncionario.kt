@@ -29,14 +29,9 @@ class MALoginFuncionario : AppCompatActivity() {
             Toast.makeText(this, "Login como usuario", Toast.LENGTH_SHORT).show()
             VoltarLoginComoUsuario()
         }
-
-    }
-
-    override fun onStart() {
-        super.onStart()
         botaoEntrar.setOnClickListener {
             if (email.text.toString().isNotEmpty() && senha.text.toString().isNotEmpty()) {
-                auth.signInWithEmailAndPassword("centelhasemmovimento@gmail.com", "12345678")
+                auth.signInWithEmailAndPassword("centelhas@gmail.com", "123123")
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
                             val intent = Intent(this, MAHomeFuncionario::class.java)

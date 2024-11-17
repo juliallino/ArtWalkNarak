@@ -60,10 +60,17 @@ class MAAddExposicao : AppCompatActivity() {
             startActivityForResult(intent, REQUEST_CODE_IMAGE_PICK)
         }
 
+        val exposicaoId = intent.getStringExtra("idExposicao")
+        if (exposicaoId != null) {
+            carregarDadosExposicao(exposicaoId)
+        }
+
         val botaoVoltarTela = findViewById<ImageButton>(R.id.voltarParaTelaHome)
         botaoVoltarTela.setOnClickListener {
             VoltarTela()
         }
+
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -84,49 +91,34 @@ class MAAddExposicao : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+        val exposicaoId = intent.getStringExtra("idExposicao")
+        // Lógica para atualizar o status
         botaoEmAndamento.setOnClickListener {
             status = true
             Toast.makeText(this, "EM ANDAMENTO", Toast.LENGTH_SHORT).show()
         }
+
         botaoEncerrada.setOnClickListener {
             status = false
             Toast.makeText(this, "ENCERRADA", Toast.LENGTH_SHORT).show()
         }
-
+        // Lógica para salvar ou editar a exposição
         botaoSalvar.setOnClickListener {
-            val nome = nomeExpo.text.toString()
-            val descricao = descricaoExposicao.text.toString()
-
-            val exposicaoData = hashMapOf(
-                "nomeExposicao" to nome,
-                "descricaoExposicao" to descricao,
-                "status" to status,
-                "imagemExposicao" to imagemBase64
-            )
-
-            // Exibir a imagem na ImageView antes de salvar
-            imagemBase64?.let { base64String ->
-                val bitmap = base64ToBitmap(base64String)
-                imagemExposicao.setImageBitmap(bitmap)
+            if (exposicaoId != null) {
+                // Atualizando exposição existente
+                atualizarExposicao(exposicaoId)
+            } else {
+                // Adicionando nova exposição
+                adicionarExposicao()
             }
-
-            db.collection("Exposicao")
-                .add(exposicaoData)
-                .addOnSuccessListener {
-                    Toast.makeText(this, "Exposição salva com sucesso!", Toast.LENGTH_SHORT).show()
-                }
-                .addOnFailureListener {
-                    Toast.makeText(this, "Erro ao salvar exposição.", Toast.LENGTH_SHORT).show()
-                }
-            VoltarTela()
         }
-
         botaoExcluir.setOnClickListener {
-            val nome = nomeExpo.text.toString()
-            db.collection("Exposicao")
-                .document(nome)
-                .delete()
-            VoltarTela()
+            val exposicaoId = intent.getStringExtra("idExposicao")
+            if (exposicaoId != null) {
+                excluirExposicao(exposicaoId)
+            } else {
+                Toast.makeText(this, "Essa exposição não existe.", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -139,6 +131,86 @@ class MAAddExposicao : AppCompatActivity() {
             null
         }
     }
+    private fun carregarDadosExposicao(id: String) {
+        db.collection("Exposicao").document(id).get()
+            .addOnSuccessListener { document ->
+                if (document != null) {
+                    nomeExpo.setText(document.getString("nomeExposicao"))
+                    descricaoExposicao.setText(document.getString("descricaoExposicao"))
+                    status = document.getBoolean("status") ?: true
+
+                    // Carregar imagem se existir
+                    val imagemBase64 = document.getString("imagemExposicao")
+                    if (imagemBase64 != null) {
+                        val bitmap = base64ToBitmap(imagemBase64)
+                        imagemExposicao.setImageBitmap(bitmap)
+                    }
+                }
+            }
+            .addOnFailureListener {
+                Toast.makeText(this, "Erro ao carregar dados da exposição.", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+
+    private fun atualizarExposicao(id: String) {
+        val nome = nomeExpo.text.toString()
+        val descricao = descricaoExposicao.text.toString()
+
+        val exposicaoData = mapOf(
+            "nomeExposicao" to nome,
+            "descricaoExposicao" to descricao,
+            "status" to status,
+            "imagemExposicao" to imagemBase64
+        )
+
+        db.collection("Exposicao").document(id)
+            .update(exposicaoData)
+            .addOnSuccessListener {
+                Toast.makeText(this, "Exposição atualizada com sucesso!", Toast.LENGTH_SHORT).show()
+                VoltarTela()
+            }
+            .addOnFailureListener {
+                Toast.makeText(this, "Erro ao atualizar a exposição.", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+
+    private fun adicionarExposicao() {
+        val nome = nomeExpo.text.toString()
+        val descricao = descricaoExposicao.text.toString()
+
+        val exposicaoData = mapOf(
+            "nomeExposicao" to nome,
+            "descricaoExposicao" to descricao,
+            "status" to status,
+            "imagemExposicao" to imagemBase64
+        )
+
+        db.collection("Exposicao")
+            .add(exposicaoData)
+            .addOnSuccessListener {
+                Toast.makeText(this, "Exposição salva com sucesso!", Toast.LENGTH_SHORT).show()
+                VoltarTela()
+            }
+            .addOnFailureListener {
+                Toast.makeText(this, "Erro ao salvar exposição.", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+
+    private fun excluirExposicao(id: String) {
+        db.collection("Exposicao").document(id)
+            .delete()
+            .addOnSuccessListener {
+                Toast.makeText(this, "Exposição excluída com sucesso!", Toast.LENGTH_SHORT).show()
+                VoltarTela()
+            }
+            .addOnFailureListener {
+                Toast.makeText(this, "Erro ao excluir a exposição.", Toast.LENGTH_SHORT).show()
+            }
+    }
+
 
     private fun VoltarTela() {
         Log.d("Voltar", "Voltando para tela inicial do funcionário")

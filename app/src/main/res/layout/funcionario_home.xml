@@ -86,35 +86,37 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerviewExposicoesFuncionarios"
-        android:layout_width="377dp"
-        android:layout_height="317dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@id/subtitulo"
+        android:layout_marginTop="1dp"
         tools:itemCount="2"
         tools:listitem="@layout/funcionario_list_exposicoes_home_view"></androidx.recyclerview.widget.RecyclerView>
 
+
     <ImageButton
         android:id="@+id/botaoaddexpo"
-        android:layout_width="320dp"
+        android:layout_width="309dp"
         android:layout_height="95dp"
         android:layout_below="@id/recyclerviewExposicoesFuncionarios"
-        android:layout_marginLeft="35dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="6dp"
         android:contentDescription="Botão para ajustar add uma nova exposição"
         android:src="@drawable/botaoadd"></ImageButton>
+
     <Button
         android:id="@+id/botaoSair"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/botaoaddexpo"
-        android:text="SAIR"
-        android:textColor="@color/azulescuro"
-        android:backgroundTint="@color/azulclaro"
-        android:textStyle="bold"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="18dp"
         android:layout_marginRight="20dp"
-        ></Button>
-
+        android:backgroundTint="@color/azulescuro"
+        android:text="SAIR"
+        android:textColor="@color/azulclaro"
+        android:textStyle="bold"></Button>
 
     <com.google.android.material.navigation.NavigationView
         android:layout_width="match_parent"

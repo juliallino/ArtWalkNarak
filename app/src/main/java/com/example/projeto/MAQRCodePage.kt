@@ -19,7 +19,15 @@ class MAQRCodePage : AppCompatActivity() {
         }
     }
     private fun VoltarTela() {
-        Log.d("Voltar", "Voltando para tela da Obra")
-        startActivity(Intent(this, MAExposicaoUsuario::class.java))
+        val exposicaoId = intent.getStringExtra("idExposicao")
+        Log.d("Debug", "ID de Exposição recebido: $exposicaoId")
+
+        if (exposicaoId != null) {
+            val intent = Intent(this, MAExposicaoUsuario::class.java)
+            intent.putExtra("idExposicao", exposicaoId)
+            startActivity(intent)
+        } else {
+            Log.d("Debug", "ID de Exposição não encontrado")
+        }
     }
 }

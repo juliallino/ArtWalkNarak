@@ -69,6 +69,7 @@ class MAExposicaoUsuario : AppCompatActivity() {
                 if (!documents.isEmpty) {
                     for (data in documents) {
                         val obra: Obra? = data.toObject(Obra::class.java)
+                        obra?.idObra = data.id
                         if (obra != null) {
                             obrasList.add(obra)
                         }
@@ -104,8 +105,11 @@ class MAExposicaoUsuario : AppCompatActivity() {
     }
 
     private fun ScanObra() {
-        Log.d("Scan obra", "Indo para tela de scan")
-        startActivity(Intent(this, MAQRCodePage::class.java))
+        val exposicaoId = intent.getStringExtra("idExposicao")
+        val intent = Intent(this, MAQRCodePage::class.java)
+        intent.getStringExtra("idExposicao")
+        intent.putExtra("idExposicao", exposicaoId)
+        startActivity(intent)
     }
 
     private fun AcessibilidadeSom(){
