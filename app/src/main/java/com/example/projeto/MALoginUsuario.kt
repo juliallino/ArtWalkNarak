@@ -42,15 +42,21 @@ class MALoginUsuario : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         botaoEntrar.setOnClickListener {
-            if (email.text.toString().isNotEmpty() && senha.text.toString().isNotEmpty()){
-                auth.signInWithEmailAndPassword(email.text.toString() , senha.text.toString()).addOnCompleteListener{
-                    if(it.isSuccessful){
-                        val intent = Intent(this, MAHomeUsuario::class.java)
-                        startActivity(intent)
-                    }else{
-                        Toast.makeText(this, "Revise os dados ou crie uma conta", Toast.LENGTH_SHORT).show()
-                    } }
-            }else{
+            if (email.text.toString().isNotEmpty() && senha.text.toString().isNotEmpty()) {
+                auth.signInWithEmailAndPassword(email.text.toString(), senha.text.toString())
+                    .addOnCompleteListener {
+                        if (it.isSuccessful) {
+                            val intent = Intent(this, MAHomeUsuario::class.java)
+                            startActivity(intent)
+                        } else {
+                            Toast.makeText(
+                                this,
+                                "Revise os dados ou crie uma conta",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+            } else {
                 Toast.makeText(this, "Existe algum campo em vazio", Toast.LENGTH_SHORT).show()
             }
         }
@@ -69,6 +75,5 @@ class MALoginUsuario : AppCompatActivity() {
         val intent = Intent(this, MALoginFuncionario::class.java)
         startActivity(intent)
     }
-
 
 }

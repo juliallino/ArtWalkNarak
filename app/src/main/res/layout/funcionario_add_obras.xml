@@ -109,6 +109,7 @@
         android:layout_marginTop="20dp"
         android:background="@color/azulclaro"
         android:layout_centerInParent="true"
+        android:scaleType="fitXY"
         ></ImageView>
 
     <Button

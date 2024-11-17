@@ -19,7 +19,6 @@ import com.example.projeto.model.Exposicao
 class AdapterExposicaoHomeFunc(
     private val context: Context,
     private val exposicoes: MutableList<Exposicao>,
-    private val onClick: (String) -> Unit
 ) : RecyclerView.Adapter<AdapterExposicaoHomeFunc.ExposicaoViewHolder>() {
 
     // Cria uma nova View para o item da lista (chamado quando necessário)
@@ -37,11 +36,12 @@ class AdapterExposicaoHomeFunc(
 
         // Configura o clique na imagem para abrir a tela MAExposicaoFuncionario
         holder.imagemExposicao.setOnClickListener {
+            val exposicaoId = exposicao.idExposicao
             val intent = Intent(context, MAExposicaoFuncionario::class.java)
-            exposicao.idExposicao?.let { id -> onClick(id)
-            }
+            intent.putExtra("idExposicao", exposicaoId)
             context.startActivity(intent)
         }
+
         // Configura o clique no ícone de edição para abrir a tela MAAddExposicao
         holder.editExposicao.setOnClickListener {
             var intent = Intent(context, MAAddExposicao::class.java)
@@ -63,14 +63,12 @@ class AdapterExposicaoHomeFunc(
         // Método para associar os dados da exposição ao item da view
         fun bind(exposicao: Exposicao) {
             nomeExposicao.text = exposicao.nomeExposicao
-
             // Converte a string Base64 para Bitmap e define na ImageView
             val imagemBase64 = exposicao.imagemExposicao
             imagemBase64?.let {
                 val bitmap = base64ToBitmap(it)
                 imagemExposicao.setImageBitmap(bitmap)
             }
-
             // Define o ícone de edição
             editExposicao.setImageResource(R.drawable.baseline_edit_24)
             deleteExposicao.setImageResource(R.drawable.baseline_delete_forever_24)

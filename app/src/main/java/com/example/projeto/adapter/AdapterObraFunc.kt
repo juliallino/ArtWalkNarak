@@ -24,8 +24,7 @@ class AdapterObraFunc(
         return ObrasViewHolder(view)
     }
 
-    // Retorna o número total de itens na lista
-    override fun getItemCount(): Int = obras.size
+
 
     override fun onBindViewHolder(holder: ObrasViewHolder, position: Int) {
         val obra = obras[position]
@@ -33,14 +32,19 @@ class AdapterObraFunc(
 
         // Configura o clique na imagem para abrir a tela MAAddObra
         holder.imagemObra.setOnClickListener {
-            context.startActivity(Intent(context, MAAddObra::class.java))
+            val intent = Intent(context, MAAddObra::class.java)
+            context.startActivity(intent)
         }
 
         // Configura o clique no ícone de edição para abrir a tela MAAddObra
         holder.editObra.setOnClickListener {
-            context.startActivity(Intent(context, MAAddObra::class.java))
+            val intent = Intent(context, MAAddObra::class.java)
+            context.startActivity(intent)
         }
     }
+
+    // Retorna o número total de itens na lista
+    override fun getItemCount(): Int = obras.size
 
     // Classe interna ViewHolder, responsável por armazenar as Views de cada item
     inner class ObrasViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -55,7 +59,6 @@ class AdapterObraFunc(
                 val bitmap = base64ToBitmap(it)
                 imagemObra.setImageBitmap(bitmap)
             }
-
             // Define o ícone de edição
             editObra.setImageResource(R.drawable.baseline_edit_24)
         }

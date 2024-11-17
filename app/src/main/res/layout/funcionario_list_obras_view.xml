@@ -17,8 +17,7 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:contentDescription="Botão da imagem"
-        android:scaleType="centerCrop"
-        android:src="@drawable/batman"
+        android:scaleType="fitXY"
         android:backgroundTint="@color/white"
         android:background="@color/azulclaro"></ImageButton>
 

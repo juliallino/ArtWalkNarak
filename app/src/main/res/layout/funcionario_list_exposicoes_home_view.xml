@@ -7,7 +7,8 @@
 
     <RelativeLayout
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:padding="5dp">
     <TextView
         android:id="@+id/nomeExposicao"
         android:layout_width="wrap_content"
@@ -28,6 +29,7 @@
         android:contentDescription="Botão da imagem"
         android:src="@drawable/centelhas"
         android:background="@color/azulclaro"
+        android:scaleType="fitXY"
         android:backgroundTint="@color/azulclaro"
         ></ImageButton>
 

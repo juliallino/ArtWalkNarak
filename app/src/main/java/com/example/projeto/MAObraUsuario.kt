@@ -10,10 +10,6 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.projeto.adapter.AdapterObraUsu
-import com.example.projeto.model.Obra
 import com.google.ai.client.generativeai.GenerativeModel
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase

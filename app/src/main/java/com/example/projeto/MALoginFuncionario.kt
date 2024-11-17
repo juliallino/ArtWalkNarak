@@ -24,6 +24,12 @@ class MALoginFuncionario : AppCompatActivity() {
         email  = findViewById(R.id.emailEdit)
         senha  = findViewById(R.id.senhaEdit)
 
+        val botaoLoginComoUsuario = findViewById<Button>(R.id.botaoDeLoginComoUsuario)
+        botaoLoginComoUsuario.setOnClickListener {
+            Toast.makeText(this, "Login como usuario", Toast.LENGTH_SHORT).show()
+            VoltarLoginComoUsuario()
+        }
+
     }
 
     override fun onStart() {
@@ -43,13 +49,6 @@ class MALoginFuncionario : AppCompatActivity() {
                 Toast.makeText(this, "Existe algum campo em vazio", Toast.LENGTH_SHORT).show()
             }
 
-
-
-            val botaoLoginComoUsuario = findViewById<Button>(R.id.botaoDeLoginComoUsuario)
-            botaoLoginComoUsuario.setOnClickListener {
-                Toast.makeText(this, "Login como usuario", Toast.LENGTH_SHORT).show()
-                VoltarLoginComoUsuario()
-            }
         }
     }
     private fun VoltarLoginComoUsuario() {

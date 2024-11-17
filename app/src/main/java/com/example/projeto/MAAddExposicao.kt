@@ -28,9 +28,9 @@ class MAAddExposicao : AppCompatActivity() {
     lateinit var botaoUploadImagem: Button
     lateinit var botaoSalvar: Button
     lateinit var botaoExcluir: Button
-    lateinit var  imagemExposicao: ImageView
+    lateinit var imagemExposicao: ImageView
 
-    lateinit var fb: FirebaseFirestore
+    lateinit var db: FirebaseFirestore
     var status: Boolean = true
     var imagemBase64: String? = null
 
@@ -51,7 +51,7 @@ class MAAddExposicao : AppCompatActivity() {
         botaoSalvar = findViewById(R.id.salvarBotao)
         botaoExcluir = findViewById(R.id.excluirBotao)
         imagemExposicao = findViewById(R.id.imagemExposicao)
-        fb = Firebase.firestore
+        db = Firebase.firestore
 
         botaoUploadImagem = findViewById(R.id.uploadBotao)
         botaoUploadImagem.setOnClickListener {
@@ -112,20 +112,20 @@ class MAAddExposicao : AppCompatActivity() {
                 imagemExposicao.setImageBitmap(bitmap)
             }
 
-            fb.collection("Exposicao")
+            db.collection("Exposicao")
                 .add(exposicaoData)
                 .addOnSuccessListener {
                     Toast.makeText(this, "Exposição salva com sucesso!", Toast.LENGTH_SHORT).show()
-                    VoltarTela()
                 }
                 .addOnFailureListener {
                     Toast.makeText(this, "Erro ao salvar exposição.", Toast.LENGTH_SHORT).show()
                 }
+            VoltarTela()
         }
 
         botaoExcluir.setOnClickListener {
             val nome = nomeExpo.text.toString()
-            fb.collection("Exposicao")
+            db.collection("Exposicao")
                 .document(nome)
                 .delete()
             VoltarTela()
@@ -141,7 +141,6 @@ class MAAddExposicao : AppCompatActivity() {
             null
         }
     }
-
 
     private fun VoltarTela() {
         Log.d("Voltar", "Voltando para tela inicial do funcionário")

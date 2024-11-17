@@ -5,29 +5,33 @@
     android:layout_height="wrap_content"
     android:gravity="center"
     android:layout_marginTop="20dp"
-    android:layout_marginLeft="20dp">
-<RelativeLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
-    <TextView
-        android:id="@+id/nomeExposicao"
+    android:layout_marginLeft="20dp"
+   >
+
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nome da Exposição"
-        android:textColor="@color/azulmedio"
-        android:textSize="16dp"
-        android:textStyle="bold"></TextView>
+        android:padding="5dp">
+        <TextView
+            android:id="@+id/nomeExposicao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nome da Exposição"
+            android:textColor="@color/azulmedio"
+            android:textSize="16dp"
+            android:layout_marginBottom="10dp"
+            android:textStyle="bold"></TextView>
 
-    <ImageButton
-        android:id="@+id/imagemExposicao"
-        android:layout_width="285dp"
-        android:layout_height="100dp"
-        android:layout_below="@id/nomeExposicao"
-        android:contentDescription="Botão da imagem"
-        android:src="@drawable/centelhas"
-        android:background="@color/azulclaro"
-        android:backgroundTint="@color/azulclaro"
-        ></ImageButton>
+        <ImageButton
+            android:id="@+id/imagemExposicao"
+            android:layout_width="285dp"
+            android:layout_height="100dp"
+            android:layout_below="@id/nomeExposicao"
+            android:background="@color/azulclaro"
+            android:backgroundTint="@color/azulclaro"
+            android:contentDescription="Botão da imagem"
+            android:scaleType="fitXY"
+            android:src="@drawable/centelhas"></ImageButton>
 
-</RelativeLayout>
+    </RelativeLayout>
 </androidx.cardview.widget.CardView>

@@ -21,7 +21,6 @@ class MAHomeFuncionario : AppCompatActivity() {
     private lateinit var auth : FirebaseAuth
     private lateinit var btnSair : Button
     private lateinit var recyclerViewExposicoes: RecyclerView
-    private lateinit var adapter: AdapterExposicaoHomeFunc
     private var db = Firebase.firestore
 
 
@@ -37,25 +36,26 @@ class MAHomeFuncionario : AppCompatActivity() {
         recyclerViewExposicoes.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         recyclerViewExposicoes.setHasFixedSize(true)
 
-//        val listaExposicoes:MutableList<Exposicao> = mutableListOf()
-//        db = FirebaseFirestore.getInstance()
-//        db.collection("Exposicao")
-//            .get()
-//            .addOnSuccessListener {
-//                if(!it.isEmpty){
-//                    for(data in it.documents){
-//                        val exposicao: Exposicao? = data.toObject(Exposicao::class.java)
-//                        if(exposicao != null){
-//                            listaExposicoes.add(exposicao)
-//                        }
-//                    }
-//                    val adapterExposicaoHomeFunc = AdapterExposicaoHomeFunc(this,listaExposicoes)
-//                    recyclerViewExposicoes.adapter = adapterExposicaoHomeFunc
-//                }
-//            }
-//            .addOnFailureListener {
-//                Toast.makeText(this,it.toString(), Toast.LENGTH_SHORT).show()
-//            }
+        val listaExposicoes:MutableList<Exposicao> = mutableListOf()
+        db = FirebaseFirestore.getInstance()
+        db.collection("Exposicao")
+            .get()
+            .addOnSuccessListener {
+                if(!it.isEmpty){
+                    for(data in it.documents){
+                        val exposicao: Exposicao? = data.toObject(Exposicao::class.java)
+                        exposicao?.idExposicao = data.id
+                        if(exposicao != null){
+                            listaExposicoes.add(exposicao)
+                        }
+                    }
+                    val adapterExposicaoHomeFunc = AdapterExposicaoHomeFunc(this,listaExposicoes)
+                    recyclerViewExposicoes.adapter = adapterExposicaoHomeFunc
+                }
+            }
+            .addOnFailureListener {
+                Toast.makeText(this,it.toString(), Toast.LENGTH_SHORT).show()
+            }
 
 
         // Botão para adicionar exposição

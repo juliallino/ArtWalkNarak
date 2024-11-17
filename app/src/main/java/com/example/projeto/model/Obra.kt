@@ -5,4 +5,5 @@ data class Obra(
     var nomeObra: String? = null,
     var imagemObra: String? = null,
     var descricaoObra: String? = null,
+    var idExposicao: String?= null
 )
