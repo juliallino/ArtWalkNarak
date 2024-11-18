@@ -2,6 +2,7 @@ package com.example.projeto
 
 import android.content.Intent
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.widget.ImageButton
 import android.widget.SearchView
@@ -30,6 +31,9 @@ class MAExposicaoUsuario : AppCompatActivity() {
     private lateinit var busca: SearchView
     private val obrasList: MutableList<Obra> = mutableListOf()
     private val adapterObras = AdapterObraUsu(this, obrasList)
+    private var textToSpeech: TextToSpeech? = null
+    lateinit var botaoAcessibilidade :ImageButton
+    lateinit var botaoDesatiavrAcessibildade :ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,8 +43,10 @@ class MAExposicaoUsuario : AppCompatActivity() {
         nomeExposicao = findViewById(R.id.nomeExposicao)
         descricaoExposicao = findViewById(R.id.descricaoExposicao)
         busca = findViewById(R.id.busca)
+        botaoAcessibilidade = findViewById(R.id.acessibilidadeExposicao)
+        botaoDesatiavrAcessibildade = findViewById(R.id.desativaracessibilidade)
 
-        recyclerViewObras = findViewById<RecyclerView>(R.id.obrasRecyclerView)
+        recyclerViewObras = findViewById(R.id.obrasRecyclerView)
         recyclerViewObras.layoutManager = GridLayoutManager(this, 5)
         recyclerViewObras.setHasFixedSize(true)
 
@@ -68,6 +74,42 @@ class MAExposicaoUsuario : AppCompatActivity() {
             Log.d("Debug", "ID não encontrado")
         }
 
+        textToSpeech = TextToSpeech(this) { status ->
+            if (status == TextToSpeech.SUCCESS) {
+                val langResult = textToSpeech?.setLanguage(Locale.getDefault())
+                    ?: TextToSpeech.LANG_NOT_SUPPORTED
+
+                when (langResult) {
+                    TextToSpeech.LANG_MISSING_DATA -> {
+                        showErrorMessage("Dados de idioma ausentes. Por favor, instale os dados do idioma.")
+                    }
+
+                    TextToSpeech.LANG_NOT_SUPPORTED -> {
+                        showErrorMessage("Idioma não suportado.")
+                    }
+
+                    else -> {
+                        // A linguagem foi definida com sucesso
+                    }
+                }
+            } else {
+                showErrorMessage("Erro ao inicializar o TextToSpeech.")
+            }
+        }
+
+        botaoAcessibilidade.setOnClickListener { v ->
+            if (textToSpeech != null) {
+                val textToRead = "${nomeExposicao.text}+ ${descricaoExposicao.text}"
+                textToSpeech?.stop()
+                textToSpeech?.speak(textToRead, TextToSpeech.QUEUE_FLUSH, null, null)
+                AcessibilidadeSom()
+            }else{
+                showErrorMessage("TextToSpeech não está disponível.")
+            }
+        }
+        botaoDesatiavrAcessibildade.setOnClickListener{
+            textToSpeech?.stop()
+        }
 
         db.collection("Obra")
             .whereEqualTo("idExposicao", exposicaoId)
@@ -110,10 +152,6 @@ class MAExposicaoUsuario : AppCompatActivity() {
         botaoScanObra.setOnClickListener {
             ScanObra()
         }
-        val botaoAcessibilidade = findViewById<ImageButton>(R.id.acessibilidadeExposicao)
-        botaoAcessibilidade.setOnClickListener{
-            AcessibilidadeSom()
-        }
 
     }
     private fun fileList(query:String?) {
@@ -149,6 +187,14 @@ class MAExposicaoUsuario : AppCompatActivity() {
         Toast.makeText(this, "Acessibilidade ativada", Toast.LENGTH_SHORT).show()
     }
 
+    override fun onDestroy() {
+        textToSpeech?.stop()
+        textToSpeech?.shutdown()
+        super.onDestroy()
+    }
 
+    private fun showErrorMessage(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+    }
 }
 

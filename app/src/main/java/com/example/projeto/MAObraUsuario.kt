@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
 import android.util.Base64
 import android.util.Log
 import android.widget.Button
@@ -22,6 +23,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.launch
+import java.util.Locale
 
 class MAObraUsuario : AppCompatActivity() {
     lateinit var botaoenviar:Button
@@ -29,6 +31,9 @@ class MAObraUsuario : AppCompatActivity() {
     private lateinit var nomeObra: TextView
     private lateinit var descricaoObra: TextView
     private lateinit var imagemObra: ImageView
+    lateinit var botaoAcessibilidade :ImageButton
+    lateinit var botaoDesatiavrAcessibildade :ImageButton
+    private var textToSpeech: TextToSpeech? = null
     private var db = Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +43,8 @@ class MAObraUsuario : AppCompatActivity() {
         nomeObra = findViewById(R.id.nomeObra)
         descricaoObra = findViewById(R.id.descricaoObra)
         imagemObra = findViewById(R.id.imagemObra)
-
+        botaoAcessibilidade = findViewById(R.id.acessibilidadeObra)
+        botaoDesatiavrAcessibildade = findViewById(R.id.desativaracessibilidade)
         chatIA = findViewById(R.id.chatIA)
         botaoenviar = findViewById(R.id.enivar)
 
@@ -76,13 +82,47 @@ class MAObraUsuario : AppCompatActivity() {
         } else {
             Log.d("Debug", "ID não encontrado")
         }
+
+        textToSpeech = TextToSpeech(this) { status ->
+            if (status == TextToSpeech.SUCCESS) {
+                val langResult = textToSpeech?.setLanguage(Locale.getDefault())
+                    ?: TextToSpeech.LANG_NOT_SUPPORTED
+
+                when (langResult) {
+                    TextToSpeech.LANG_MISSING_DATA -> {
+                        showErrorMessage("Dados de idioma ausentes. Por favor, instale os dados do idioma.")
+                    }
+
+                    TextToSpeech.LANG_NOT_SUPPORTED -> {
+                        showErrorMessage("Idioma não suportado.")
+                    }
+
+                    else -> {
+                        // A linguagem foi definida com sucesso
+                    }
+                }
+            } else {
+                showErrorMessage("Erro ao inicializar o TextToSpeech.")
+            }
+        }
+
+        botaoAcessibilidade.setOnClickListener { v ->
+            if (textToSpeech != null) {
+                val textToRead = "${nomeObra.text}+ ${descricaoObra.text}"
+                textToSpeech?.stop()
+                textToSpeech?.speak(textToRead, TextToSpeech.QUEUE_FLUSH, null, null)
+                AcessibilidadeSom()
+            }else{
+                showErrorMessage("TextToSpeech não está disponível.")
+            }
+        }
+        botaoDesatiavrAcessibildade.setOnClickListener{
+            textToSpeech?.stop()
+        }
+
         val botaoVoltarTela = findViewById<ImageButton>(R.id.voltarParaTelaHome)
         botaoVoltarTela.setOnClickListener{
             VoltarTela()
-        }
-        val botaoAcessibilidade = findViewById<ImageButton>(R.id.acessibilidadeObra)
-        botaoAcessibilidade.setOnClickListener{
-            AcessibilidadeSom()
         }
 
     }
@@ -137,6 +177,15 @@ class MAObraUsuario : AppCompatActivity() {
         val prompt = chatIA.text.toString()
         val response = generativeModel.generateContent(prompt + "responta essa pergunta em até 250 caracteres")
         chatIA.setText(response.text)
+    }
+    override fun onDestroy() {
+        textToSpeech?.stop()
+        textToSpeech?.shutdown()
+        super.onDestroy()
+    }
+
+    private fun showErrorMessage(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 
 }
