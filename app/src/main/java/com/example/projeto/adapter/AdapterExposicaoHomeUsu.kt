@@ -11,7 +11,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.projeto.MAExposicaoFuncionario
 import com.example.projeto.MAExposicaoUsuario
 import com.example.projeto.R
 import com.example.projeto.model.Exposicao
@@ -19,7 +18,7 @@ import com.example.projeto.model.Exposicao
 class AdapterExposicaoHomeUsu(
     private val context: Context,
     private val exposicoes: MutableList<Exposicao>
-) : RecyclerView.Adapter<AdapterExposicaoHomeUsu.ExposicaoViewHolder>() {
+) : RecyclerView.Adapter<AdapterExposicaoHomeUsu.ExposicaoViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExposicaoViewHolder {
         val view = LayoutInflater.from(context)

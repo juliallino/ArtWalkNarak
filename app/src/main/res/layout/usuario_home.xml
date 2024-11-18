@@ -79,33 +79,33 @@
 
         android:text="Exposições do Acervo"
         android:textColor="@color/azulescuro"
-        android:textSize="18dp"
+        android:textSize="22dp"
         android:textStyle="bold"
 
         ></TextView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerviewExposicoesUsuarios"
-        android:layout_width="wrap_content"
-        android:layout_height="439dp"
+        android:layout_width="match_parent"
+        android:layout_height="455dp"
         android:layout_below="@id/subtitulo"
         android:layout_marginTop="0dp"
-        tools:itemCount="2"
+        tools:itemCount="3"
         tools:listitem="@layout/usuario_list_exposicoes_home_view"></androidx.recyclerview.widget.RecyclerView>
 
     <Button
-    android:id="@+id/botaoSair"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/recyclerviewExposicoesUsuarios"
-    android:text="SAIR"
-    android:textColor="@color/azulescuro"
-    android:backgroundTint="@color/azulclaro"
-    android:textStyle="bold"
-    android:layout_alignParentEnd="true"
-    android:layout_marginTop="20dp"
-    android:layout_marginRight="20dp"
-    ></Button>
+        android:id="@+id/botaoSair"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/recyclerviewExposicoesUsuarios"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="21dp"
+        android:layout_marginEnd="17dp"
+        android:layout_marginRight="20dp"
+        android:backgroundTint="@color/azulclaro"
+        android:text="SAIR"
+        android:textColor="@color/azulescuro"
+        android:textStyle="bold"></Button>
 
     <com.google.android.material.navigation.NavigationView
         android:layout_width="match_parent"

@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MAAddExposicao">
 
+    <RelativeLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/sobreExposicaoTool"
         android:layout_width="match_parent"
@@ -57,7 +60,8 @@
         android:drawablePadding="10dp"
         android:paddingLeft="15dp"
         android:hint="Nome da exposição..."
-        android:textColorHint="#1E88E5"></EditText>
+        android:textColorHint="#1E88E5"
+        android:padding="15dp"></EditText>
 
     <TextView
         android:id="@+id/descricaoExposicao"
@@ -74,15 +78,17 @@
     <EditText
         android:id="@+id/descricaoExposicaoEdit"
         android:layout_width="325dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_below="@id/descricaoExposicao"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="10dp"
         android:background="@color/azulclaro"
         android:drawableLeft="@drawable/baseline_description_24"
         android:drawablePadding="10dp"
-        android:paddingLeft="15dp"
         android:hint="Descrição da Exposição..."
+        android:padding="15dp"
         android:textColorHint="#1E88E5"></EditText>
 
     <TextView
@@ -109,20 +115,21 @@
         android:scaleType="fitXY"
         ></ImageView>
 
-    <Button
-        android:id="@+id/uploadBotao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="10dp"
-        android:layout_below="@id/imagemExposicao"
-        android:backgroundTint="@color/black"
-        android:text="UPLOAD"
-        android:textColor="@color/azulclaro"
-        android:textStyle="bold"
-        android:layout_centerInParent="true"></Button>
+        <Button
+            android:id="@+id/uploadBotao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imagemExposicao"
+            android:layout_marginTop="32dp"
+            android:layout_marginRight="30dp"
+            android:backgroundTint="@color/black"
+            android:text="UPLOAD"
+            android:textColor="@color/azulclaro"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"
+            ></Button>
 
-    <TextView
+        <TextView
         android:id="@+id/statusExposicao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -180,7 +187,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/finalizarEdicao"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="60dp">
+
 
         <Button
             android:id="@+id/salvarBotao"
@@ -200,14 +209,17 @@
             android:text="EXCLUIR EXPOSIÇÃO"
             android:textColor="@color/azulclaro"
             android:textStyle="bold"></Button>
+
     </LinearLayout>
 
+        <com.google.android.material.navigation.NavigationView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="2dp"
+            android:background="@color/azulclaro"
+            android:padding="10dp"></com.google.android.material.navigation.NavigationView>
 
-    <com.google.android.material.navigation.NavigationView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@color/azulclaro"
-        android:padding="10dp"></com.google.android.material.navigation.NavigationView>
 
-</RelativeLayout>
+    </RelativeLayout>
+</ScrollView>

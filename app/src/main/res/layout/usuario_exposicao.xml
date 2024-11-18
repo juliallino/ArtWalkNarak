@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:scrollbars="vertical"
-    tools:context=".MAExposicaoFuncionario">
+    android:fillViewport="true"
+    android:scrollbars="none"
+    tools:context=".MAExposicaoFuncionario"
+    >
+
+    <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/sobreExposicaoTool"
@@ -35,30 +42,24 @@
     </androidx.appcompat.widget.Toolbar>
 
 
-    <EditText
-        android:id="@+id/busca"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
+        <SearchView
+            android:id="@+id/busca"
+            android:layout_width="261dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/sobreExposicaoTool"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginRight="10dp"
+            android:background="#E2EEFF"
+            android:iconifiedByDefault="false"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:queryHint="Busque por obra..."
+            android:searchHintIcon="@drawable/baseline_search_24"
+            android:textColorHint="@color/azulmedio"
+          ></SearchView>
 
-        android:layout_below="@id/sobreExposicaoTool"
-        android:layout_marginLeft="150dp"
-        android:layout_marginTop="13dp"
-        android:background="#E2EEFF"
-        android:drawableRight="@drawable/baseline_search_24"
-        android:drawablePadding="10dp"
-        android:hint="Busque por exposição..."
-        android:paddingLeft="15dp"
-        android:paddingTop="5dp"
-        android:paddingRight="10dp"
-
-
-        android:paddingBottom="5dp"
-        android:textColorHint="@color/azulmedio"
-        android:textSize="16dp"
-
-        tools:ignore="TextContrastCheck"></EditText>
-
-    <LinearLayout
+        <LinearLayout
         android:id="@+id/sobreExposicao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -140,3 +141,4 @@
     </com.google.android.material.navigation.NavigationView>
 
 </RelativeLayout>
+    </ScrollView>

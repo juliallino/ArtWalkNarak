@@ -3,11 +3,14 @@ package com.example.projeto
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.SearchView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projeto.adapter.AdapterObraFunc
@@ -23,6 +26,7 @@ class MAExposicaoUsuario : AppCompatActivity() {
     private lateinit var recyclerViewObras: RecyclerView
     private lateinit var nomeExposicao: TextView
     private lateinit var descricaoExposicao: TextView
+    private lateinit var buscaEdit: SearchView
     private var db = Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +35,7 @@ class MAExposicaoUsuario : AppCompatActivity() {
 
         nomeExposicao = findViewById(R.id.nomeExposicao)
         descricaoExposicao = findViewById(R.id.descricaoExposicao)
-
+        buscaEdit = findViewById(R.id.busca)
         recyclerViewObras = findViewById<RecyclerView>(R.id.obrasRecyclerView)
         recyclerViewObras.layoutManager = GridLayoutManager(this, 5)
         recyclerViewObras.setHasFixedSize(true)
@@ -116,6 +120,7 @@ class MAExposicaoUsuario : AppCompatActivity() {
         Log.d("botão acessibilidade", "para ativar a leitura de textp")
         Toast.makeText(this, "Acessibilidade ativada", Toast.LENGTH_SHORT).show()
     }
+
 
 
 }
