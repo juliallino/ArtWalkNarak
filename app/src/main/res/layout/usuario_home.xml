@@ -41,32 +41,45 @@
 
     </LinearLayout>
 
-    <EditText
+<!--    <EditText-->
+<!--        android:id="@+id/busca"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+
+<!--        android:layout_below="@id/layouttitulo"-->
+<!--        android:layout_marginLeft="150dp"-->
+
+<!--        android:layout_marginTop="-1dp"-->
+<!--        android:layout_marginBottom="10dp"-->
+<!--        android:background="#E2EEFF"-->
+<!--        android:drawableRight="@drawable/baseline_search_24"-->
+<!--        android:drawablePadding="10dp"-->
+
+<!--        android:minHeight="48dp"-->
+<!--        android:paddingLeft="15dp"-->
+<!--        android:paddingTop="5dp"-->
+<!--        android:paddingRight="10dp"-->
+<!--        android:paddingBottom="5dp"-->
+
+
+<!--        android:hint="Busque por exposição..."-->
+<!--        android:textColorHint="@color/azulmedio"-->
+<!--        android:textSize="16dp"-->
+
+<!--        tools:ignore="TextContrastCheck"></EditText>-->
+    <SearchView
         android:id="@+id/busca"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:layout_below="@id/layouttitulo"
+        android:layout_marginRight="10dp"
         android:layout_marginLeft="150dp"
-
-        android:layout_marginTop="-1dp"
-        android:layout_marginBottom="10dp"
-        android:background="#E2EEFF"
-        android:drawableRight="@drawable/baseline_search_24"
-        android:drawablePadding="10dp"
-
-        android:minHeight="48dp"
-        android:paddingLeft="15dp"
-        android:paddingTop="5dp"
-        android:paddingRight="10dp"
-        android:paddingBottom="5dp"
-
-
-        android:hint="Busque por exposição..."
-        android:textColorHint="@color/azulmedio"
-        android:textSize="16dp"
-
-        tools:ignore="TextContrastCheck"></EditText>
+        android:background="@drawable/busca_background"
+        android:queryHint="Busque por exposição"
+        android:iconifiedByDefault="false"
+        android:queryBackground="@color/transparente"
+        android:backgroundTint="@color/azulclaro"
+        ></SearchView>
 
     <TextView
         android:id="@+id/subtitulo"
@@ -79,33 +92,33 @@
 
         android:text="Exposições do Acervo"
         android:textColor="@color/azulescuro"
-        android:textSize="22dp"
+        android:textSize="18dp"
         android:textStyle="bold"
 
         ></TextView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerviewExposicoesUsuarios"
-        android:layout_width="match_parent"
-        android:layout_height="455dp"
+        android:layout_width="wrap_content"
+        android:layout_height="439dp"
         android:layout_below="@id/subtitulo"
         android:layout_marginTop="0dp"
-        tools:itemCount="3"
+        tools:itemCount="2"
         tools:listitem="@layout/usuario_list_exposicoes_home_view"></androidx.recyclerview.widget.RecyclerView>
 
     <Button
-        android:id="@+id/botaoSair"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/recyclerviewExposicoesUsuarios"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="21dp"
-        android:layout_marginEnd="17dp"
-        android:layout_marginRight="20dp"
-        android:backgroundTint="@color/azulclaro"
-        android:text="SAIR"
-        android:textColor="@color/azulescuro"
-        android:textStyle="bold"></Button>
+    android:id="@+id/botaoSair"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/recyclerviewExposicoesUsuarios"
+    android:text="SAIR"
+    android:textColor="@color/azulescuro"
+    android:backgroundTint="@color/azulclaro"
+    android:textStyle="bold"
+    android:layout_alignParentEnd="true"
+    android:layout_marginTop="20dp"
+    android:layout_marginRight="20dp"
+    ></Button>
 
     <com.google.android.material.navigation.NavigationView
         android:layout_width="match_parent"

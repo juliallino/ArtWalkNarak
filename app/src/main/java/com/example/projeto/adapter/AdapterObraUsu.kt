@@ -16,12 +16,16 @@ import com.example.projeto.model.Obra
 
 class AdapterObraUsu(
     private val context: Context,
-    private val obras: MutableList<Obra>
+    private var obras: List<Obra>
 ) : RecyclerView.Adapter<AdapterObraUsu.ObrasViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ObrasViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.usuario_list_obras_view, parent, false)
         return ObrasViewHolder(view)
+    }
+    fun setFilteredList(obras: List<Obra>){
+        this.obras = obras
+        notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int = obras.size
@@ -68,5 +72,4 @@ class AdapterObraUsu(
             }
         }
     }
-
 }

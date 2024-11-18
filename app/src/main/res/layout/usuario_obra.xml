@@ -60,14 +60,15 @@
 
         <ImageView
             android:id="@+id/imagemObra"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:layout_below="@id/nomeObra"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
-            android:src="@drawable/batman"
             android:scaleType="fitXY"
             android:layout_gravity="center"
+            android:background="@drawable/imagem_background"
+            android:backgroundTint="@color/azulclaro"
             ></ImageView>
 
 
@@ -80,6 +81,7 @@
             android:layout_marginTop="10dp"
             android:layout_gravity="center"
             android:layout_marginRight="10dp"
+            android:gravity="center"
             android:text="Antes da perda de seus pais, Bruce Wayne era uma criança alegre e feliz, guardando boas memórias do tempo em que viveu na Mansão Wayne. Tendo se tornado introvertido e antissocial na adolescência, Bruce preferia a companhia de livros a pessoas. Ele tinha interesse em garotas, mas não se preocupava em gastar tempo com elas. Apesar das Indústrias Wayne serem capazes de lhe proporcionar grandes aposentos e o melhor conforto possível, \n\nBruce mantinha seu quarto na Torre Wayne o mais simples possível, acreditando que a praticidade de achar coisas mais rápido compensava o conforto exagerado que poderia ter com seu dinheiro. Bruce também sempre foi dedicado em sua vida estudantil, tirando as melhores notas possíveis, mas não se preocupando muito com tal resultado―ele de fato estudava por gosto, não pelo resultado"></TextView>
     </LinearLayout>
 

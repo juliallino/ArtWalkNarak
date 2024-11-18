@@ -3,31 +3,34 @@ package com.example.projeto
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.SearchView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projeto.adapter.AdapterObraFunc
 import com.example.projeto.adapter.AdapterObraUsu
+import com.example.projeto.model.Exposicao
 import com.example.projeto.model.Obra
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.util.Locale
 
 
 class MAExposicaoUsuario : AppCompatActivity() {
     private lateinit var recyclerViewObras: RecyclerView
     private lateinit var nomeExposicao: TextView
     private lateinit var descricaoExposicao: TextView
-    private lateinit var buscaEdit: SearchView
     private var db = Firebase.firestore
+    private lateinit var busca: SearchView
+    private val obrasList: MutableList<Obra> = mutableListOf()
+    private val adapterObras = AdapterObraUsu(this, obrasList)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -35,7 +38,8 @@ class MAExposicaoUsuario : AppCompatActivity() {
 
         nomeExposicao = findViewById(R.id.nomeExposicao)
         descricaoExposicao = findViewById(R.id.descricaoExposicao)
-        buscaEdit = findViewById(R.id.busca)
+        busca = findViewById(R.id.busca)
+
         recyclerViewObras = findViewById<RecyclerView>(R.id.obrasRecyclerView)
         recyclerViewObras.layoutManager = GridLayoutManager(this, 5)
         recyclerViewObras.setHasFixedSize(true)
@@ -65,7 +69,6 @@ class MAExposicaoUsuario : AppCompatActivity() {
         }
 
 
-        val obrasList: MutableList<Obra> = mutableListOf()
         db.collection("Obra")
             .whereEqualTo("idExposicao", exposicaoId)
             .get()
@@ -78,7 +81,6 @@ class MAExposicaoUsuario : AppCompatActivity() {
                             obrasList.add(obra)
                         }
                     }
-                    val adapterObras = AdapterObraUsu(this, obrasList)
                     recyclerViewObras.adapter = adapterObras
                 } else {
                     Log.d("Debug", "Nenhuma obra encontrada para esta Exposição.")
@@ -88,6 +90,17 @@ class MAExposicaoUsuario : AppCompatActivity() {
                 Toast.makeText(this, exception.toString(), Toast.LENGTH_SHORT).show()
             }
 
+        busca.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                fileList(newText)
+                return true
+            }
+
+        })
 
         val botaoVoltarTela = findViewById<ImageButton>(R.id.voltarParaTelaHome)
         botaoVoltarTela.setOnClickListener{
@@ -102,6 +115,21 @@ class MAExposicaoUsuario : AppCompatActivity() {
             AcessibilidadeSom()
         }
 
+    }
+    private fun fileList(query:String?) {
+        if(query != null){
+            val filteredList = ArrayList<Obra>()
+            for (i in obrasList){
+                if (i.nomeObra?.lowercase(Locale.ROOT)?.contains(query) == true){
+                    filteredList.add(i)
+                }
+            }
+            if(filteredList.isEmpty()){
+                Toast.makeText(this,"Nenhuma exposição encontrada", Toast.LENGTH_SHORT).show()
+            }else{
+                adapterObras.setFilteredList(filteredList)
+            }
+        }
     }
     private fun VoltarTela() {
         Log.d("Voltar", "Voltando para tela inicial do usuario")
@@ -120,7 +148,6 @@ class MAExposicaoUsuario : AppCompatActivity() {
         Log.d("botão acessibilidade", "para ativar a leitura de textp")
         Toast.makeText(this, "Acessibilidade ativada", Toast.LENGTH_SHORT).show()
     }
-
 
 
 }

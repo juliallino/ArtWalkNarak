@@ -10,5 +10,6 @@
     <color name="verde">#FF0A390F</color>
     <color name="vermelhoclaro">#FFFF6363</color>
     <color name="vermelho">#FFFF0000</color>
+    <color name="transparente">#00000000 </color>.
 
 </resources>

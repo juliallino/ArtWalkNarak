@@ -17,15 +17,17 @@ import com.example.projeto.model.Exposicao
 
 class AdapterExposicaoHomeUsu(
     private val context: Context,
-    private val exposicoes: MutableList<Exposicao>
-) : RecyclerView.Adapter<AdapterExposicaoHomeUsu.ExposicaoViewHolder>(){
-
+    private var exposicoes: List<Exposicao>,
+) : RecyclerView.Adapter<AdapterExposicaoHomeUsu.ExposicaoViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExposicaoViewHolder {
         val view = LayoutInflater.from(context)
             .inflate(R.layout.usuario_list_exposicoes_home_view, parent, false)
         return ExposicaoViewHolder(view)
     }
-
+    fun setFilteredList(exposicoes: List<Exposicao>){
+            this.exposicoes =exposicoes
+            notifyDataSetChanged()
+    }
     override fun getItemCount(): Int = exposicoes.size
 
     override fun onBindViewHolder(holder: ExposicaoViewHolder, position: Int) {
@@ -38,7 +40,8 @@ class AdapterExposicaoHomeUsu(
             val exposicaoId = exposicao.idExposicao
             val intent = Intent(context, MAExposicaoUsuario::class.java)
             intent.putExtra("idExposicao", exposicaoId)
-            context.startActivity(intent)        }
+            context.startActivity(intent)
+        }
     }
 
     // Classe interna ViewHolder, responsável por armazenar as Views de cada item
@@ -67,5 +70,6 @@ class AdapterExposicaoHomeUsu(
                 null
             }
         }
+
     }
 }

@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:scrollbars="none"
-    tools:context=".MAExposicaoFuncionario"
-    >
+    android:scrollbars="vertical"
+    tools:context=".MAExposicaoFuncionario">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/sobreExposicaoTool"
         android:layout_width="match_parent"
@@ -110,5 +104,5 @@
         android:layout_alignParentBottom="true"
         android:background="@color/azulclaro"
         android:padding="10dp"></com.google.android.material.navigation.NavigationView>
-    </RelativeLayout>
-</ScrollView>
+
+</RelativeLayout>

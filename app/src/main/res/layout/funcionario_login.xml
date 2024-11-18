@@ -48,7 +48,8 @@
         android:layout_marginTop="20dp"
         android:layout_marginRight="40dp"
         android:layout_marginBottom="10dp"
-        android:background="#70ffffff"
+        android:backgroundTint="#70ffffff"
+        android:background="@drawable/busca_background"
         android:drawableLeft="@drawable/baseline_person_outline_24"
         android:drawablePadding="15dp"
 
@@ -66,7 +67,8 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="40dp"
         android:layout_marginBottom="10dp"
-        android:background="#70ffffff"
+        android:backgroundTint="#70ffffff"
+        android:background="@drawable/busca_background"
         android:drawableLeft="@drawable/baseline_password_24"
         android:drawablePadding="15dp"
 

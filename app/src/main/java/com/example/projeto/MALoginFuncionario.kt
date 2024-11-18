@@ -29,21 +29,25 @@ class MALoginFuncionario : AppCompatActivity() {
             Toast.makeText(this, "Login como usuario", Toast.LENGTH_SHORT).show()
             VoltarLoginComoUsuario()
         }
+
         botaoEntrar.setOnClickListener {
             if (email.text.toString().isNotEmpty() && senha.text.toString().isNotEmpty()) {
-                auth.signInWithEmailAndPassword("centelhas@gmail.com", "123123")
-                    .addOnCompleteListener(this) { task ->
-                        if (task.isSuccessful) {
-                            val intent = Intent(this, MAHomeFuncionario::class.java)
+                auth.signInWithEmailAndPassword(email.text.toString(), senha.text.toString())
+                    .addOnCompleteListener {
+                        if (it.isSuccessful) {
+                            val intent = Intent(this, MAHomeUsuario::class.java)
                             startActivity(intent)
                         } else {
-                            Toast.makeText(this, "Revise os dados", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                this,
+                                "Revise os dados ou crie uma conta",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                     }
             } else {
                 Toast.makeText(this, "Existe algum campo em vazio", Toast.LENGTH_SHORT).show()
             }
-
         }
     }
     private fun VoltarLoginComoUsuario() {
