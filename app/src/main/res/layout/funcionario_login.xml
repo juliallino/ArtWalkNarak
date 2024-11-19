@@ -31,7 +31,7 @@
         android:layout_marginRight="25dp"
         android:layout_marginBottom="5dp"
         android:gravity="center"
-        android:text="Login como funcionário\nuse as credenciais:"
+        android:text="Login como funcionário\n autenticação necessária"
         android:textColor="@color/azulescuro"
         android:textSize="20dp"
         android:textStyle="bold"></TextView>

@@ -144,7 +144,7 @@ class MAAddObra : AppCompatActivity() {
         val obraData = mapOf(
             "nomeObra" to nome,
             "descricaoObra" to descricao,
-            "imagemObra" to imagemBase64,
+            "imagemObra" to imagemObra,
             "idExposicao" to exposicaoId
         )
         db.collection("Obra").document(id)

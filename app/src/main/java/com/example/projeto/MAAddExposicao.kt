@@ -144,6 +144,7 @@ class MAAddExposicao : AppCompatActivity() {
                     if (imagemBase64 != null) {
                         val bitmap = base64ToBitmap(imagemBase64)
                         imagemExposicao.setImageBitmap(bitmap)
+                        this.imagemExposicao = imagemExposicao
                     }
                 }
             }
@@ -161,11 +162,12 @@ class MAAddExposicao : AppCompatActivity() {
             "nomeExposicao" to nome,
             "descricaoExposicao" to descricao,
             "status" to status,
-            "imagemExposicao" to imagemBase64
+            "imagemExposicao" to imagemExposicao
         )
 
-        db.collection("Exposicao").document(id)
-            .update(exposicaoData)
+        db.collection("Exposicao")
+            .document(id)
+            .set(exposicaoData)
             .addOnSuccessListener {
                 Toast.makeText(this, "Exposição atualizada com sucesso!", Toast.LENGTH_SHORT).show()
                 VoltarTela()
