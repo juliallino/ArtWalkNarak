@@ -9,9 +9,11 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class MALoginFuncionario : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
+    private lateinit var db: FirebaseFirestore
     private lateinit var botaoEntrar: Button
     private lateinit var email: EditText
     private lateinit var senha: EditText
@@ -21,8 +23,9 @@ class MALoginFuncionario : AppCompatActivity() {
         setContentView(R.layout.funcionario_login)
         botaoEntrar = findViewById(R.id.botaoDeEntrarFuncionario)
         auth = FirebaseAuth.getInstance()
-        email  = findViewById(R.id.emailEdit)
-        senha  = findViewById(R.id.senhaEdit)
+        db = FirebaseFirestore.getInstance()
+        email = findViewById(R.id.emailEdit)
+        senha = findViewById(R.id.senhaEdit)
 
         val botaoLoginComoUsuario = findViewById<Button>(R.id.botaoDeLoginComoUsuario)
         botaoLoginComoUsuario.setOnClickListener {
@@ -33,10 +36,58 @@ class MALoginFuncionario : AppCompatActivity() {
         botaoEntrar.setOnClickListener {
             if (email.text.toString().isNotEmpty() && senha.text.toString().isNotEmpty()) {
                 auth.signInWithEmailAndPassword(email.text.toString(), senha.text.toString())
-                    .addOnCompleteListener {
-                        if (it.isSuccessful) {
-                            val intent = Intent(this, MAHomeUsuario::class.java)
-                            startActivity(intent)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            val userId = auth.currentUser?.uid
+                            if (userId != null) {
+                                // Verificar se o usuário é funcionário no Firestore
+                                db.collection("usuarios").document(userId)
+                                    .get()
+                                    .addOnSuccessListener { document ->
+                                        if (document.exists()) {
+                                            val isFuncionario =
+                                                document.getBoolean("funcionario") ?: false
+                                            if (isFuncionario) {
+                                                // Usuário é funcionário, redirecionar para a tela de funcionário
+                                                Log.d("Login", "Funcionário logado com sucesso!")
+                                                val intent =
+                                                    Intent(this, MAHomeFuncionario::class.java)
+                                                startActivity(intent)
+                                            } else {
+                                                // Usuário não é funcionário, exibir mensagem de erro
+                                                Toast.makeText(
+                                                    this,
+                                                    "Você não tem permissão para acessar esta área.",
+                                                    Toast.LENGTH_SHORT
+                                                ).show()
+                                            }
+                                        } else {
+                                            // Documento não encontrado
+                                            Toast.makeText(
+                                                this,
+                                                "Erro ao verificar usuário. Tente novamente.",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                        }
+                                    }
+                                    .addOnFailureListener { e ->
+                                        Log.e(
+                                            "Login",
+                                            "Erro ao buscar dados no Firestore: ${e.message}"
+                                        )
+                                        Toast.makeText(
+                                            this,
+                                            "Erro ao verificar permissão. Tente novamente.",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    }
+                            } else {
+                                Toast.makeText(
+                                    this,
+                                    "Erro ao obter dados do usuário.",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
                         } else {
                             Toast.makeText(
                                 this,
@@ -46,7 +97,7 @@ class MALoginFuncionario : AppCompatActivity() {
                         }
                     }
             } else {
-                Toast.makeText(this, "Existe algum campo em vazio", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Existe algum campo vazio", Toast.LENGTH_SHORT).show()
             }
         }
     }
