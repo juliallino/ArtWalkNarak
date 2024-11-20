@@ -76,6 +76,7 @@ class MAAddObra : AppCompatActivity() {
                 val inputStream = contentResolver.openInputStream(imageUri)
                 val bitmap = BitmapFactory.decodeStream(inputStream)
                 val byteArrayOutputStream = ByteArrayOutputStream()
+                imagemObra.setImageBitmap(bitmap)
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
                 val imageBytes = byteArrayOutputStream.toByteArray()
                 imagemBase64 = Base64.encodeToString(imageBytes, Base64.DEFAULT)

@@ -80,6 +80,7 @@ class MAAddExposicao : AppCompatActivity() {
             if (imageUri != null) {
                 val inputStream = contentResolver.openInputStream(imageUri)
                 val bitmap = BitmapFactory.decodeStream(inputStream)
+                imagemExposicao.setImageBitmap(bitmap)
                 val byteArrayOutputStream = ByteArrayOutputStream()
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
                 val imageBytes = byteArrayOutputStream.toByteArray()
