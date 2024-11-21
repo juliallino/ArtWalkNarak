@@ -34,12 +34,20 @@
             android:textSize="20dp"
             android:textStyle="bold"></TextView>
     </androidx.appcompat.widget.Toolbar>
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/sobreExposicaoTool">
 
+        <RelativeLayout
+            android:id="@+id/relativelayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
     <LinearLayout
         android:id="@+id/sobreObra"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/sobreExposicaoTool"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginBottom="20dp"
@@ -101,14 +109,16 @@
     <EditText
         android:id="@+id/chatIA"
         android:layout_width="315dp"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
         android:layout_below="@id/tituloChatIA"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
-        android:background="@color/azulclaro"
+        android:background="@drawable/edit_backgorund"
+        android:backgroundTint="@color/azulclaro"
         android:hint="Digite sua pergunta...."
         android:textColorHint="@color/azulescuro"
-        android:textSize="12dp"></EditText>
+        android:textSize="15dp"></EditText>
 
 
     <Button
@@ -120,11 +130,14 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="20dp"
         android:layout_marginRight="15dp"
+        android:layout_marginBottom="200dp"
         android:backgroundTint="@color/azulescuro"
         android:text="Enviar"
         android:textSize="16dp"
         android:textStyle="bold"
         app:rippleColor="@color/azulclaro"></Button>
+</RelativeLayout>
+    </ScrollView>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationBar"
@@ -133,7 +146,7 @@
         android:layout_alignParentBottom="true"
         android:background="@color/azulclaro"
         android:padding="10dp"
-        android:scrollbars="vertical">
+        >
         <ImageButton
             android:id="@+id/desativaracessibilidade"
             android:layout_width="wrap_content"
