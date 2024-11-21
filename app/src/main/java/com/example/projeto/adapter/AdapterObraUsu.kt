@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory
 import android.graphics.ColorMatrix
 import android.graphics.ColorMatrixColorFilter
 import android.util.Base64
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.projeto.MAObraUsuario
 import com.example.projeto.R
 import com.example.projeto.model.Obra
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class AdapterObraUsu(
     private val context: Context,
@@ -41,13 +44,16 @@ class AdapterObraUsu(
             val obraId = obra.idObra
             val exposicaoId = obra.idExposicao
 
-            // Salvar que a obra foi visualizada
-            if (obraId != null) {
-                saveViewedArt(context, obraId)
-            }
+            // Salvar que a obra foi visualizada no Firebase
+            obraId?.let { saveViewedArt(context, it) }
 
-            // Atualizar o estado da imagem (saturação)
-            holder.updateImageColor(obra)
+            // Verifica se a obra foi visualizada
+            obraId?.let {
+                isArtViewed(context, it) { isViewed ->
+                    // Atualiza a saturação da imagem com o status de visualização
+                    holder.updateImageColor(obra, isViewed)
+                }
+            }
 
             // Intent para navegar à tela da obra
             val intent = Intent(context, MAObraUsuario::class.java)
@@ -57,7 +63,8 @@ class AdapterObraUsu(
         }
     }
 
-    // Classe interna ViewHolder, responsável por armazenar as Views de cada item
+
+
     inner class ObrasViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imagemObra: ImageView = itemView.findViewById(R.id.imagemObra)
 
@@ -70,13 +77,16 @@ class AdapterObraUsu(
             }
 
             // Verifica se a obra foi visualizada e aplica a saturação
-            val isViewed = obra.idObra?.let { isArtViewed(context, it) }
-            if (isViewed != null) {
-                updateImageColor(obra, isViewed)
+            obra.idObra?.let { obraId ->
+                isArtViewed(context, obraId) { isViewed ->
+                    // Verifica se a obra foi visualizada (Booleano)
+                    updateImageColor(obra, isViewed)
+                }
             }
         }
+
         // Função para atualizar a saturação da imagem com base no estado de visualização
-        fun updateImageColor(obra: Obra, isViewed: Boolean = false) {
+        fun updateImageColor(obra: Obra, isViewed: Boolean) {
             val bitmap = base64ToBitmap(obra.imagemObra ?: "")
             if (bitmap != null) {
                 if (isViewed) {
@@ -85,11 +95,11 @@ class AdapterObraUsu(
                     val colorMatrix = ColorMatrix()
                     colorMatrix.setSaturation(0f) // Preto e branco
                     val filter = ColorMatrixColorFilter(colorMatrix)
-                    imagemObra.setColorFilter(filter)
+                    imagemObra.setColorFilter(filter) // Aplica filtro de preto e branco
                 }
-                imagemObra.setImageBitmap(bitmap)
             }
         }
+
         // Função para converter a string Base64 para Bitmap
         private fun base64ToBitmap(base64String: String): Bitmap? {
             return try {
@@ -102,15 +112,45 @@ class AdapterObraUsu(
         }
     }
     // Função para salvar a obra como visualizada
-    private fun saveViewedArt(context: Context, artId: String) {
-        val sharedPreferences = context.getSharedPreferences("ArtGallery", Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.putBoolean(artId, true)
-        editor.apply()
+    private fun saveViewedArt(context: Context, obraId: String) {
+        val userId = FirebaseAuth.getInstance().currentUser?.uid // Supondo que você tem autenticação de usuário
+        if (userId != null) {
+            val userRef = FirebaseFirestore.getInstance().collection("usuarios").document(userId)
+            val viewedArtRef = userRef.collection("Obra").document(obraId)
+
+            // Salvar o status da obra como visualizada (true)
+            viewedArtRef.set(mapOf("viewed" to true))
+                .addOnSuccessListener {
+                    Log.d("Firestore", "Obra $obraId marcada como visualizada")
+                }
+                .addOnFailureListener { e ->
+                    Log.w("Firestore", "Erro ao salvar visualização da obra", e)
+                }
+        }
     }
-    // Função para verificar se a obra foi visualizada
-    private fun isArtViewed(context: Context, artId: String): Boolean {
-        val sharedPreferences = context.getSharedPreferences("ArtGallery", Context.MODE_PRIVATE)
-        return sharedPreferences.getBoolean(artId, false)
+
+    // Função para verificar se a obra foi visualizada (assíncrona)
+    private fun isArtViewed(context: Context, obraId: String, callback: (Boolean) -> Unit) {
+        val userId = FirebaseAuth.getInstance().currentUser?.uid // Supondo que você tem autenticação de usuário
+        if (userId != null) {
+            val userRef = FirebaseFirestore.getInstance().collection("usuarios").document(userId)
+            val viewedArtRef = userRef.collection("Obra").document(obraId)
+
+            viewedArtRef.get()
+                .addOnSuccessListener { document ->
+                    if (document.exists()) {
+                        val isViewed = document.getBoolean("viewed") == true
+                        callback(isViewed) // Retorna o resultado para o callback
+                    } else {
+                        callback(false) // Se o documento não existe, assume que não foi visualizado
+                    }
+                }
+                .addOnFailureListener { e ->
+                    Log.w("Firestore", "Erro ao verificar visualização da obra", e)
+                    callback(false) // Em caso de falha, assume que não foi visualizada
+                }
+        } else {
+            callback(false) // Se não houver usuário logado, assume que não foi visualizada
+        }
     }
 }

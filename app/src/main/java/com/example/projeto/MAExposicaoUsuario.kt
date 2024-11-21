@@ -191,18 +191,6 @@ class MAExposicaoUsuario : AppCompatActivity() {
         Log.d("botão acessibilidade", "para ativar a leitura de textp")
         Toast.makeText(this, "Acessibilidade ativada", Toast.LENGTH_SHORT).show()
     }
-    // Adicionar SharedPreferences
-    private fun saveViewedArt(context: Context, artId: String) {
-        val sharedPreferences = context.getSharedPreferences("ArtGallery", Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.putBoolean(artId, true) // Salva se a obra foi visualizada
-        editor.apply()
-    }
-
-    private fun isArtViewed(context: Context, artId: String): Boolean {
-        val sharedPreferences = context.getSharedPreferences("ArtGallery", Context.MODE_PRIVATE)
-        return sharedPreferences.getBoolean(artId, false) // Retorna se a obra foi visualizada
-    }
 
     override fun onDestroy() {
         textToSpeech?.stop()
