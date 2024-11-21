@@ -32,7 +32,7 @@ class MAHomeFuncionario : AppCompatActivity() {
         btnSair = findViewById(R.id.botaoSair)
         auth = FirebaseAuth.getInstance()
 
-        recyclerViewExposicoes = findViewById<RecyclerView>(R.id.recyclerviewExposicoesFuncionarios)
+        recyclerViewExposicoes = findViewById(R.id.recyclerviewExposicoesFuncionarios)
         recyclerViewExposicoes.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         recyclerViewExposicoes.setHasFixedSize(true)
 

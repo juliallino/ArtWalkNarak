@@ -34,6 +34,8 @@ class MAExposicaoUsuario : AppCompatActivity() {
     private var textToSpeech: TextToSpeech? = null
     lateinit var botaoAcessibilidade :ImageButton
     lateinit var botaoDesatiavrAcessibildade :ImageButton
+    private lateinit var botaoVoltarTela : ImageButton
+    private lateinit var botaoScanObra : FloatingActionButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +47,9 @@ class MAExposicaoUsuario : AppCompatActivity() {
         busca = findViewById(R.id.busca)
         botaoAcessibilidade = findViewById(R.id.acessibilidadeExposicao)
         botaoDesatiavrAcessibildade = findViewById(R.id.desativaracessibilidade)
+        botaoVoltarTela = findViewById(R.id.voltarParaTelaHome)
+        botaoScanObra =  findViewById(R.id.scanObra)
+
 
         recyclerViewObras = findViewById(R.id.obrasRecyclerView)
         recyclerViewObras.layoutManager = GridLayoutManager(this, 5)
@@ -76,7 +81,7 @@ class MAExposicaoUsuario : AppCompatActivity() {
 
         textToSpeech = TextToSpeech(this) { status ->
             if (status == TextToSpeech.SUCCESS) {
-                val langResult = textToSpeech?.setLanguage(Locale.getDefault())
+                val langResult = textToSpeech?.setLanguage(Locale("pt", "BR"))
                     ?: TextToSpeech.LANG_NOT_SUPPORTED
 
                 when (langResult) {
@@ -99,7 +104,7 @@ class MAExposicaoUsuario : AppCompatActivity() {
 
         botaoAcessibilidade.setOnClickListener { v ->
             if (textToSpeech != null) {
-                val textToRead = "${nomeExposicao.text}+ ${descricaoExposicao.text}"
+                val textToRead = "${nomeExposicao.text} + ${descricaoExposicao.text}"
                 textToSpeech?.stop()
                 textToSpeech?.speak(textToRead, TextToSpeech.QUEUE_FLUSH, null, null)
                 AcessibilidadeSom()
@@ -144,11 +149,9 @@ class MAExposicaoUsuario : AppCompatActivity() {
 
         })
 
-        val botaoVoltarTela = findViewById<ImageButton>(R.id.voltarParaTelaHome)
         botaoVoltarTela.setOnClickListener{
             VoltarTela()
         }
-        val botaoScanObra =  findViewById<FloatingActionButton>(R.id.scanObra)
         botaoScanObra.setOnClickListener {
             ScanObra()
         }

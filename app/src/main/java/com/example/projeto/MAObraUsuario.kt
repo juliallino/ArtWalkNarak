@@ -35,6 +35,7 @@ class MAObraUsuario : AppCompatActivity() {
     lateinit var botaoDesatiavrAcessibildade :ImageButton
     private var textToSpeech: TextToSpeech? = null
     private var db = Firebase.firestore
+    private lateinit var botaoVoltarTela : ImageButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -47,6 +48,7 @@ class MAObraUsuario : AppCompatActivity() {
         botaoDesatiavrAcessibildade = findViewById(R.id.desativaracessibilidade)
         chatIA = findViewById(R.id.chatIA)
         botaoenviar = findViewById(R.id.enivar)
+        botaoVoltarTela = findViewById(R.id.voltarParaTelaHome)
 
         db = FirebaseFirestore.getInstance()
 
@@ -85,7 +87,7 @@ class MAObraUsuario : AppCompatActivity() {
 
         textToSpeech = TextToSpeech(this) { status ->
             if (status == TextToSpeech.SUCCESS) {
-                val langResult = textToSpeech?.setLanguage(Locale.getDefault())
+                val langResult = textToSpeech?.setLanguage(Locale("pt", "BR"))
                     ?: TextToSpeech.LANG_NOT_SUPPORTED
 
                 when (langResult) {
@@ -105,7 +107,6 @@ class MAObraUsuario : AppCompatActivity() {
                 showErrorMessage("Erro ao inicializar o TextToSpeech.")
             }
         }
-
         botaoAcessibilidade.setOnClickListener { v ->
             if (textToSpeech != null) {
                 val textToRead = "${nomeObra.text}+ ${descricaoObra.text}"
@@ -120,7 +121,6 @@ class MAObraUsuario : AppCompatActivity() {
             textToSpeech?.stop()
         }
 
-        val botaoVoltarTela = findViewById<ImageButton>(R.id.voltarParaTelaHome)
         botaoVoltarTela.setOnClickListener{
             VoltarTela()
         }

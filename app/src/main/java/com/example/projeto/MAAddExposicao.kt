@@ -52,8 +52,12 @@ class MAAddExposicao : AppCompatActivity() {
         botaoExcluir = findViewById(R.id.excluirBotao)
         imagemExposicao = findViewById(R.id.imagemExposicao)
         db = Firebase.firestore
-
         botaoUploadImagem = findViewById(R.id.uploadBotao)
+
+
+
+
+
         botaoUploadImagem.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK)
             intent.type = "image/*"

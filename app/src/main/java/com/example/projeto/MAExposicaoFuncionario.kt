@@ -22,6 +22,9 @@ class MAExposicaoFuncionario : AppCompatActivity() {
     private lateinit var nomeExposicao: TextView
     private lateinit var descricaoExposicao: TextView
     private var db = Firebase.firestore
+    private lateinit var botaoVoltarTela : ImageButton
+    private lateinit var botaoAddObra : ImageButton
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -29,8 +32,11 @@ class MAExposicaoFuncionario : AppCompatActivity() {
 
         nomeExposicao = findViewById(R.id.nomeExposicao)
         descricaoExposicao = findViewById(R.id.descricaoExposicao)
+        botaoVoltarTela = findViewById(R.id.voltarParaTelaHome)
+        botaoAddObra = findViewById(R.id.addObra)
 
-        recyclerViewObras = findViewById<RecyclerView>(R.id.obrasRecyclerView)
+
+        recyclerViewObras = findViewById(R.id.obrasRecyclerView)
         recyclerViewObras.layoutManager = GridLayoutManager(this, 5)
         recyclerViewObras.setHasFixedSize(true)
 
@@ -84,11 +90,9 @@ class MAExposicaoFuncionario : AppCompatActivity() {
             }
 
 
-        val botaoVoltarTela = findViewById<ImageButton>(R.id.voltarParaTelaHome)
         botaoVoltarTela.setOnClickListener{
             VoltarTela()
         }
-        val botaoAddObra = findViewById<ImageButton>(R.id.addObra)
         botaoAddObra.setOnClickListener{
             AddObra()
         }

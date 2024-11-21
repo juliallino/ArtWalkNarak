@@ -27,7 +27,7 @@ class MAAddObra : AppCompatActivity() {
     lateinit var botaoSalvar: Button
     lateinit var botaoExcluir: Button
     lateinit var imagemObra : ImageView
-
+    lateinit var botaoVoltarTela : ImageButton
     var imagemBase64: String? = null
     lateinit var db: FirebaseFirestore
 
@@ -48,6 +48,9 @@ class MAAddObra : AppCompatActivity() {
         imagemObra = findViewById(R.id.imagemObra)
         db = Firebase.firestore
         botaoUploadImagem = findViewById(R.id.uploadBotao)
+        botaoVoltarTela = findViewById(R.id.voltarParaTelaExposicoes)
+
+
         botaoUploadImagem.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK)
             intent.type = "image/*"
@@ -60,7 +63,6 @@ class MAAddObra : AppCompatActivity() {
         if (obraId != null) {
             carregarDadosObra()
         }
-        val botaoVoltarTela = findViewById<ImageButton>(R.id.voltarParaTelaExposicoes)
         botaoVoltarTela.setOnClickListener{
             VoltarTela()
         }

@@ -15,6 +15,7 @@ class MALoginFuncionario : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
     private lateinit var botaoEntrar: Button
+    private lateinit var botaoLoginComoUsuario: Button
     private lateinit var email: EditText
     private lateinit var senha: EditText
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,8 +27,8 @@ class MALoginFuncionario : AppCompatActivity() {
         db = FirebaseFirestore.getInstance()
         email = findViewById(R.id.emailEdit)
         senha = findViewById(R.id.senhaEdit)
+        botaoLoginComoUsuario = findViewById(R.id.botaoDeLoginComoUsuario)
 
-        val botaoLoginComoUsuario = findViewById<Button>(R.id.botaoDeLoginComoUsuario)
         botaoLoginComoUsuario.setOnClickListener {
             Toast.makeText(this, "Login como usuario", Toast.LENGTH_SHORT).show()
             VoltarLoginComoUsuario()

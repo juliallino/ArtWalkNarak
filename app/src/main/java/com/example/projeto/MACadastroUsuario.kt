@@ -18,6 +18,7 @@ class MACadastroUsuario : AppCompatActivity() {
     private lateinit var senha: EditText
     private lateinit var confirmarSenha: EditText
     private lateinit var botaoCadastrar: Button
+    private lateinit var botaoVoltarLogin: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,10 +30,9 @@ class MACadastroUsuario : AppCompatActivity() {
         senha = findViewById(R.id.senhaEdit)
         confirmarSenha = findViewById(R.id.confirmeSenhaEdit)
         botaoCadastrar = findViewById(R.id.botaoDeCadastro)
+        botaoVoltarLogin = findViewById(R.id.botaoDeLoginComoUsuario)
 
-
-        val botaoVolatarLogin = findViewById<Button>(R.id.botaoDeLoginComoUsuario)
-        botaoVolatarLogin.setOnClickListener {
+        botaoVoltarLogin.setOnClickListener {
             VoltarParaLogin()
         }
     }

@@ -36,7 +36,7 @@ class MAHomeUsuario : AppCompatActivity() {
         btnSair = findViewById(R.id.botaoSair)
         busca = findViewById(R.id.busca)
 
-        recyclerViewExposicoes = findViewById<RecyclerView>(R.id.recyclerviewExposicoesUsuarios)
+        recyclerViewExposicoes = findViewById(R.id.recyclerviewExposicoesUsuarios)
         recyclerViewExposicoes.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         recyclerViewExposicoes.setHasFixedSize(true)
 
