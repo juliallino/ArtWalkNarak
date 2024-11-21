@@ -67,19 +67,21 @@
 <!--        android:textSize="16dp"-->
 
 <!--        tools:ignore="TextContrastCheck"></EditText>-->
+
     <SearchView
         android:id="@+id/busca"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
         android:layout_below="@id/layouttitulo"
+        android:layout_marginLeft="240dp"
+        android:layout_marginTop="3dp"
         android:layout_marginRight="10dp"
-        android:layout_marginLeft="150dp"
         android:background="@drawable/busca_background"
-        android:queryHint="Busque por exposição"
-        android:iconifiedByDefault="false"
-        android:queryBackground="@color/transparente"
         android:backgroundTint="@color/azulclaro"
-        ></SearchView>
+        android:iconifiedByDefault="false"
+        android:searchHintIcon="@drawable/baseline_search_24"
+        android:queryBackground="@color/transparente"
+        android:queryHint="busca..."></SearchView>
 
     <TextView
         android:id="@+id/subtitulo"
@@ -100,25 +102,25 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerviewExposicoesUsuarios"
         android:layout_width="wrap_content"
-        android:layout_height="439dp"
+        android:layout_height="484dp"
         android:layout_below="@id/subtitulo"
         android:layout_marginTop="0dp"
         tools:itemCount="2"
         tools:listitem="@layout/usuario_list_exposicoes_home_view"></androidx.recyclerview.widget.RecyclerView>
 
     <Button
-    android:id="@+id/botaoSair"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/recyclerviewExposicoesUsuarios"
-    android:text="SAIR"
-    android:textColor="@color/azulescuro"
-    android:backgroundTint="@color/azulclaro"
-    android:textStyle="bold"
-    android:layout_alignParentEnd="true"
-    android:layout_marginTop="20dp"
-    android:layout_marginRight="20dp"
-    ></Button>
+        android:id="@+id/botaoSair"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/recyclerviewExposicoesUsuarios"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginRight="20dp"
+        android:backgroundTint="@color/azulclaro"
+        android:text="logout"
+        android:textColor="@color/azulescuro"
+        android:textStyle="bold"></Button>
 
     <com.google.android.material.navigation.NavigationView
         android:layout_width="match_parent"

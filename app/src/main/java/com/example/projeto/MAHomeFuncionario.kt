@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -16,10 +17,15 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.util.Locale
 
 class MAHomeFuncionario : AppCompatActivity() {
     private lateinit var auth : FirebaseAuth
     private lateinit var btnSair : Button
+    private lateinit var busca: SearchView
+    private val listaExposicoes:  MutableList<Exposicao> = mutableListOf()
+    private val adapterExposicaoHomeFunc = AdapterExposicaoHomeFunc(this,listaExposicoes)
+
     private lateinit var recyclerViewExposicoes: RecyclerView
     private var db = Firebase.firestore
 
@@ -31,12 +37,11 @@ class MAHomeFuncionario : AppCompatActivity() {
 
         btnSair = findViewById(R.id.botaoSair)
         auth = FirebaseAuth.getInstance()
-
+        busca = findViewById(R.id.busca)
         recyclerViewExposicoes = findViewById(R.id.recyclerviewExposicoesFuncionarios)
         recyclerViewExposicoes.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         recyclerViewExposicoes.setHasFixedSize(true)
 
-        val listaExposicoes:MutableList<Exposicao> = mutableListOf()
         db = FirebaseFirestore.getInstance()
         db.collection("Exposicao")
             .get()
@@ -49,7 +54,6 @@ class MAHomeFuncionario : AppCompatActivity() {
                             listaExposicoes.add(exposicao)
                         }
                     }
-                    val adapterExposicaoHomeFunc = AdapterExposicaoHomeFunc(this,listaExposicoes)
                     recyclerViewExposicoes.adapter = adapterExposicaoHomeFunc
                 }
             }
@@ -63,6 +67,18 @@ class MAHomeFuncionario : AppCompatActivity() {
         botaoAddExposicao.setOnClickListener {
             AddExposicao()
         }
+
+        busca.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                fileList(newText)
+                return true
+            }
+
+        })
     }
 
     override fun onStart() {
@@ -73,7 +89,21 @@ class MAHomeFuncionario : AppCompatActivity() {
         }
     }
 
-
+    private fun fileList(query:String?) {
+        if(query != null){
+            val filteredList = ArrayList<Exposicao>()
+            for (i in listaExposicoes){
+                if (i.nomeExposicao?.lowercase(Locale.ROOT)?.contains(query) == true){
+                    filteredList.add(i)
+                }
+            }
+            if(filteredList.isEmpty()){
+//                Toast.makeText(this,"Nenhuma exposição encontrada", Toast.LENGTH_SHORT).show()
+            }else{
+                adapterExposicaoHomeFunc.setFilteredList(filteredList)
+            }
+        }
+    }
     private fun AddExposicao() {
         Log.d("ADD", "Tela add Exposição")
         val intent = Intent(this, MAAddExposicao::class.java)

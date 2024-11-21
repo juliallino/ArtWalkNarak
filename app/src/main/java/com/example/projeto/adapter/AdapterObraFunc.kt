@@ -16,7 +16,7 @@ import com.example.projeto.model.Obra
 
 class AdapterObraFunc(
     private val context: Context,
-    private val obras: MutableList<Obra>
+    private var obras: List<Obra>
 ) : RecyclerView.Adapter<AdapterObraFunc.ObrasViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ObrasViewHolder {
@@ -24,6 +24,10 @@ class AdapterObraFunc(
         return ObrasViewHolder(view)
     }
 
+    fun setFilteredList(obras: List<Obra>) {
+        this.obras = obras
+        notifyDataSetChanged()
+    }
 
 
     override fun onBindViewHolder(holder: ObrasViewHolder, position: Int) {

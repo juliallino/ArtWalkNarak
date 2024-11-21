@@ -41,32 +41,19 @@
 
     </LinearLayout>
 
-    <EditText
+    <SearchView
         android:id="@+id/busca"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
+        android:layout_height="45dp"
         android:layout_below="@id/layouttitulo"
-        android:layout_marginLeft="150dp"
-
-        android:layout_marginTop="-1dp"
-        android:layout_marginBottom="10dp"
-        android:background="#E2EEFF"
-        android:drawableRight="@drawable/baseline_search_24"
-        android:drawablePadding="10dp"
-
-        android:minHeight="48dp"
-        android:paddingLeft="15dp"
-        android:paddingTop="5dp"
-        android:paddingRight="10dp"
-        android:paddingBottom="5dp"
-
-
-        android:hint="Busque por exposição..."
-        android:textColorHint="@color/azulmedio"
-        android:textSize="16dp"
-
-        tools:ignore="TextContrastCheck"></EditText>
+        android:layout_marginLeft="240dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/busca_background"
+        android:backgroundTint="@color/azulclaro"
+        android:iconifiedByDefault="false"
+        android:queryBackground="@color/transparente"
+        android:queryHint="busca..."></SearchView>
 
     <TextView
         android:id="@+id/subtitulo"
@@ -113,9 +100,9 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="18dp"
         android:layout_marginRight="20dp"
-        android:backgroundTint="@color/azulescuro"
-        android:text="SAIR"
-        android:textColor="@color/azulclaro"
+        android:backgroundTint="@color/azulclaro"
+        android:text="logout"
+        android:textColor="@color/azulescuro"
         android:textStyle="bold"></Button>
 
     <com.google.android.material.navigation.NavigationView

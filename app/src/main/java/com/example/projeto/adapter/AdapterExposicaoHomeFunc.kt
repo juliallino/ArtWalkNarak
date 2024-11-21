@@ -18,7 +18,7 @@ import com.example.projeto.model.Exposicao
 
 class AdapterExposicaoHomeFunc(
     private val context: Context,
-    private val exposicoes: MutableList<Exposicao>,
+    private var exposicoes: List<Exposicao>,
 ) : RecyclerView.Adapter<AdapterExposicaoHomeFunc.ExposicaoViewHolder>() {
 
     // Cria uma nova View para o item da lista (chamado quando necessário)
@@ -26,6 +26,10 @@ class AdapterExposicaoHomeFunc(
         val view = LayoutInflater.from(context)
             .inflate(R.layout.funcionario_list_exposicoes_home_view, parent, false)
         return ExposicaoViewHolder(view)
+    }
+    fun setFilteredList(exposicoes: List<Exposicao>){
+        this.exposicoes =exposicoes
+        notifyDataSetChanged()
     }
 
     // Liga os dados do item à ViewHolder (chamado repetidamente para cada item da lista)

@@ -79,7 +79,7 @@ class MAHomeUsuario : AppCompatActivity() {
                     }
                 }
                 if(filteredList.isEmpty()){
-                    Toast.makeText(this,"Nenhuma exposição encontrada", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this,"Nenhuma exposição encontrada", Toast.LENGTH_SHORT).show()
                 }else{
                     adapterExposicao.setFilteredList(filteredList)
                 }

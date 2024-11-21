@@ -168,7 +168,7 @@ class MAExposicaoUsuario : AppCompatActivity() {
                 }
             }
             if(filteredList.isEmpty()){
-                Toast.makeText(this,"Nenhuma exposição encontrada", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this,"Nenhuma obra encontrada", Toast.LENGTH_SHORT).show()
             }else{
                 adapterObras.setFilteredList(filteredList)
             }

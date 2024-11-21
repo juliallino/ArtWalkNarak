@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageButton
+import android.widget.SearchView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -15,15 +16,19 @@ import com.example.projeto.model.Obra
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.util.Locale
 
 class MAExposicaoFuncionario : AppCompatActivity() {
 //    private lateinit var recyclerViewSobreExposicoes: RecyclerView
     private lateinit var recyclerViewObras: RecyclerView
     private lateinit var nomeExposicao: TextView
     private lateinit var descricaoExposicao: TextView
+    private val obrasList: MutableList<Obra> = mutableListOf()
     private var db = Firebase.firestore
     private lateinit var botaoVoltarTela : ImageButton
     private lateinit var botaoAddObra : ImageButton
+    private lateinit var busca: SearchView
+    private var adapterObrasFunc = AdapterObraFunc(this, obrasList)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +39,7 @@ class MAExposicaoFuncionario : AppCompatActivity() {
         descricaoExposicao = findViewById(R.id.descricaoExposicao)
         botaoVoltarTela = findViewById(R.id.voltarParaTelaHome)
         botaoAddObra = findViewById(R.id.addObra)
-
+        busca = findViewById(R.id.busca)
 
         recyclerViewObras = findViewById(R.id.obrasRecyclerView)
         recyclerViewObras.layoutManager = GridLayoutManager(this, 5)
@@ -65,8 +70,6 @@ class MAExposicaoFuncionario : AppCompatActivity() {
             Log.d("Debug", "ID não encontrado")
         }
 
-        val obrasList: MutableList<Obra> = mutableListOf()
-
         db.collection("Obra")
             .whereEqualTo("idExposicao", exposicaoId)
             .get()
@@ -79,7 +82,6 @@ class MAExposicaoFuncionario : AppCompatActivity() {
                             obrasList.add(obra)
                         }
                     }
-                    val adapterObrasFunc = AdapterObraFunc(this, obrasList)
                     recyclerViewObras.adapter = adapterObrasFunc
                 } else {
                     Log.d("Debug", "Nenhuma obra encontrada para esta Exposição.")
@@ -89,6 +91,17 @@ class MAExposicaoFuncionario : AppCompatActivity() {
                 Toast.makeText(this, exception.toString(), Toast.LENGTH_SHORT).show()
             }
 
+        busca.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                fileList(newText)
+                return true
+            }
+
+        })
 
         botaoVoltarTela.setOnClickListener{
             VoltarTela()
@@ -111,6 +124,22 @@ class MAExposicaoFuncionario : AppCompatActivity() {
         intent.putExtra("idExposicao", exposicaoId)
         Log.d("Debug", "ID enviado: $exposicaoId")
         startActivity(intent)
+    }
+
+    private fun fileList(query:String?) {
+        if(query != null){
+            val filteredList = ArrayList<Obra>()
+            for (i in obrasList){
+                if (i.nomeObra?.lowercase(Locale.ROOT)?.contains(query) == true){
+                    filteredList.add(i)
+                }
+            }
+            if(filteredList.isEmpty()){
+//                Toast.makeText(this,"Nenhuma obra encontrada", Toast.LENGTH_SHORT).show()
+            }else{
+                adapterObrasFunc.setFilteredList(filteredList)
+            }
+        }
     }
 
 }

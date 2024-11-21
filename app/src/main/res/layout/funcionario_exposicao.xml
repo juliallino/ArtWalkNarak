@@ -33,12 +33,25 @@
             android:textStyle="bold"></TextView>
     </androidx.appcompat.widget.Toolbar>
 
+    <SearchView
+        android:id="@+id/busca"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_below="@id/sobreExposicaoTool"
+        android:layout_marginLeft="240dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/busca_background"
+        android:backgroundTint="@color/azulclaro"
+        android:iconifiedByDefault="false"
+        android:queryBackground="@color/transparente"
+        android:queryHint="busca..."></SearchView>
 
     <LinearLayout
         android:id="@+id/sobreExposicao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/sobreExposicaoTool"
+        android:layout_below="@id/busca"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="15dp"
@@ -71,10 +84,10 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/obrasRecyclerView"
         android:layout_width="wrap_content"
-        android:layout_height="368dp"
+        android:layout_height="337dp"
         android:layout_below="@id/sobreExposicao"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="-1dp"
+        android:layout_marginTop="5dp"
         android:layout_marginRight="15dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:rippleColor="@color/azulclaro"
