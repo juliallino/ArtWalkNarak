@@ -1,5 +1,6 @@
 package com.example.projeto
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
@@ -48,7 +49,7 @@ class MAExposicaoUsuario : AppCompatActivity() {
         botaoAcessibilidade = findViewById(R.id.acessibilidadeExposicao)
         botaoDesatiavrAcessibildade = findViewById(R.id.desativaracessibilidade)
         botaoVoltarTela = findViewById(R.id.voltarParaTelaHome)
-        botaoScanObra =  findViewById(R.id.scanObra)
+        botaoScanObra = findViewById(R.id.scanObra)
 
 
         recyclerViewObras = findViewById(R.id.obrasRecyclerView)
@@ -108,11 +109,11 @@ class MAExposicaoUsuario : AppCompatActivity() {
                 textToSpeech?.stop()
                 textToSpeech?.speak(textToRead, TextToSpeech.QUEUE_FLUSH, null, null)
                 AcessibilidadeSom()
-            }else{
+            } else {
                 showErrorMessage("TextToSpeech não está disponível.")
             }
         }
-        botaoDesatiavrAcessibildade.setOnClickListener{
+        botaoDesatiavrAcessibildade.setOnClickListener {
             textToSpeech?.stop()
         }
 
@@ -136,6 +137,7 @@ class MAExposicaoUsuario : AppCompatActivity() {
             .addOnFailureListener { exception ->
                 Toast.makeText(this, exception.toString(), Toast.LENGTH_SHORT).show()
             }
+
 
         busca.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -188,6 +190,18 @@ class MAExposicaoUsuario : AppCompatActivity() {
     private fun AcessibilidadeSom(){
         Log.d("botão acessibilidade", "para ativar a leitura de textp")
         Toast.makeText(this, "Acessibilidade ativada", Toast.LENGTH_SHORT).show()
+    }
+    // Adicionar SharedPreferences
+    private fun saveViewedArt(context: Context, artId: String) {
+        val sharedPreferences = context.getSharedPreferences("ArtGallery", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putBoolean(artId, true) // Salva se a obra foi visualizada
+        editor.apply()
+    }
+
+    private fun isArtViewed(context: Context, artId: String): Boolean {
+        val sharedPreferences = context.getSharedPreferences("ArtGallery", Context.MODE_PRIVATE)
+        return sharedPreferences.getBoolean(artId, false) // Retorna se a obra foi visualizada
     }
 
     override fun onDestroy() {
