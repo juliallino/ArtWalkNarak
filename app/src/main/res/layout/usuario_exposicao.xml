@@ -104,19 +104,6 @@
         tools:listitem="@layout/usuario_list_obras_view"></androidx.recyclerview.widget.RecyclerView>
         </RelativeLayout>
     </ScrollView>
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/scanObra"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_above="@id/navigationBar"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
-        android:backgroundTint="@color/azulclaro"
-        android:contentDescription="Botão da imagem"
-        android:src="@drawable/baseline_qr_code_2_24"
-        app:rippleColor="@color/azulmedio">
-
-    </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationBar"

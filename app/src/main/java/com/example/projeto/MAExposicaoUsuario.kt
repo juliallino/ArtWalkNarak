@@ -36,7 +36,6 @@ class MAExposicaoUsuario : AppCompatActivity() {
     lateinit var botaoAcessibilidade :ImageButton
     lateinit var botaoDesatiavrAcessibildade :ImageButton
     private lateinit var botaoVoltarTela : ImageButton
-    private lateinit var botaoScanObra : FloatingActionButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,8 +48,6 @@ class MAExposicaoUsuario : AppCompatActivity() {
         botaoAcessibilidade = findViewById(R.id.acessibilidadeExposicao)
         botaoDesatiavrAcessibildade = findViewById(R.id.desativaracessibilidade)
         botaoVoltarTela = findViewById(R.id.voltarParaTelaHome)
-        botaoScanObra = findViewById(R.id.scanObra)
-
 
         recyclerViewObras = findViewById(R.id.obrasRecyclerView)
         recyclerViewObras.layoutManager = GridLayoutManager(this, 5)
@@ -154,9 +151,7 @@ class MAExposicaoUsuario : AppCompatActivity() {
         botaoVoltarTela.setOnClickListener{
             VoltarTela()
         }
-        botaoScanObra.setOnClickListener {
-            ScanObra()
-        }
+
 
     }
     private fun fileList(query:String?) {
@@ -177,14 +172,6 @@ class MAExposicaoUsuario : AppCompatActivity() {
     private fun VoltarTela() {
         Log.d("Voltar", "Voltando para tela inicial do usuario")
         startActivity(Intent(this, MAHomeUsuario::class.java))
-    }
-
-    private fun ScanObra() {
-        val exposicaoId = intent.getStringExtra("idExposicao")
-        val intent = Intent(this, MAQRCodePage::class.java)
-        intent.getStringExtra("idExposicao")
-        intent.putExtra("idExposicao", exposicaoId)
-        startActivity(intent)
     }
 
     private fun AcessibilidadeSom(){

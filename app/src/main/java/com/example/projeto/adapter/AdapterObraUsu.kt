@@ -14,6 +14,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projeto.MAObraUsuario
+import com.example.projeto.MAQRCodePage
 import com.example.projeto.R
 import com.example.projeto.model.Obra
 import com.google.firebase.auth.FirebaseAuth
@@ -25,7 +26,8 @@ class AdapterObraUsu(
 ) : RecyclerView.Adapter<AdapterObraUsu.ObrasViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ObrasViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.usuario_list_obras_view, parent, false)
+        val view =
+            LayoutInflater.from(context).inflate(R.layout.usuario_list_obras_view, parent, false)
         return ObrasViewHolder(view)
     }
 
@@ -44,25 +46,51 @@ class AdapterObraUsu(
             val obraId = obra.idObra
             val exposicaoId = obra.idExposicao
 
-            // Salvar que a obra foi visualizada no Firebase
-            obraId?.let { saveViewedArt(context, it) }
+            Log.d("Debug", "Clique na obra: ObraId = $obraId, ExposicaoId = $exposicaoId")
 
-            // Verifica se a obra foi visualizada
-            obraId?.let {
-                isArtViewed(context, it) { isViewed ->
-                    // Atualiza a saturação da imagem com o status de visualização
-                    holder.updateImageColor(obra, isViewed)
+            // Certifica-se de que os IDs não são nulos
+            if (obraId != null && exposicaoId != null) {
+                // Verifica se a obra foi visualizada
+                isArtViewed(context, obraId) { isViewed ->
+                    if (isViewed) {
+                        Log.d("ClickDebug", "Obra visualizada. Navegando para a página de informações.")
+                        navigateToInfoPage(exposicaoId, obraId)
+                    } else {
+                        Log.d("ClickDebug", "Obra não visualizada. Navegando para a página de QR Code.")
+                        navigateToQRCodePage(exposicaoId, obraId)
+                    }
                 }
+            } else {
+                Log.e("ClickError", "IDs da obra ou da exposição estão nulos. Verifique os dados!")
             }
-
-            // Intent para navegar à tela da obra
-            val intent = Intent(context, MAObraUsuario::class.java)
-            intent.putExtra("idExposicao", exposicaoId)
-            intent.putExtra("idObra", obraId)
-            context.startActivity(intent)
         }
     }
 
+
+
+    private fun navigateToInfoPage(exposicaoId: String?, obraId: String?) {
+        // Verifica se os IDs são válidos antes de criar a Intent
+        if (exposicaoId != null && obraId != null) {
+            val intent = Intent(context, MAObraUsuario::class.java)
+            intent.putExtra("idExposicao", exposicaoId)  // Passa o ID da Exposição
+            intent.putExtra("idObra", obraId)            // Passa o ID da Obra
+            Log.d("Intent", "Intent criada com ExposicaoId: $exposicaoId e ObraId: $obraId")
+            context.startActivity(intent)                 // Inicia a nova Activity
+        } else {
+            Log.d("IntentError", "ExposicaoId ou ObraId está null")
+        }
+    }
+
+
+    private fun navigateToQRCodePage(exposicaoId: String?, obraId: String?) {
+        // Verifica se o ID da exposição e da obra não são nulos
+        if (exposicaoId != null && obraId != null) {
+            val intent = Intent(context, MAQRCodePage::class.java)
+            intent.putExtra("idExposicao", exposicaoId)  // Passa o ID da Exposição
+            intent.putExtra("idObra", obraId)            // Passa o ID da Obra
+            context.startActivity(intent)                 // Inicia a nova Activity
+        }
+    }
 
 
     inner class ObrasViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -111,27 +139,13 @@ class AdapterObraUsu(
             }
         }
     }
-    // Função para salvar a obra como visualizada
-    private fun saveViewedArt(context: Context, obraId: String) {
-        val userId = FirebaseAuth.getInstance().currentUser?.uid // Supondo que você tem autenticação de usuário
-        if (userId != null) {
-            val userRef = FirebaseFirestore.getInstance().collection("usuarios").document(userId)
-            val viewedArtRef = userRef.collection("Obra").document(obraId)
 
-            // Salvar o status da obra como visualizada (true)
-            viewedArtRef.set(mapOf("viewed" to true))
-                .addOnSuccessListener {
-                    Log.d("Firestore", "Obra $obraId marcada como visualizada")
-                }
-                .addOnFailureListener { e ->
-                    Log.w("Firestore", "Erro ao salvar visualização da obra", e)
-                }
-        }
-    }
+
 
     // Função para verificar se a obra foi visualizada (assíncrona)
     private fun isArtViewed(context: Context, obraId: String, callback: (Boolean) -> Unit) {
-        val userId = FirebaseAuth.getInstance().currentUser?.uid // Supondo que você tem autenticação de usuário
+        val userId =
+            FirebaseAuth.getInstance().currentUser?.uid // Supondo que você tem autenticação de usuário
         if (userId != null) {
             val userRef = FirebaseFirestore.getInstance().collection("usuarios").document(userId)
             val viewedArtRef = userRef.collection("Obra").document(obraId)
@@ -142,7 +156,7 @@ class AdapterObraUsu(
                         val isViewed = document.getBoolean("viewed") == true
                         callback(isViewed) // Retorna o resultado para o callback
                     } else {
-                        callback(false) // Se o documento não existe, assume que não foi visualizado
+                        callback(false) // Se o documento não existe, assume que não foi visualizada
                     }
                 }
                 .addOnFailureListener { e ->

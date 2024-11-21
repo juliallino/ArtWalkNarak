@@ -36,6 +36,7 @@ class MAObraUsuario : AppCompatActivity() {
     private var textToSpeech: TextToSpeech? = null
     private var db = Firebase.firestore
     private lateinit var botaoVoltarTela : ImageButton
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -52,8 +53,12 @@ class MAObraUsuario : AppCompatActivity() {
 
         db = FirebaseFirestore.getInstance()
 
+
         val obraId = intent.getStringExtra("idObra")
+        val exposicaoId = intent.getStringExtra("idExposicao")
         Log.d("Debug", "ID recebido: $obraId")
+        Log.d("Debug", "ID de Exposição recebido: $exposicaoId")
+
         if (obraId != null) {
             db.collection("Obra")
                 .document(obraId)
@@ -130,8 +135,6 @@ class MAObraUsuario : AppCompatActivity() {
 
     private fun VoltarTela() {
         val exposicaoId = intent.getStringExtra("idExposicao")
-        Log.d("Debug", "ID de Exposição recebido: $exposicaoId")
-
         if (exposicaoId != null) {
             val intent = Intent(this, MAExposicaoUsuario::class.java)
             intent.putExtra("idExposicao", exposicaoId)
