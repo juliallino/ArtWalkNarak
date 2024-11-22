@@ -89,19 +89,20 @@
     </LinearLayout>
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/obrasRecyclerView"
-        android:layout_width="wrap_content"
-        android:layout_height="337dp"
-        android:layout_below="@id/sobreExposicao"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="15dp"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:rippleColor="@color/azulclaro"
-        app:spanCount="5"
-        tools:itemCount="20"
-        tools:listitem="@layout/funcionario_list_obras_view"></androidx.recyclerview.widget.RecyclerView>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/obrasRecyclerView"
+                android:layout_centerHorizontal="true"
+                android:layout_width="333dp"
+                android:layout_height="344dp"
+                android:layout_below="@id/sobreExposicao"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="15dp"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:rippleColor="@color/azulclaro"
+                app:spanCount="5"
+                tools:itemCount="20"
+                tools:listitem="@layout/funcionario_list_obras_view"></androidx.recyclerview.widget.RecyclerView>
         </RelativeLayout>
     </ScrollView>
     <com.google.android.material.floatingactionbutton.FloatingActionButton

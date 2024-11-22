@@ -48,7 +48,7 @@
         android:id="@+id/busca"
         android:layout_width="wrap_content"
         android:layout_height="45dp"
-        android:layout_marginLeft="240dp"
+        android:layout_marginLeft="235dp"
         android:layout_marginTop="17dp"
         android:layout_marginRight="10dp"
         android:background="@drawable/busca_background"
@@ -89,19 +89,20 @@
             android:textSize="16dp"></TextView>
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/obrasRecyclerView"
-        android:layout_width="wrap_content"
-        android:layout_height="346dp"
-        android:layout_below="@id/sobreExposicao"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="15dp"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:rippleColor="@color/azulclaro"
-        app:spanCount="5"
-        tools:itemCount="8"
-        tools:listitem="@layout/usuario_list_obras_view"></androidx.recyclerview.widget.RecyclerView>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/obrasRecyclerView"
+                android:layout_width="338dp"
+                android:layout_centerHorizontal="true"
+                android:layout_height="340dp"
+                android:layout_below="@id/sobreExposicao"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="19dp"
+                android:layout_marginRight="15dp"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:rippleColor="@color/azulclaro"
+                app:spanCount="5"
+                tools:itemCount="8"
+                tools:listitem="@layout/usuario_list_obras_view"></androidx.recyclerview.widget.RecyclerView>
         </RelativeLayout>
     </ScrollView>
 

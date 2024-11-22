@@ -144,22 +144,38 @@ class MAAddObra : AppCompatActivity() {
         val descricao = descricaoObra.text.toString()
         val exposicaoId = intent.getStringExtra("idExposicao")
 
-        val obraData = mapOf(
-            "nomeObra" to nome,
-            "descricaoObra" to descricao,
-            "imagemObra" to imagemObra,
-            "idExposicao" to exposicaoId
-        )
-        db.collection("Obra").document(id)
-            .set(obraData)
-            .addOnSuccessListener {
-                Toast.makeText(this, "Obra atualizada com sucesso!", Toast.LENGTH_SHORT).show()
-                VoltarTela()
+        db.collection("Obra").document(id).get()
+            .addOnSuccessListener { document ->
+                if (document != null) {
+                    // Obter a imagem existente, caso nenhuma nova seja fornecida
+                    val imagemAtual = document.getString("imagemObra")
+
+                    // Verifica se há uma nova imagem ou mantém a antiga
+                    val imagemFinal = imagemBase64 ?: imagemAtual
+
+                    val obraData = mapOf(
+                        "nomeObra" to nome,
+                        "descricaoObra" to descricao,
+                        "imagemObra" to imagemFinal,
+                        "idExposicao" to exposicaoId
+                    )
+
+                    db.collection("Obra").document(id)
+                        .set(obraData)
+                        .addOnSuccessListener {
+                            Toast.makeText(this, "Obra atualizada com sucesso!", Toast.LENGTH_SHORT).show()
+                            VoltarTela()
+                        }
+                        .addOnFailureListener {
+                            Toast.makeText(this, "Erro ao atualizar a obra.", Toast.LENGTH_SHORT).show()
+                        }
+                }
             }
             .addOnFailureListener {
-                Toast.makeText(this, "Erro ao atualizar a obra.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Erro ao buscar dados da obra.", Toast.LENGTH_SHORT).show()
             }
     }
+
 
     private fun adicionarObra() {
         val nome = nomeObra.text.toString()

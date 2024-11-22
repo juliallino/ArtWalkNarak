@@ -163,24 +163,38 @@ class MAAddExposicao : AppCompatActivity() {
         val nome = nomeExpo.text.toString()
         val descricao = descricaoExposicao.text.toString()
 
-        val exposicaoData = mapOf(
-            "nomeExposicao" to nome,
-            "descricaoExposicao" to descricao,
-            "status" to status,
-            "imagemExposicao" to imagemExposicao
-        )
+        db.collection("Exposicao").document(id).get()
+            .addOnSuccessListener { document ->
+                if (document != null) {
+                    // Obter a imagem existente, caso nenhuma nova seja fornecida
+                    val imagemAtual = document.getString("imagemExposicao")
 
-        db.collection("Exposicao")
-            .document(id)
-            .set(exposicaoData)
-            .addOnSuccessListener {
-                Toast.makeText(this, "Exposição atualizada com sucesso!", Toast.LENGTH_SHORT).show()
-                VoltarTela()
+                    // Verifica se há uma nova imagem ou mantém a antiga
+                    val imagemFinal = imagemBase64 ?: imagemAtual
+
+                    val exposicaoData = mapOf(
+                        "nomeExposicao" to nome,
+                        "descricaoExposicao" to descricao,
+                        "status" to status,
+                        "imagemExposicao" to imagemFinal
+                    )
+
+                    db.collection("Exposicao").document(id)
+                        .set(exposicaoData)
+                        .addOnSuccessListener {
+                            Toast.makeText(this, "Exposição atualizada com sucesso!", Toast.LENGTH_SHORT).show()
+                            VoltarTela()
+                        }
+                        .addOnFailureListener {
+                            Toast.makeText(this, "Erro ao atualizar a exposição.", Toast.LENGTH_SHORT).show()
+                        }
+                }
             }
             .addOnFailureListener {
-                Toast.makeText(this, "Erro ao atualizar a exposição.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Erro ao buscar dados da exposição.", Toast.LENGTH_SHORT).show()
             }
     }
+
 
 
     private fun adicionarExposicao() {

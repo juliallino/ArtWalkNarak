@@ -89,7 +89,6 @@
             android:layout_marginTop="10dp"
             android:layout_gravity="center"
             android:layout_marginRight="10dp"
-            android:gravity="center"
             android:text="Antes da perda de seus pais, Bruce Wayne era uma criança alegre e feliz, guardando boas memórias do tempo em que viveu na Mansão Wayne. Tendo se tornado introvertido e antissocial na adolescência, Bruce preferia a companhia de livros a pessoas. Ele tinha interesse em garotas, mas não se preocupava em gastar tempo com elas. Apesar das Indústrias Wayne serem capazes de lhe proporcionar grandes aposentos e o melhor conforto possível, \n\nBruce mantinha seu quarto na Torre Wayne o mais simples possível, acreditando que a praticidade de achar coisas mais rápido compensava o conforto exagerado que poderia ter com seu dinheiro. Bruce também sempre foi dedicado em sua vida estudantil, tirando as melhores notas possíveis, mas não se preocupando muito com tal resultado―ele de fato estudava por gosto, não pelo resultado"></TextView>
     </LinearLayout>
 
@@ -106,19 +105,19 @@
         android:textStyle="bold"
         ></TextView>
 
-    <EditText
-        android:id="@+id/chatIA"
-        android:layout_width="315dp"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:layout_below="@id/tituloChatIA"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/edit_backgorund"
-        android:backgroundTint="@color/azulclaro"
-        android:hint="Digite sua pergunta...."
-        android:textColorHint="@color/azulescuro"
-        android:textSize="15dp"></EditText>
+            <EditText
+                android:id="@+id/chatIA"
+                android:layout_width="360dp"
+                android:layout_height="59dp"
+                android:layout_below="@id/tituloChatIA"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/edit_backgorund"
+                android:backgroundTint="@color/azulclaro"
+                android:hint="Digite sua pergunta...."
+                android:padding="10dp"
+                android:textColorHint="@color/azulescuro"
+                android:textSize="15dp"></EditText>
 
 
     <Button
