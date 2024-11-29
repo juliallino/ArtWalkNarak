@@ -5,6 +5,7 @@
 ## 👨‍💻 Desenvolvimento
 
 Este projeto foi desenvolvido por **Julia Lino** e **Alan Regis** como parte de um projeto extensionista da *UNIFOR*.
+[📄 Documento de Requisitos](Trabalho%20Disp.%20Moveis.pdf)
 
 ## 📚 Informações Acadêmicas
 
