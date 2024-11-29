@@ -20,11 +20,17 @@ Este projeto foi desenvolvido por **Julia Lino** e **Alan Regis** como parte de 
 - **Firebase**: para gerenciamento do banco de dados, autenticação e sincronização em tempo real.
 - **ZXing**: integração para leitura de QR Codes.
 
-### Funcionalidades:
+### Funcionalidades para visitante:
 1. Listagem de exposições.
 2. Visualização de detalhes das obras via QR Code.
-3. Registro de progresso na visualização das exposições.
-4. Indicação de conclusão da exposição com uma estrela, ao visualizar todas as obras.
+3. Registro de progresso na visualização das exposições e das obras.
+4. Pergunstas ao Google **Gemini** sobre a obra 
+
+### Funcionalidades para Funcionário:
+1. Adicionar uma nova exposição.
+2. Editar uma exposição existente.
+3. Adicionar uma nova obra.
+4. Editar uma obra existente.
 
 ### Estrutura do Banco de Dados no Firebase:
 - **Coleção `usuarios`:** contém os dados dos usuários. As obras visualizadas estão armazenadas em `/usuarios/{idUsuario}/Obra`.
