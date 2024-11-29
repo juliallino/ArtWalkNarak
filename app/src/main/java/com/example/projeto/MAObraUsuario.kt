@@ -175,10 +175,10 @@ class MAObraUsuario : AppCompatActivity() {
         val generativeModel =
             GenerativeModel(
                 modelName = "gemini-1.5-flash",
-                apiKey = "AIzaSyBcZX1D7erqrZK8VYgwwJN_Y_PMoxJMopc")
+                apiKey = "AIzaSyAmY7bUZlUrET-38lZlQ6rnWi2mHJGlBuQ")
 
         val prompt = chatIA.text.toString()
-        val response = generativeModel.generateContent(prompt + "responta essa pergunta em até 250 caracteres")
+        val response = generativeModel.generateContent(prompt + "responta essa pergunta")
         chatIA.setText(response.text)
     }
     override fun onDestroy() {
