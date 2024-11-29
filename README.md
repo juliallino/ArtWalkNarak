@@ -2,6 +2,15 @@
 
 **ArtWalk** é um projeto desenvolvido como parte de uma disciplina universitária e tem como objetivo promover exposições culturais por meio de uma aplicação mobile. O aplicativo permite que os usuários explorem exposições e obras de arte, com funcionalidades como leitura de QR Codes e acompanhamento do progresso visual das exposições.
 
+## 👨‍💻 Desenvolvimento
+
+Este projeto foi desenvolvido por **Julia Lino** e **Alan Regis** como parte de um projeto extensionista da *UNIFOR*.
+
+## 📚 Informações Acadêmicas
+
+- **Turma:** T197-88  
+- **Disciplina:** Desenvolvimento de Plataformas Móveis  
+
 ## 📱 Aplicação Mobile
 
 ### Tecnologias utilizadas:
@@ -19,10 +28,6 @@
 - **Coleção `usuarios`:** contém os dados dos usuários. As obras visualizadas estão armazenadas em `/usuarios/{idUsuario}/Obra`.
 - **Coleção `Obra`:** armazena os dados de todas as obras disponíveis no sistema.
 - **Coleção `Exposições`:** armazena os dados de todas as exposições disponíveis no sistema.
-
-## 👨‍💻 Desenvolvimento
-
-Este projeto foi desenvolvido por **Julia Lino** e **Alan Regis** como parte de um projeto extensionista, sem custos financeiros envolvidos.
 
 ### Como executar a aplicação:
 1. Clone o repositório.
