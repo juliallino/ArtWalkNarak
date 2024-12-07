@@ -8,32 +8,36 @@
     android:scrollbars="vertical"
     tools:context=".MAExposicaoFuncionario">
 
-    <androidx.appcompat.widget.Toolbar
+    <LinearLayout
         android:id="@+id/sobreExposicaoTool"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:background="@color/azulclaro"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme">
-
+        android:orientation="horizontal"
+        android:elevation="20dp"
+        >
         <ImageButton
             android:id="@+id/voltarParaTelaHome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="-15dp"
             android:backgroundTint="@color/azulclaro"
-            android:src="@drawable/baseline_arrow_circle_left_24"
-            app:rippleColor="@color/azulmedio"></ImageButton>
+            android:src="@drawable/baseline_arrow_back_ios_24"
+            app:rippleColor="@color/azulmedio"
+            ></ImageButton>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:paddingLeft="15dp"
+            android:layout_marginTop="37dp"
+            android:fontFamily="@font/robotomedium"
             android:text="Sobre a obra"
             android:textColor="@color/azulescuro"
-            android:textSize="20dp"
-            android:textStyle="bold"></TextView>
-    </androidx.appcompat.widget.Toolbar>
+            android:textSize="20dp"></TextView>
+
+    </LinearLayout>
     <ScrollView
         android:id="@+id/scroll"
         android:layout_width="match_parent"
@@ -66,18 +70,28 @@
             android:layout_gravity="center"
             ></TextView>
 
-        <ImageView
-            android:id="@+id/imagemObra"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_below="@id/nomeObra"
-            android:layout_centerHorizontal="true"
+        <androidx.cardview.widget.CardView
+            android:adjustViewBounds="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:scaleType="fitXY"
-            android:layout_gravity="center"
-            android:background="@drawable/imagem_background"
-            android:backgroundTint="@color/azulclaro"
-            ></ImageView>
+            android:elevation="10dp"
+            app:cardCornerRadius="16dp"
+            >
+            <ImageView
+                android:id="@+id/imagemObra"
+                android:elevation="10dp"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_below="@id/nomeObra"
+                android:layout_centerHorizontal="true"
+                android:scaleType="fitXY"
+                android:layout_gravity="center"
+                android:background="@drawable/imagem_background"
+                android:backgroundTint="@color/azulclaro"
+                android:adjustViewBounds="true"
+                ></ImageView>
+        </androidx.cardview.widget.CardView>
 
 
         <TextView

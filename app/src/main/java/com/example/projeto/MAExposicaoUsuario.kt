@@ -10,6 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projeto.adapter.AdapterObraUsu
@@ -18,6 +19,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.util.Locale
+
 
 
 class MAExposicaoUsuario : AppCompatActivity() {
@@ -41,6 +43,7 @@ class MAExposicaoUsuario : AppCompatActivity() {
         nomeExposicao = findViewById(R.id.nomeExposicao)
         descricaoExposicao = findViewById(R.id.descricaoExposicao)
         busca = findViewById(R.id.busca)
+
         botaoAcessibilidade = findViewById(R.id.acessibilidadeExposicao)
         botaoDesatiavrAcessibildade = findViewById(R.id.desativaracessibilidade)
         botaoVoltarTela = findViewById(R.id.voltarParaTelaHome)

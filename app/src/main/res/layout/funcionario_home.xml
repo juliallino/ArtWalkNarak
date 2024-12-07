@@ -10,106 +10,145 @@
     <LinearLayout
         android:id="@+id/layouttitulo"
         android:layout_width="match_parent"
-        android:layout_height="91dp"
-        android:orientation="horizontal">
-
+        android:layout_height="80dp"
+        android:background="@color/azulclaro"
+        android:orientation="horizontal"
+        android:elevation="20dp"
+        >
         <ImageView
             android:id="@+id/logo"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:layout_marginBottom="120dp"
-            android:src="@drawable/logoinicio"></ImageView>
-
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/logohomeunifor"></ImageView>
+        <TextView
+            android:id="@+id/Unifor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/azulclaro"
+            android:layout_marginTop="33dp"
+            android:text="Unifor"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/azulescuro"
+            android:textSize="20dp"
+            android:fontFamily="@font/robotomedium"
+            ></TextView>
         <TextView
             android:id="@+id/titulo"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:layout_marginTop="33dp"
+            android:layout_marginLeft="5dp"
             android:background="@color/azulclaro"
-
-            android:paddingLeft="55dp"
-            android:paddingTop="10dp"
-            android:paddingRight="20dp"
-            android:paddingBottom="6.5dp"
-
-            android:hint="Espaço Cultural Unifor"
-            android:textColorHint="@color/azulescuro"
-            android:textSize="20dp"
-            android:textStyle="bold"
-
+            android:text="Espaço Cultural"
+            android:textColor="@color/azulescuro"
+            android:textSize="15dp"
+            android:fontFamily="@font/robotoregular"
             ></TextView>
 
     </LinearLayout>
-
-    <SearchView
-        android:id="@+id/busca"
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
+    <ScrollView
         android:layout_below="@id/layouttitulo"
-        android:layout_marginLeft="240dp"
-        android:layout_marginTop="17dp"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/busca_background"
-        android:backgroundTint="@color/azulclaro"
-        android:iconifiedByDefault="false"
-        android:queryBackground="@color/transparente"
-        android:queryHint="busca..."></SearchView>
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/subtitulo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        <RelativeLayout
+            android:layout_below="@id/layouttitulo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        android:layout_below="@id/busca"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+            <TextView
+                android:id="@+id/subtitulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:text="Área de edições de exposições!"
+                android:textColor="@color/azulescuro"
+                android:textSize="20dp"
+                android:fontFamily="@font/robotomedium"
+                />
 
-        android:text="Exposições do Acervo"
-        android:textColor="@color/azulescuro"
-        android:textSize="18dp"
-        android:textStyle="bold"
-
-        ></TextView>
+            <SearchView
+                android:id="@+id/busca"
+                android:layout_below="@id/subtitulo"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/busca_background"
+                android:backgroundTint="@color/azulclaro"
+                android:iconifiedByDefault="false"
+                android:layout_centerHorizontal="true"
+                android:queryBackground="@color/transparente"
+                android:queryHint="Busque por alguma exposição"
+                ></SearchView>
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerviewExposicoesFuncionarios"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/subtitulo"
+        android:layout_below="@id/busca"
         android:layout_marginTop="-3dp"
         tools:itemCount="2"
         tools:listitem="@layout/funcionario_list_exposicoes_home_view"></androidx.recyclerview.widget.RecyclerView>
 
     <ImageButton
         android:id="@+id/botaoaddexpo"
-        android:layout_width="309dp"
-        android:layout_height="95dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@id/recyclerviewExposicoesFuncionarios"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="7dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:scaleType="fitXY"
+        android:background="@drawable/busca_background"
+        android:layout_marginTop="30dp"
         android:layout_marginBottom="15dp"
         android:contentDescription="Botão para ajustar add uma nova exposição"
-        android:src="@drawable/botaoadd"></ImageButton>
+        android:src="@drawable/botaoaddexpo"></ImageButton>
 
-    <Button
-        android:id="@+id/botaoSair"
-        android:layout_width="wrap_content"
-        android:layout_height="42dp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="126dp"
         android:layout_below="@id/botaoaddexpo"
-        android:gravity="center_horizontal"
-        android:layout_centerHorizontal="true"
-        android:backgroundTint="@color/azulclaro"
-        android:text="logout"
-        android:textColor="@color/azulescuro"
-        android:textStyle="bold"></Button>
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="0dp"
+        android:orientation="horizontal"
+        android:layout_marginBottom="60dp"
+        >
+
+        <ImageView
+            android:layout_width="254dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-80dp"
+            android:paddingRight="-100dp"
+            android:src="@drawable/ema">
+
+        </ImageView>
+
+        <Button
+            android:id="@+id/botaoSair"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="90dp"
+            android:layout_marginTop="50dp"
+            android:backgroundTint="@color/azulclaro"
+            android:text="logout"
+            android:textColor="@color/azulescuro"
+            android:textStyle="bold"></Button>
+    </LinearLayout>
+</RelativeLayout>
+    </ScrollView>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="2dp"
         android:background="@color/azulclaro"
        android:padding="10dp"></com.google.android.material.navigation.NavigationView>
 

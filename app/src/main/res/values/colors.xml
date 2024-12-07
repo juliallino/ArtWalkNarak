@@ -4,6 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="cinza">#FF808588</color>
     <color name="azulescuro">#FF004AF7</color>
+    <color name="azulescurotransparente">#FF004AF7</color>
     <color name="azulclaro">#FFE2EEFF</color>
     <color name="azulmedio">#FF5F9BF4</color>
     <color name="verdeclaro">#FF84E48E</color>

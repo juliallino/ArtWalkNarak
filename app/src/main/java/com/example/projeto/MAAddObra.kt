@@ -48,7 +48,7 @@ class MAAddObra : AppCompatActivity() {
         imagemObra = findViewById(R.id.imagemObra)
         db = Firebase.firestore
         botaoUploadImagem = findViewById(R.id.uploadBotao)
-        botaoVoltarTela = findViewById(R.id.voltarParaTelaExposicoes)
+        botaoVoltarTela = findViewById(R.id.voltarParaTelaHome)
 
 
         botaoUploadImagem.setOnClickListener {
