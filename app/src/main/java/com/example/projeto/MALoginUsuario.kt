@@ -40,18 +40,15 @@ class MALoginUsuario : AppCompatActivity() {
     }
 
     private fun setupListeners() {
-        // Listener para o botão de login de funcionário
         botaoLoginComoFuncionario.setOnClickListener {
             Toast.makeText(this, "Login como funcionário", Toast.LENGTH_SHORT).show()
             LoginComoFuncionario()
         }
 
-        // Listener para o botão de cadastro
         botaoCadastro.setOnClickListener {
             CadastroPagina()
         }
 
-        // Listener para o botão de login de usuário
         botaoEntrar.setOnClickListener {
             realizarLogin()
         }
@@ -65,7 +62,11 @@ class MALoginUsuario : AppCompatActivity() {
                         val intent = Intent(this, MAHomeUsuario::class.java)
                         startActivity(intent)
                     } else {
-                        Toast.makeText(this, "Revise os dados ou crie uma conta", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this,
+                            "Revise os dados ou crie uma conta",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
         } else {

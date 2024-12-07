@@ -42,8 +42,7 @@ class MALoginFuncionario : AppCompatActivity() {
                             val userId = auth.currentUser?.uid
                             if (userId != null) {
                                 // Verificar se o usuário é funcionário no Firestore
-                                db.collection("usuarios").document(userId)
-                                    .get()
+                                db.collection("usuarios").document(userId).get()
                                     .addOnSuccessListener { document ->
                                         if (document.exists()) {
                                             val isFuncionario =
@@ -70,8 +69,7 @@ class MALoginFuncionario : AppCompatActivity() {
                                                 Toast.LENGTH_SHORT
                                             ).show()
                                         }
-                                    }
-                                    .addOnFailureListener { e ->
+                                    }.addOnFailureListener { e ->
                                         Log.e(
                                             "Login",
                                             "Erro ao buscar dados no Firestore: ${e.message}"
@@ -84,16 +82,12 @@ class MALoginFuncionario : AppCompatActivity() {
                                     }
                             } else {
                                 Toast.makeText(
-                                    this,
-                                    "Erro ao obter dados do usuário.",
-                                    Toast.LENGTH_SHORT
+                                    this, "Erro ao obter dados do usuário.", Toast.LENGTH_SHORT
                                 ).show()
                             }
                         } else {
                             Toast.makeText(
-                                this,
-                                "Revise os dados ou crie uma conta",
-                                Toast.LENGTH_SHORT
+                                this, "Revise os dados ou crie uma conta", Toast.LENGTH_SHORT
                             ).show()
                         }
                     }
@@ -102,6 +96,7 @@ class MALoginFuncionario : AppCompatActivity() {
             }
         }
     }
+
     private fun VoltarLoginComoUsuario() {
         Log.d("Login Usuario", "Indo para tela de login do usuario")
         val intent = Intent(this, MALoginUsuario::class.java)

@@ -1,6 +1,5 @@
 package com.example.projeto
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
@@ -13,11 +12,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.projeto.adapter.AdapterObraFunc
 import com.example.projeto.adapter.AdapterObraUsu
-import com.example.projeto.model.Exposicao
 import com.example.projeto.model.Obra
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -33,9 +29,9 @@ class MAExposicaoUsuario : AppCompatActivity() {
     private val obrasList: MutableList<Obra> = mutableListOf()
     private val adapterObras = AdapterObraUsu(this, obrasList)
     private var textToSpeech: TextToSpeech? = null
-    lateinit var botaoAcessibilidade :ImageButton
-    lateinit var botaoDesatiavrAcessibildade :ImageButton
-    private lateinit var botaoVoltarTela : ImageButton
+    lateinit var botaoAcessibilidade: ImageButton
+    lateinit var botaoDesatiavrAcessibildade: ImageButton
+    private lateinit var botaoVoltarTela: ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,9 +55,7 @@ class MAExposicaoUsuario : AppCompatActivity() {
         Log.d("Debug", "ID recebido: $exposicaoId")
 
         if (exposicaoId != null) {
-            db.collection("Exposicao")
-                .document(exposicaoId)
-                .get()
+            db.collection("Exposicao").document(exposicaoId).get()
                 .addOnSuccessListener { documentReference ->
                     if (documentReference != null && documentReference.exists()) {
                         nomeExposicao.text = documentReference.getString("nomeExposicao")
@@ -69,8 +63,7 @@ class MAExposicaoUsuario : AppCompatActivity() {
                     } else {
                         Log.d("Debug", "Documento não encontrado")
                     }
-                }
-                .addOnFailureListener { exception ->
+                }.addOnFailureListener { exception ->
                     Log.e("Debug", "Erro ao buscar o documento: ${exception.message}")
                 }
         } else {
@@ -79,8 +72,8 @@ class MAExposicaoUsuario : AppCompatActivity() {
 
         textToSpeech = TextToSpeech(this) { status ->
             if (status == TextToSpeech.SUCCESS) {
-                val langResult = textToSpeech?.setLanguage(Locale("pt", "BR"))
-                    ?: TextToSpeech.LANG_NOT_SUPPORTED
+                val langResult =
+                    textToSpeech?.setLanguage(Locale("pt", "BR")) ?: TextToSpeech.LANG_NOT_SUPPORTED
 
                 when (langResult) {
                     TextToSpeech.LANG_MISSING_DATA -> {
@@ -102,7 +95,7 @@ class MAExposicaoUsuario : AppCompatActivity() {
 
         botaoAcessibilidade.setOnClickListener { v ->
             if (textToSpeech != null) {
-                val textToRead = "${nomeExposicao.text} + ${descricaoExposicao.text}"
+                val textToRead = "${nomeExposicao.text} ${descricaoExposicao.text}"
                 textToSpeech?.stop()
                 textToSpeech?.speak(textToRead, TextToSpeech.QUEUE_FLUSH, null, null)
                 AcessibilidadeSom()
@@ -114,9 +107,7 @@ class MAExposicaoUsuario : AppCompatActivity() {
             textToSpeech?.stop()
         }
 
-        db.collection("Obra")
-            .whereEqualTo("idExposicao", exposicaoId)
-            .get()
+        db.collection("Obra").whereEqualTo("idExposicao", exposicaoId).get()
             .addOnSuccessListener { documents ->
                 if (!documents.isEmpty) {
                     for (data in documents) {
@@ -130,8 +121,7 @@ class MAExposicaoUsuario : AppCompatActivity() {
                 } else {
                     Log.d("Debug", "Nenhuma obra encontrada para esta Exposição.")
                 }
-            }
-            .addOnFailureListener { exception ->
+            }.addOnFailureListener { exception ->
                 Toast.makeText(this, exception.toString(), Toast.LENGTH_SHORT).show()
             }
 
@@ -148,33 +138,35 @@ class MAExposicaoUsuario : AppCompatActivity() {
 
         })
 
-        botaoVoltarTela.setOnClickListener{
+        botaoVoltarTela.setOnClickListener {
             VoltarTela()
         }
 
 
     }
-    private fun fileList(query:String?) {
-        if(query != null){
+
+    private fun fileList(query: String?) {
+        if (query != null) {
             val filteredList = ArrayList<Obra>()
-            for (i in obrasList){
-                if (i.nomeObra?.lowercase(Locale.ROOT)?.contains(query) == true){
+            for (i in obrasList) {
+                if (i.nomeObra?.lowercase(Locale.ROOT)?.contains(query) == true) {
                     filteredList.add(i)
                 }
             }
-            if(filteredList.isEmpty()){
+            if (filteredList.isEmpty()) {
 //                Toast.makeText(this,"Nenhuma obra encontrada", Toast.LENGTH_SHORT).show()
-            }else{
+            } else {
                 adapterObras.setFilteredList(filteredList)
             }
         }
     }
+
     private fun VoltarTela() {
         Log.d("Voltar", "Voltando para tela inicial do usuario")
         startActivity(Intent(this, MAHomeUsuario::class.java))
     }
 
-    private fun AcessibilidadeSom(){
+    private fun AcessibilidadeSom() {
         Log.d("botão acessibilidade", "para ativar a leitura de textp")
         Toast.makeText(this, "Acessibilidade ativada", Toast.LENGTH_SHORT).show()
     }

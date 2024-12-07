@@ -21,8 +21,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 class AdapterObraUsu(
-    private val context: Context,
-    private var obras: List<Obra>
+    private val context: Context, private var obras: List<Obra>
 ) : RecyclerView.Adapter<AdapterObraUsu.ObrasViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ObrasViewHolder {
@@ -53,10 +52,16 @@ class AdapterObraUsu(
                 // Verifica se a obra foi visualizada
                 isArtViewed(context, obraId) { isViewed ->
                     if (isViewed) {
-                        Log.d("ClickDebug", "Obra visualizada. Navegando para a página de informações.")
+                        Log.d(
+                            "ClickDebug",
+                            "Obra visualizada. Navegando para a página de informações."
+                        )
                         navigateToInfoPage(exposicaoId, obraId)
                     } else {
-                        Log.d("ClickDebug", "Obra não visualizada. Navegando para a página de QR Code.")
+                        Log.d(
+                            "ClickDebug",
+                            "Obra não visualizada. Navegando para a página de QR Code."
+                        )
                         navigateToQRCodePage(exposicaoId, obraId)
                     }
                 }
@@ -67,15 +72,13 @@ class AdapterObraUsu(
     }
 
 
-
     private fun navigateToInfoPage(exposicaoId: String?, obraId: String?) {
-        // Verifica se os IDs são válidos antes de criar a Intent
         if (exposicaoId != null && obraId != null) {
             val intent = Intent(context, MAObraUsuario::class.java)
-            intent.putExtra("idExposicao", exposicaoId)  // Passa o ID da Exposição
-            intent.putExtra("idObra", obraId)            // Passa o ID da Obra
+            intent.putExtra("idExposicao", exposicaoId)
+            intent.putExtra("idObra", obraId)
             Log.d("Intent", "Intent criada com ExposicaoId: $exposicaoId e ObraId: $obraId")
-            context.startActivity(intent)                 // Inicia a nova Activity
+            context.startActivity(intent)
         } else {
             Log.d("IntentError", "ExposicaoId ou ObraId está null")
         }
@@ -83,12 +86,11 @@ class AdapterObraUsu(
 
 
     private fun navigateToQRCodePage(exposicaoId: String?, obraId: String?) {
-        // Verifica se o ID da exposição e da obra não são nulos
         if (exposicaoId != null && obraId != null) {
             val intent = Intent(context, MAQRCodePage::class.java)
-            intent.putExtra("idExposicao", exposicaoId)  // Passa o ID da Exposição
-            intent.putExtra("idObra", obraId)            // Passa o ID da Obra
-            context.startActivity(intent)                 // Inicia a nova Activity
+            intent.putExtra("idExposicao", exposicaoId)
+            intent.putExtra("idObra", obraId)
+            context.startActivity(intent)
         }
     }
 
@@ -141,25 +143,21 @@ class AdapterObraUsu(
     }
 
 
-
-    // Função para verificar se a obra foi visualizada (assíncrona)
     private fun isArtViewed(context: Context, obraId: String, callback: (Boolean) -> Unit) {
         val userId =
-            FirebaseAuth.getInstance().currentUser?.uid // Supondo que você tem autenticação de usuário
+            FirebaseAuth.getInstance().currentUser?.uid // autenticação de usuário
         if (userId != null) {
             val userRef = FirebaseFirestore.getInstance().collection("usuarios").document(userId)
             val viewedArtRef = userRef.collection("Obra").document(obraId)
 
-            viewedArtRef.get()
-                .addOnSuccessListener { document ->
+            viewedArtRef.get().addOnSuccessListener { document ->
                     if (document.exists()) {
                         val isViewed = document.getBoolean("viewed") == true
                         callback(isViewed) // Retorna o resultado para o callback
                     } else {
                         callback(false) // Se o documento não existe, assume que não foi visualizada
                     }
-                }
-                .addOnFailureListener { e ->
+                }.addOnFailureListener { e ->
                     Log.w("Firestore", "Erro ao verificar visualização da obra", e)
                     callback(false) // Em caso de falha, assume que não foi visualizada
                 }

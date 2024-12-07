@@ -21,7 +21,7 @@ import java.io.ByteArrayOutputStream
 
 class MAAddExposicao : AppCompatActivity() {
 
-    lateinit var nomeExpo :EditText
+    lateinit var nomeExpo: EditText
     lateinit var descricaoExposicao: EditText
     lateinit var botaoEmAndamento: Button
     lateinit var botaoEncerrada: Button
@@ -53,9 +53,6 @@ class MAAddExposicao : AppCompatActivity() {
         imagemExposicao = findViewById(R.id.imagemExposicao)
         db = Firebase.firestore
         botaoUploadImagem = findViewById(R.id.uploadBotao)
-
-
-
 
 
         botaoUploadImagem.setOnClickListener {
@@ -97,7 +94,6 @@ class MAAddExposicao : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         val exposicaoId = intent.getStringExtra("idExposicao")
-        // Lógica para atualizar o status
         botaoEmAndamento.setOnClickListener {
             status = true
             Toast.makeText(this, "EM ANDAMENTO", Toast.LENGTH_SHORT).show()
@@ -107,13 +103,10 @@ class MAAddExposicao : AppCompatActivity() {
             status = false
             Toast.makeText(this, "ENCERRADA", Toast.LENGTH_SHORT).show()
         }
-        // Lógica para salvar ou editar a exposição
         botaoSalvar.setOnClickListener {
             if (exposicaoId != null) {
-                // Atualizando exposição existente
                 atualizarExposicao(exposicaoId)
             } else {
-                // Adicionando nova exposição
                 adicionarExposicao()
             }
         }
@@ -136,15 +129,14 @@ class MAAddExposicao : AppCompatActivity() {
             null
         }
     }
+
     private fun carregarDadosExposicao(id: String) {
-        db.collection("Exposicao").document(id).get()
-            .addOnSuccessListener { document ->
+        db.collection("Exposicao").document(id).get().addOnSuccessListener { document ->
                 if (document != null) {
                     nomeExpo.setText(document.getString("nomeExposicao"))
                     descricaoExposicao.setText(document.getString("descricaoExposicao"))
                     status = document.getBoolean("status") ?: true
 
-                    // Carregar imagem se existir
                     val imagemBase64 = document.getString("imagemExposicao")
                     if (imagemBase64 != null) {
                         val bitmap = base64ToBitmap(imagemBase64)
@@ -152,9 +144,9 @@ class MAAddExposicao : AppCompatActivity() {
                         this.imagemExposicao = imagemExposicao
                     }
                 }
-            }
-            .addOnFailureListener {
-                Toast.makeText(this, "Erro ao carregar dados da exposição.", Toast.LENGTH_SHORT).show()
+            }.addOnFailureListener {
+                Toast.makeText(this, "Erro ao carregar dados da exposição.", Toast.LENGTH_SHORT)
+                    .show()
             }
     }
 
@@ -163,13 +155,9 @@ class MAAddExposicao : AppCompatActivity() {
         val nome = nomeExpo.text.toString()
         val descricao = descricaoExposicao.text.toString()
 
-        db.collection("Exposicao").document(id).get()
-            .addOnSuccessListener { document ->
+        db.collection("Exposicao").document(id).get().addOnSuccessListener { document ->
                 if (document != null) {
-                    // Obter a imagem existente, caso nenhuma nova seja fornecida
                     val imagemAtual = document.getString("imagemExposicao")
-
-                    // Verifica se há uma nova imagem ou mantém a antiga
                     val imagemFinal = imagemBase64 ?: imagemAtual
 
                     val exposicaoData = mapOf(
@@ -179,22 +167,27 @@ class MAAddExposicao : AppCompatActivity() {
                         "imagemExposicao" to imagemFinal
                     )
 
-                    db.collection("Exposicao").document(id)
-                        .set(exposicaoData)
+                    db.collection("Exposicao").document(id).set(exposicaoData)
                         .addOnSuccessListener {
-                            Toast.makeText(this, "Exposição atualizada com sucesso!", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                this,
+                                "Exposição atualizada com sucesso!",
+                                Toast.LENGTH_SHORT
+                            ).show()
                             VoltarTela()
-                        }
-                        .addOnFailureListener {
-                            Toast.makeText(this, "Erro ao atualizar a exposição.", Toast.LENGTH_SHORT).show()
+                        }.addOnFailureListener {
+                            Toast.makeText(
+                                this,
+                                "Erro ao atualizar a exposição.",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                 }
-            }
-            .addOnFailureListener {
-                Toast.makeText(this, "Erro ao buscar dados da exposição.", Toast.LENGTH_SHORT).show()
+            }.addOnFailureListener {
+                Toast.makeText(this, "Erro ao buscar dados da exposição.", Toast.LENGTH_SHORT)
+                    .show()
             }
     }
-
 
 
     private fun adicionarExposicao() {
@@ -208,26 +201,20 @@ class MAAddExposicao : AppCompatActivity() {
             "imagemExposicao" to imagemBase64
         )
 
-        db.collection("Exposicao")
-            .add(exposicaoData)
-            .addOnSuccessListener {
+        db.collection("Exposicao").add(exposicaoData).addOnSuccessListener {
                 Toast.makeText(this, "Exposição salva com sucesso!", Toast.LENGTH_SHORT).show()
                 VoltarTela()
-            }
-            .addOnFailureListener {
+            }.addOnFailureListener {
                 Toast.makeText(this, "Erro ao salvar exposição.", Toast.LENGTH_SHORT).show()
             }
     }
 
 
     private fun excluirExposicao(id: String) {
-        db.collection("Exposicao").document(id)
-            .delete()
-            .addOnSuccessListener {
+        db.collection("Exposicao").document(id).delete().addOnSuccessListener {
                 Toast.makeText(this, "Exposição excluída com sucesso!", Toast.LENGTH_SHORT).show()
                 VoltarTela()
-            }
-            .addOnFailureListener {
+            }.addOnFailureListener {
                 Toast.makeText(this, "Erro ao excluir a exposição.", Toast.LENGTH_SHORT).show()
             }
     }

@@ -15,12 +15,12 @@ import com.example.projeto.R
 import com.example.projeto.model.Obra
 
 class AdapterObraFunc(
-    private val context: Context,
-    private var obras: List<Obra>
+    private val context: Context, private var obras: List<Obra>
 ) : RecyclerView.Adapter<AdapterObraFunc.ObrasViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ObrasViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.funcionario_list_obras_view, parent, false)
+        val view = LayoutInflater.from(context)
+            .inflate(R.layout.funcionario_list_obras_view, parent, false)
         return ObrasViewHolder(view)
     }
 

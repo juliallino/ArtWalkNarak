@@ -24,10 +24,12 @@ class AdapterExposicaoHomeUsu(
             .inflate(R.layout.usuario_list_exposicoes_home_view, parent, false)
         return ExposicaoViewHolder(view)
     }
-    fun setFilteredList(exposicoes: List<Exposicao>){
-            this.exposicoes =exposicoes
-            notifyDataSetChanged()
+
+    fun setFilteredList(exposicoes: List<Exposicao>) {
+        this.exposicoes = exposicoes
+        notifyDataSetChanged()
     }
+
     override fun getItemCount(): Int = exposicoes.size
 
     override fun onBindViewHolder(holder: ExposicaoViewHolder, position: Int) {

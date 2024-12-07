@@ -19,14 +19,13 @@ import com.google.firebase.ktx.Firebase
 import java.util.Locale
 
 class MAExposicaoFuncionario : AppCompatActivity() {
-//    private lateinit var recyclerViewSobreExposicoes: RecyclerView
     private lateinit var recyclerViewObras: RecyclerView
     private lateinit var nomeExposicao: TextView
     private lateinit var descricaoExposicao: TextView
     private val obrasList: MutableList<Obra> = mutableListOf()
     private var db = Firebase.firestore
-    private lateinit var botaoVoltarTela : ImageButton
-    private lateinit var botaoAddObra : ImageButton
+    private lateinit var botaoVoltarTela: ImageButton
+    private lateinit var botaoAddObra: ImageButton
     private lateinit var busca: SearchView
     private var adapterObrasFunc = AdapterObraFunc(this, obrasList)
 
@@ -51,28 +50,22 @@ class MAExposicaoFuncionario : AppCompatActivity() {
         Log.d("Debug", "ID recebido: $exposicaoId")
 
         if (exposicaoId != null) {
-            db.collection("Exposicao")
-                .document(exposicaoId)  // Buscando o documento específico pelo ID
-                .get()
+            db.collection("Exposicao").document(exposicaoId).get()
                 .addOnSuccessListener { documentReference ->
                     if (documentReference != null && documentReference.exists()) {
-                        // Preenchendo as informações da exposição
                         nomeExposicao.text = documentReference.getString("nomeExposicao")
                         descricaoExposicao.text = documentReference.getString("descricaoExposicao")
                     } else {
                         Log.d("Debug", "Documento não encontrado")
                     }
-                }
-                .addOnFailureListener { exception ->
+                }.addOnFailureListener { exception ->
                     Log.e("Debug", "Erro ao buscar o documento: ${exception.message}")
                 }
         } else {
             Log.d("Debug", "ID não encontrado")
         }
 
-        db.collection("Obra")
-            .whereEqualTo("idExposicao", exposicaoId)
-            .get()
+        db.collection("Obra").whereEqualTo("idExposicao", exposicaoId).get()
             .addOnSuccessListener { documents ->
                 if (!documents.isEmpty) {
                     for (data in documents) {
@@ -86,8 +79,7 @@ class MAExposicaoFuncionario : AppCompatActivity() {
                 } else {
                     Log.d("Debug", "Nenhuma obra encontrada para esta Exposição.")
                 }
-            }
-            .addOnFailureListener { exception ->
+            }.addOnFailureListener { exception ->
                 Toast.makeText(this, exception.toString(), Toast.LENGTH_SHORT).show()
             }
 
@@ -103,10 +95,10 @@ class MAExposicaoFuncionario : AppCompatActivity() {
 
         })
 
-        botaoVoltarTela.setOnClickListener{
+        botaoVoltarTela.setOnClickListener {
             VoltarTela()
         }
-        botaoAddObra.setOnClickListener{
+        botaoAddObra.setOnClickListener {
             AddObra()
         }
 
@@ -126,17 +118,16 @@ class MAExposicaoFuncionario : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun fileList(query:String?) {
-        if(query != null){
+    private fun fileList(query: String?) {
+        if (query != null) {
             val filteredList = ArrayList<Obra>()
-            for (i in obrasList){
-                if (i.nomeObra?.lowercase(Locale.ROOT)?.contains(query) == true){
+            for (i in obrasList) {
+                if (i.nomeObra?.lowercase(Locale.ROOT)?.contains(query) == true) {
                     filteredList.add(i)
                 }
             }
-            if(filteredList.isEmpty()){
-//                Toast.makeText(this,"Nenhuma obra encontrada", Toast.LENGTH_SHORT).show()
-            }else{
+            if (filteredList.isEmpty()) {
+            } else {
                 adapterObrasFunc.setFilteredList(filteredList)
             }
         }

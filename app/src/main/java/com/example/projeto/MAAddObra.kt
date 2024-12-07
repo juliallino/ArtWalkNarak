@@ -147,10 +147,7 @@ class MAAddObra : AppCompatActivity() {
         db.collection("Obra").document(id).get()
             .addOnSuccessListener { document ->
                 if (document != null) {
-                    // Obter a imagem existente, caso nenhuma nova seja fornecida
                     val imagemAtual = document.getString("imagemObra")
-
-                    // Verifica se há uma nova imagem ou mantém a antiga
                     val imagemFinal = imagemBase64 ?: imagemAtual
 
                     val obraData = mapOf(

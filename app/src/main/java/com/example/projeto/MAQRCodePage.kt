@@ -1,15 +1,12 @@
 package com.example.projeto
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.widget.Toast
-import com.google.zxing.Result
-import me.dm7.barcodescanner.zxing.ZXingScannerView
-import android.content.Intent
 import android.util.Log
 import android.widget.ImageButton
-import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -17,10 +14,12 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.zxing.Result
+import me.dm7.barcodescanner.zxing.ZXingScannerView
 
 
 class MAQRCodePage : AppCompatActivity(), ZXingScannerView.ResultHandler {
-    private lateinit var  botaoVoltarTela : ImageButton
+    private lateinit var botaoVoltarTela: ImageButton
     private lateinit var scannerView: ZXingScannerView
     private var obraId: String? = null
     private var exposicaoId: String? = null
@@ -41,7 +40,11 @@ class MAQRCodePage : AppCompatActivity(), ZXingScannerView.ResultHandler {
         if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(arrayOf(Manifest.permission.CAMERA), 1)
         }
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.CAMERA
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), 1)
         }
 
@@ -56,6 +59,7 @@ class MAQRCodePage : AppCompatActivity(), ZXingScannerView.ResultHandler {
         obraId = intent.getStringExtra("idObra")
         exposicaoId = intent.getStringExtra("idExposicao")
     }
+
     private fun VoltarTela() {
         val exposicaoId = intent.getStringExtra("idExposicao")
         Log.d("Debug", "ID de Exposição recebido: $exposicaoId")
@@ -68,6 +72,7 @@ class MAQRCodePage : AppCompatActivity(), ZXingScannerView.ResultHandler {
             Log.d("Debug", "ID de Exposição não encontrado")
         }
     }
+
     override fun onResume() {
         super.onResume()
         scannerView.setResultHandler(this) // Define o handler para capturar o resultado
@@ -90,14 +95,14 @@ class MAQRCodePage : AppCompatActivity(), ZXingScannerView.ResultHandler {
             scannerView.resumeCameraPreview(this) // Continua a leitura
         }
     }
+
     private fun onQRCodeScanned(obraId: String) {
         val userId = FirebaseAuth.getInstance().currentUser?.uid
         if (userId != null) {
             val userRef = FirebaseFirestore.getInstance().collection("usuarios").document(userId)
             val viewedArtRef = userRef.collection("Obra").document(obraId)
 
-            viewedArtRef.set(mapOf("viewed" to true))
-                .addOnSuccessListener {
+            viewedArtRef.set(mapOf("viewed" to true)).addOnSuccessListener {
                     Toast.makeText(this, "QR Code validado!", Toast.LENGTH_SHORT).show()
 
                     // Redireciona para a tela da obra
@@ -107,9 +112,12 @@ class MAQRCodePage : AppCompatActivity(), ZXingScannerView.ResultHandler {
                     intent.putExtra("idExposicao", exposicaoId) // Passa o ID da exposição
                     startActivity(intent)
                     finish()
-                }
-                .addOnFailureListener { e ->
-                    Toast.makeText(this, "Erro ao validar QR Code: ${e.message}", Toast.LENGTH_SHORT).show()
+                }.addOnFailureListener { e ->
+                    Toast.makeText(
+                        this,
+                        "Erro ao validar QR Code: ${e.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
         }
     }

@@ -40,37 +40,57 @@ class MACadastroUsuario : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         botaoCadastrar.setOnClickListener {
-            if (email.text.toString().isNotEmpty() && senha.text.toString().isNotEmpty() && confirmarSenha.text.toString().isNotEmpty()) {
+            if (email.text.toString().isNotEmpty() && senha.text.toString()
+                    .isNotEmpty() && confirmarSenha.text.toString().isNotEmpty()
+            ) {
                 if (senha.text.toString() == confirmarSenha.text.toString()) {
-                    auth.createUserWithEmailAndPassword(email.text.toString(), senha.text.toString())
-                        .addOnCompleteListener { task ->
+                    auth.createUserWithEmailAndPassword(
+                        email.text.toString(),
+                        senha.text.toString()
+                    ).addOnCompleteListener { task ->
                             if (task.isSuccessful) {
                                 val userId = auth.currentUser?.uid
                                 val userMap = hashMapOf(
-                                    "email" to email.text.toString(),
-                                    "funcionario" to false
+                                    "email" to email.text.toString(), "funcionario" to false
                                 )
 
                                 if (userId != null) {
-                                    db.collection("usuarios").document(userId)
-                                        .set(userMap)
+                                    db.collection("usuarios").document(userId).set(userMap)
                                         .addOnSuccessListener {
-                                            Log.d("Cadastro", "Usuário comum cadastrado com sucesso!")
-                                            Toast.makeText(this, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show()
+                                            Log.d(
+                                                "Cadastro",
+                                                "Usuário comum cadastrado com sucesso!"
+                                            )
+                                            Toast.makeText(
+                                                this,
+                                                "Cadastro realizado com sucesso!",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
                                             val intent = Intent(this, MALoginUsuario::class.java)
                                             startActivity(intent)
-                                        }
-                                        .addOnFailureListener { e ->
-                                            Log.e("Cadastro", "Erro ao salvar no Firestore: ${e.message}")
-                                            Toast.makeText(this, "Erro ao salvar no banco de dados.", Toast.LENGTH_SHORT).show()
+                                        }.addOnFailureListener { e ->
+                                            Log.e(
+                                                "Cadastro",
+                                                "Erro ao salvar no Firestore: ${e.message}"
+                                            )
+                                            Toast.makeText(
+                                                this,
+                                                "Erro ao salvar no banco de dados.",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
                                         }
                                 }
                             } else {
-                                Toast.makeText(this, "Erro ao Cadastrar: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    this,
+                                    "Erro ao Cadastrar: ${task.exception?.message}",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
                         }
                 } else {
-                    Toast.makeText(this, "As senhas não estão correspondentes", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "As senhas não estão correspondentes", Toast.LENGTH_SHORT)
+                        .show()
                 }
             } else {
                 Toast.makeText(this, "Existe algum campo vazio", Toast.LENGTH_SHORT).show()

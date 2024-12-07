@@ -16,8 +16,6 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.example.projeto.adapter.AdapterExposicaoHomeFunc
-import com.example.projeto.model.Exposicao
 import com.google.ai.client.generativeai.GenerativeModel
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
@@ -26,16 +24,16 @@ import kotlinx.coroutines.launch
 import java.util.Locale
 
 class MAObraUsuario : AppCompatActivity() {
-    lateinit var botaoenviar:Button
+    lateinit var botaoenviar: Button
     lateinit var chatIA: EditText
     private lateinit var nomeObra: TextView
     private lateinit var descricaoObra: TextView
     private lateinit var imagemObra: ImageView
-    lateinit var botaoAcessibilidade :ImageButton
-    lateinit var botaoDesatiavrAcessibildade :ImageButton
+    lateinit var botaoAcessibilidade: ImageButton
+    lateinit var botaoDesatiavrAcessibildade: ImageButton
     private var textToSpeech: TextToSpeech? = null
     private var db = Firebase.firestore
-    private lateinit var botaoVoltarTela : ImageButton
+    private lateinit var botaoVoltarTela: ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,10 +58,7 @@ class MAObraUsuario : AppCompatActivity() {
         Log.d("Debug", "ID de Exposição recebido: $exposicaoId")
 
         if (obraId != null) {
-            db.collection("Obra")
-                .document(obraId)
-                .get()
-                .addOnSuccessListener { documentReference ->
+            db.collection("Obra").document(obraId).get().addOnSuccessListener { documentReference ->
                     if (documentReference != null && documentReference.exists()) {
                         nomeObra.text = documentReference.getString("nomeObra")
                         descricaoObra.text = documentReference.getString("descricaoObra")
@@ -82,8 +77,7 @@ class MAObraUsuario : AppCompatActivity() {
                     } else {
                         Log.d("Debug", "Documento não encontrado")
                     }
-                }
-                .addOnFailureListener { exception ->
+                }.addOnFailureListener { exception ->
                     Log.e("Debug", "Erro ao buscar o documento: ${exception.message}")
                 }
         } else {
@@ -92,8 +86,8 @@ class MAObraUsuario : AppCompatActivity() {
 
         textToSpeech = TextToSpeech(this) { status ->
             if (status == TextToSpeech.SUCCESS) {
-                val langResult = textToSpeech?.setLanguage(Locale("pt", "BR"))
-                    ?: TextToSpeech.LANG_NOT_SUPPORTED
+                val langResult =
+                    textToSpeech?.setLanguage(Locale("pt", "BR")) ?: TextToSpeech.LANG_NOT_SUPPORTED
 
                 when (langResult) {
                     TextToSpeech.LANG_MISSING_DATA -> {
@@ -114,19 +108,19 @@ class MAObraUsuario : AppCompatActivity() {
         }
         botaoAcessibilidade.setOnClickListener { v ->
             if (textToSpeech != null) {
-                val textToRead = "${nomeObra.text}+ ${descricaoObra.text}"
+                val textToRead = "${nomeObra.text} ${descricaoObra.text}"
                 textToSpeech?.stop()
                 textToSpeech?.speak(textToRead, TextToSpeech.QUEUE_FLUSH, null, null)
                 AcessibilidadeSom()
-            }else{
+            } else {
                 showErrorMessage("TextToSpeech não está disponível.")
             }
         }
-        botaoDesatiavrAcessibildade.setOnClickListener{
+        botaoDesatiavrAcessibildade.setOnClickListener {
             textToSpeech?.stop()
         }
 
-        botaoVoltarTela.setOnClickListener{
+        botaoVoltarTela.setOnClickListener {
             VoltarTela()
         }
 
@@ -154,33 +148,34 @@ class MAObraUsuario : AppCompatActivity() {
             null
         }
     }
-    private fun AcessibilidadeSom(){
+
+    private fun AcessibilidadeSom() {
         Log.d("botão acessibilidade", "para ativar a leitura de textp")
         Toast.makeText(this, "Acessibilidade ativada", Toast.LENGTH_SHORT).show()
     }
 
     override fun onStart() {
         super.onStart()
-        chatIA.setOnClickListener{
+        chatIA.setOnClickListener {
             chatIA.setText("")
         }
-        botaoenviar.setOnClickListener{
-            lifecycleScope.launch{
+        botaoenviar.setOnClickListener {
+            lifecycleScope.launch {
                 generateIA()
             }
         }
     }
 
-    suspend fun generateIA(){
-        val generativeModel =
-            GenerativeModel(
-                modelName = "gemini-1.5-flash",
-                apiKey = "AIzaSyAmY7bUZlUrET-38lZlQ6rnWi2mHJGlBuQ")
+    suspend fun generateIA() {
+        val generativeModel = GenerativeModel(
+            modelName = "gemini-1.5-flash", apiKey = "AIzaSyAmY7bUZlUrET-38lZlQ6rnWi2mHJGlBuQ"
+        )
 
         val prompt = chatIA.text.toString()
         val response = generativeModel.generateContent(prompt + "responta essa pergunta")
         chatIA.setText(response.text)
     }
+
     override fun onDestroy() {
         textToSpeech?.stop()
         textToSpeech?.shutdown()

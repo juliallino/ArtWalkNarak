@@ -20,12 +20,12 @@ import java.util.Locale
 
 
 class MAHomeUsuario : AppCompatActivity() {
-    private lateinit var auth : FirebaseAuth
-    private lateinit var btnSair : Button
+    private lateinit var auth: FirebaseAuth
+    private lateinit var btnSair: Button
     private lateinit var recyclerViewExposicoes: RecyclerView
     private var db = Firebase.firestore
     private lateinit var busca: SearchView
-    private val listaExposicoes:  MutableList<Exposicao> = mutableListOf()
+    private val listaExposicoes: MutableList<Exposicao> = mutableListOf()
     private val adapterExposicao = AdapterExposicaoHomeUsu(this, listaExposicoes)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,26 +37,24 @@ class MAHomeUsuario : AppCompatActivity() {
         busca = findViewById(R.id.busca)
 
         recyclerViewExposicoes = findViewById(R.id.recyclerviewExposicoesUsuarios)
-        recyclerViewExposicoes.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        recyclerViewExposicoes.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         recyclerViewExposicoes.setHasFixedSize(true)
 
         db = FirebaseFirestore.getInstance()
-        db.collection("Exposicao")
-            .get()
-            .addOnSuccessListener {
-                if(!it.isEmpty){
-                    for(data in it.documents){
+        db.collection("Exposicao").get().addOnSuccessListener {
+                if (!it.isEmpty) {
+                    for (data in it.documents) {
                         val exposicao: Exposicao? = data.toObject(Exposicao::class.java)
                         exposicao?.idExposicao = data.id
-                        if(exposicao != null){
+                        if (exposicao != null) {
                             listaExposicoes.add(exposicao)
                         }
                     }
                     recyclerViewExposicoes.adapter = adapterExposicao
                 }
-            }
-            .addOnFailureListener {
-                Toast.makeText(this,it.toString(), Toast.LENGTH_SHORT).show()
+            }.addOnFailureListener {
+                Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
             }
         busca.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -70,24 +68,26 @@ class MAHomeUsuario : AppCompatActivity() {
 
         })
     }
-    private fun fileList(query:String?) {
-            if(query != null){
-                val filteredList = ArrayList<Exposicao>()
-                for (i in listaExposicoes){
-                    if (i.nomeExposicao?.lowercase(Locale.ROOT)?.contains(query) == true){
-                        filteredList.add(i)
-                    }
-                }
-                if(filteredList.isEmpty()){
-//                    Toast.makeText(this,"Nenhuma exposição encontrada", Toast.LENGTH_SHORT).show()
-                }else{
-                    adapterExposicao.setFilteredList(filteredList)
+
+    private fun fileList(query: String?) {
+        if (query != null) {
+            val filteredList = ArrayList<Exposicao>()
+            for (i in listaExposicoes) {
+                if (i.nomeExposicao?.lowercase(Locale.ROOT)?.contains(query) == true) {
+                    filteredList.add(i)
                 }
             }
+            if (filteredList.isEmpty()) {
+//                    Toast.makeText(this,"Nenhuma exposição encontrada", Toast.LENGTH_SHORT).show()
+            } else {
+                adapterExposicao.setFilteredList(filteredList)
+            }
+        }
     }
+
     override fun onStart() {
         super.onStart()
-        btnSair.setOnClickListener{
+        btnSair.setOnClickListener {
             auth.signOut()
             startActivity(Intent(this, MALoginUsuario::class.java))
         }
