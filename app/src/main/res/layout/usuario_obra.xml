@@ -125,7 +125,7 @@
             <EditText
                 android:id="@+id/chatIA"
                 android:layout_width="360dp"
-                android:layout_height="59dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/tituloChatIA"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
