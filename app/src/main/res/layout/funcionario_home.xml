@@ -66,18 +66,19 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
+                android:fontFamily="@font/robotomedium"
                 android:text="Área de edições de exposições!"
                 android:textColor="@color/azulescuro"
-                android:textSize="20dp"
-                android:fontFamily="@font/robotomedium"
-                />
+                android:textSize="20dp" />
 
             <SearchView
                 android:id="@+id/busca"
                 android:layout_below="@id/subtitulo"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
                 android:background="@drawable/busca_background"
                 android:backgroundTint="@color/azulclaro"
                 android:iconifiedByDefault="false"
@@ -86,62 +87,60 @@
                 android:queryHint="Busque por alguma exposição"
                 ></SearchView>
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerviewExposicoesFuncionarios"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/busca"
-        android:layout_marginTop="-3dp"
-        tools:itemCount="2"
-        tools:listitem="@layout/funcionario_list_exposicoes_home_view"></androidx.recyclerview.widget.RecyclerView>
-
-    <ImageButton
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerviewExposicoesFuncionarios"
+                android:layout_width="wrap_content"
+                android:layout_height="446dp"
+                android:layout_below="@id/busca"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                tools:itemCount="4"
+                tools:listitem="@layout/funcionario_list_exposicoes_home_view"></androidx.recyclerview.widget.RecyclerView>
+            <ImageButton
         android:id="@+id/botaoaddexpo"
-        android:layout_width="match_parent"
+        android:layout_width="370dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/recyclerviewExposicoesFuncionarios"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:scaleType="fitXY"
+        android:scaleType="fitXY" android:layout_centerHorizontal="true"
         android:background="@drawable/busca_background"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="15dp"
         android:contentDescription="Botão para ajustar add uma nova exposição"
         android:src="@drawable/botaoaddexpo"></ImageButton>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="126dp"
-        android:layout_below="@id/botaoaddexpo"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="22dp"
-        android:layout_marginEnd="0dp"
-        android:orientation="horizontal"
-        android:layout_marginBottom="60dp"
-        >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="126dp"
+                android:layout_below="@id/botaoaddexpo"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                android:layout_marginBottom="50dp"
+                >
 
-        <ImageView
-            android:layout_width="254dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="-80dp"
-            android:paddingRight="-100dp"
-            android:src="@drawable/ema">
+                <ImageView
+                    android:layout_width="254dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-80dp"
+                    android:paddingRight="-100dp"
+                    android:src="@drawable/ema">
 
-        </ImageView>
+                </ImageView>
 
-        <Button
-            android:id="@+id/botaoSair"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="90dp"
-            android:layout_marginTop="50dp"
-            android:backgroundTint="@color/azulclaro"
-            android:text="logout"
-            android:textColor="@color/azulescuro"
-            android:textStyle="bold"></Button>
-    </LinearLayout>
-</RelativeLayout>
+                <Button
+                    android:id="@+id/botaoSair"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="140dp"
+                    android:layout_marginTop="50dp"
+                    android:backgroundTint="@color/azulclaro"
+                    android:text="logout"
+                    android:textColor="@color/azulescuro"
+                    android:textStyle="bold"></Button>
+            </LinearLayout>
+        </RelativeLayout>
     </ScrollView>
 
     <com.google.android.material.navigation.NavigationView

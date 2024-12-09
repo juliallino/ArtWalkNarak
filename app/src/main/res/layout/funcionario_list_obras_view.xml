@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="60dp"
-    android:layout_height="60dp"
+    android:layout_width="100dp"
+    android:layout_height="100dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center"
     android:layout_margin="10dp"
@@ -16,8 +16,8 @@
     >
     <ImageButton
         android:id="@+id/imagemObra"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:contentDescription="Botão da imagem"
         android:scaleType="fitXY"
         android:backgroundTint="@color/white"

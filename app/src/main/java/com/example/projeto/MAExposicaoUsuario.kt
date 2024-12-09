@@ -49,7 +49,7 @@ class MAExposicaoUsuario : AppCompatActivity() {
         botaoVoltarTela = findViewById(R.id.voltarParaTelaHome)
 
         recyclerViewObras = findViewById(R.id.obrasRecyclerView)
-        recyclerViewObras.layoutManager = GridLayoutManager(this, 5)
+        recyclerViewObras.layoutManager = GridLayoutManager(this, 3)
         recyclerViewObras.setHasFixedSize(true)
 
 

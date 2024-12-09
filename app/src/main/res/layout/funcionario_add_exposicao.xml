@@ -120,11 +120,13 @@
 
     <ImageView
         android:id="@+id/imagemExposicao"
-        android:layout_width="325dp"
-        android:layout_height="95dp"
+        android:layout_width="370dp"
+        android:layout_height="120dp"
         android:layout_below="@id/imagemExposicaoTitulo"
         android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
         android:background="@drawable/edit_backgorund"
         android:backgroundTint="@color/azulclaro"
         android:scaleType="fitXY"
@@ -179,6 +181,7 @@
             android:id="@+id/encerradaBotao"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
             android:backgroundTint="@color/cinza"
             android:text="ENCERRADA"
             android:textSize="13dp"
@@ -204,7 +207,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/finalizarEdicao"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="40dp"
+        >
 
         <Button
             android:id="@+id/salvarBotao"
@@ -224,7 +229,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/vermelhoclaro"
             android:textSize="13dp"
-            android:text="EXCLUIR OBRA"
+            android:text="EXCLUIR EXPOSIÇÃO"
             android:textColor="@color/azulclaro"
             android:textStyle="bold"
             app:rippleColor="@color/azulclaro"></Button>

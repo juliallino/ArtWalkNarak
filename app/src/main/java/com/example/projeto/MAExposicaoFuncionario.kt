@@ -41,7 +41,7 @@ class MAExposicaoFuncionario : AppCompatActivity() {
         busca = findViewById(R.id.busca)
 
         recyclerViewObras = findViewById(R.id.obrasRecyclerView)
-        recyclerViewObras.layoutManager = GridLayoutManager(this, 5)
+        recyclerViewObras.layoutManager = GridLayoutManager(this, 3)
         recyclerViewObras.setHasFixedSize(true)
 
 

@@ -51,15 +51,18 @@
 
             <SearchView
                 android:id="@+id/busca"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
                 android:background="@drawable/busca_background"
                 android:backgroundTint="@color/azulclaro"
                 android:iconifiedByDefault="false"
                 android:layout_centerHorizontal="true"
                 android:queryBackground="@color/transparente"
                 android:queryHint="   Busque por alguma obra"></SearchView>
+
 
 
     <LinearLayout
@@ -98,17 +101,17 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/obrasRecyclerView"
-                android:layout_centerHorizontal="true"
-                android:layout_width="333dp"
-                android:layout_height="344dp"
+                android:layout_width="match_parent"
+                android:layout_height="480dp"
                 android:layout_below="@id/sobreExposicao"
+                android:layout_centerHorizontal="true"
                 android:layout_marginLeft="15dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginRight="15dp"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:rippleColor="@color/azulclaro"
-                app:spanCount="5"
-                tools:itemCount="20"
+                app:spanCount="3"
+                tools:itemCount="10"
                 tools:listitem="@layout/funcionario_list_obras_view"></androidx.recyclerview.widget.RecyclerView>
         </RelativeLayout>
     </ScrollView>
