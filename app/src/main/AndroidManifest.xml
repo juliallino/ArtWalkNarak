@@ -33,7 +33,8 @@
         <activity
             android:windowSoftInputMode="adjustResize"
             android:name=".MAObraUsuario"
-            android:exported="false" />
+            android:exported="false"
+        />
         <activity
             android:name=".MAExposicaoUsuario"
             android:exported="false" />
@@ -42,7 +43,8 @@
             android:exported="false" />
         <activity
             android:name=".MAAddObra"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".MAExposicaoFuncionario"
             android:exported="true"/>
