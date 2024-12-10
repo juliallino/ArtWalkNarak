@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center"
+    android:layout_margin="20dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="3dp">
+
+    <RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
+    <TextView
+        android:id="@+id/nomeExposicao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="Nome da Exposição"
+        android:textColor="@color/azulmedio"
+        android:textSize="20dp"
+        android:textStyle="bold"></TextView>
+
+    <ImageButton
+        android:id="@+id/imagemExposicao"
+        android:layout_width="285dp"
+        android:layout_height="100dp"
+        android:layout_below="@id/nomeExposicao"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:contentDescription="Botão da imagem"
+        android:src="@drawable/centelhas"
+        android:background="@color/azulclaro"
+        android:scaleType="fitXY"
+        android:backgroundTint="@color/azulclaro"
+        ></ImageButton>
+
+    <ImageButton
+        android:id="@+id/editExposicao"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignTop="@id/imagemExposicao"
+        android:layout_marginLeft="15dp"
+        android:layout_toEndOf="@id/imagemExposicao"
+        android:backgroundTint="#00FFFFFF"
+        android:contentDescription="Botão para editar a exposição"
+        android:src="@drawable/baseline_edit_24"
+        ></ImageButton>
+
+
+</RelativeLayout>
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:id="@+id/layouttitulo"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/azulclaro"
+        android:orientation="horizontal"
+        android:elevation="20dp"
+        >
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/logohomeunifor"></ImageView>
+        <TextView
+            android:id="@+id/Unifor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/azulclaro"
+            android:layout_marginTop="33dp"
+            android:text="Unifor"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/azulescuro"
+            android:textSize="20dp"
+            android:fontFamily="@font/robotomedium"
+            ></TextView>
+        <TextView
+            android:id="@+id/titulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="33dp"
+            android:layout_marginLeft="5dp"
+            android:background="@color/azulclaro"
+            android:text="Espaço Cultural"
+            android:textColor="@color/azulescuro"
+            android:textSize="15dp"
+            android:fontFamily="@font/robotoregular"
+            ></TextView>
+
+    </LinearLayout>
+    <ScrollView
+        android:layout_below="@id/layouttitulo"
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_below="@id/layouttitulo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/subtitulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/robotomedium"
+                android:text="Área de edições de exposições!"
+                android:textColor="@color/azulescuro"
+                android:textSize="20dp" />
+
+            <SearchView
+                android:id="@+id/busca"
+                android:layout_below="@id/subtitulo"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/busca_background"
+                android:backgroundTint="@color/azulclaro"
+                android:iconifiedByDefault="false"
+                android:layout_centerHorizontal="true"
+                android:queryBackground="@color/transparente"
+                android:queryHint="Busque por alguma exposição"
+                ></SearchView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerviewExposicoesFuncionarios"
+                android:layout_width="wrap_content"
+                android:layout_height="446dp"
+                android:layout_below="@id/busca"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                tools:itemCount="4"
+                tools:listitem="@layout/funcionario_list_exposicoes_home_view"></androidx.recyclerview.widget.RecyclerView>
+            <ImageButton
+        android:id="@+id/botaoaddexpo"
+        android:layout_width="370dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/recyclerviewExposicoesFuncionarios"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:scaleType="fitXY" android:layout_centerHorizontal="true"
+        android:background="@drawable/busca_background"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="15dp"
+        android:contentDescription="Botão para ajustar add uma nova exposição"
+        android:src="@drawable/botaoaddexpo"></ImageButton>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="126dp"
+                android:layout_below="@id/botaoaddexpo"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                android:layout_marginBottom="50dp"
+                >
+
+                <ImageView
+                    android:layout_width="254dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-80dp"
+                    android:paddingRight="-100dp"
+                    android:src="@drawable/ema">
+
+                </ImageView>
+
+                <Button
+                    android:id="@+id/botaoSair"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="140dp"
+                    android:layout_marginTop="50dp"
+                    android:backgroundTint="@color/azulclaro"
+                    android:text="logout"
+                    android:textColor="@color/azulescuro"
+                    android:textStyle="bold"></Button>
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigationBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/azulclaro"
+       android:padding="10dp"></com.google.android.material.navigation.NavigationView>
+
+
+</RelativeLayout>

@@ -1,9 +1,9 @@
 package com.example.projeto.model
 
 data class Obra(
-    val nomeObra: String,
-    //  val imagemObra: String por ser url
-    val imagemObra: Int,
-    val editObra: Int,
-    val descricao: String
+    var idObra: String? = null,
+    var nomeObra: String? = null,
+    var imagemObra: String? = null,
+    var descricaoObra: String? = null,
+    var idExposicao: String?= null
 )

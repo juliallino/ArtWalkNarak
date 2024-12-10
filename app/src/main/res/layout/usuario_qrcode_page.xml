@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MAQRCodePage">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/QRcodeTool"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/azulclaro"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme">
+
+        <ImageButton
+            android:id="@+id/voltarParaTelaHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/azulclaro"
+            android:src="@drawable/baseline_arrow_circle_left_24"></ImageButton>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingLeft="15dp"
+            android:text="SCANNER DE OBRA"
+            android:textColor="@color/azulescuro"
+            android:textSize="20dp"
+            android:textStyle="bold"></TextView>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/instrucao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/QRcodeTool"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="10dp"
+        android:text="Leia o QrCode de alguma obra"
+        android:textColor="@color/azulescuro"
+        android:textSize="20dp"
+        android:textStyle="bold|italic"></TextView>
+
+    <TextView
+        android:id="@+id/instrucao2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/instrucao"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="300dp"
+        android:layout_marginBottom="10dp"
+        android:text="Aproxime sua câmera do totem"
+        android:textColor="@color/azulescuro"
+        android:textSize="20dp"
+        android:textStyle="bold|italic"></TextView>
+
+</RelativeLayout>

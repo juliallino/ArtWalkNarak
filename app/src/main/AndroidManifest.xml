@@ -2,24 +2,54 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logounifor"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logounifor"
         android:supportsRtl="true"
         android:theme="@style/Theme.Projeto"
         tools:targetApi="35">
         <activity
-            android:name=".MAEdicaoObras"
+            android:name=".MACadastroUsuario"
             android:exported="false" />
         <activity
-            android:name=".MAExposicao"
+            android:name=".MAQRCodePage"
             android:exported="false" />
         <activity
-            android:name=".MAEdicaoExposicao"
+            android:windowSoftInputMode="adjustResize"
+            android:name=".MAObraUsuario"
+            android:exported="false"
+        />
+        <activity
+            android:name=".MAExposicaoUsuario"
+            android:exported="false" />
+        <activity
+            android:name=".MAHomeUsuario"
+            android:exported="false" />
+        <activity
+            android:name=".MAAddObra"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".MAExposicaoFuncionario"
+            android:exported="true"/>
+        <activity
+            android:name=".MAAddExposicao"
             android:exported="false" />
         <activity
             android:name=".MAHomeFuncionario"

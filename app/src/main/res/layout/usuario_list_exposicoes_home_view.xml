@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center"
+    android:layout_marginTop="20dp"
+    android:layout_marginLeft="20dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="3dp">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+        <TextView
+            android:id="@+id/nomeExposicao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nome da Exposição"
+            android:textColor="@color/azulmedio"
+            android:textSize="20dp"
+            android:layout_marginBottom="10dp"
+            android:textStyle="bold"></TextView>
+
+        <ImageButton
+            android:id="@+id/imagemExposicao"
+            android:layout_width="285dp"
+            android:layout_height="100dp"
+            android:layout_below="@id/nomeExposicao"
+            android:background="@color/azulclaro"
+            android:backgroundTint="@color/azulclaro"
+            android:contentDescription="Botão da imagem"
+            android:scaleType="fitXY"
+            android:src="@drawable/centelhas"></ImageButton>
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

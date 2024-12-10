@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:scrollbars="vertical"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".MAAddObra">
+    <LinearLayout
+        android:id="@+id/sobreExposicaoTool"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/azulclaro"
+        android:orientation="horizontal"
+        android:elevation="20dp"
+        >
+        <ImageButton
+            android:id="@+id/voltarParaTelaHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="-15dp"
+            android:backgroundTint="@color/azulclaro"
+            android:src="@drawable/baseline_arrow_back_ios_24"
+            app:rippleColor="@color/azulmedio"
+            ></ImageButton>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="37dp"
+            android:fontFamily="@font/robotomedium"
+            android:text="Editar e add Obras"
+            android:textColor="@color/azulescuro"
+            android:textSize="20dp"></TextView>
+
+    </LinearLayout>
+
+<ScrollView
+    android:id="@+id/scroll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_below="@id/sobreExposicaoTool"
+    >
+
+    <RelativeLayout
+        android:id="@+id/relativelayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <TextView
+            android:id="@+id/nomeExposicao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="Nome da Obra:"
+            android:textColor="@color/azulescuro"
+            android:textSize="18dp"
+            android:textStyle="bold"></TextView>
+
+        <EditText
+            android:id="@+id/nomeObraEdit"
+            android:layout_width="379dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nomeExposicao"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/edit_backgorund"
+            android:backgroundTint="@color/azulclaro"
+            android:drawableLeft="@drawable/baseline_filter_frames_24"
+            android:drawablePadding="10dp"
+            android:hint="Nome da obra..."
+            android:padding="10dp"
+            android:textColorHint="#1E88E5"></EditText>
+
+        <TextView
+            android:id="@+id/descricaoObra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nomeObraEdit"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="Descrição da Obra:"
+            android:textColor="@color/azulescuro"
+            android:textSize="18dp"
+            android:textStyle="bold"></TextView>
+
+        <EditText
+            android:id="@+id/descricaoObraEdit"
+            android:layout_width="376dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/descricaoObra"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/edit_backgorund"
+            android:backgroundTint="@color/azulclaro"
+            android:drawableLeft="@drawable/baseline_description_24"
+            android:drawablePadding="10dp"
+            android:hint="Descrição da obra..."
+            android:padding="10dp"
+            android:textColorHint="#1E88E5"></EditText>
+
+        <TextView
+            android:id="@+id/imagemTituloObra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/descricaoObraEdit"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginBottom="10dp"
+            android:text="Imagem da obra:"
+            android:textColor="@color/azulescuro"
+            android:textSize="18dp"
+            android:textStyle="bold"></TextView>
+
+
+        <ImageView
+            android:id="@+id/imagemObra"
+            android:layout_width="124dp"
+            android:layout_height="124dp"
+            android:layout_below="@id/imagemTituloObra"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edit_backgorund"
+            android:backgroundTint="@color/azulclaro"
+            android:scaleType="fitXY"></ImageView>
+
+        <Button
+            android:id="@+id/uploadBotao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imagemObra"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="30dp"
+            android:backgroundTint="@color/black"
+            android:text="UPLOAD"
+            android:textColor="@color/azulclaro"
+            android:textStyle="bold"></Button>
+
+        <TextView
+            android:id="@+id/finalizarEdicao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/uploadBotao"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="Finalizar Edição:"
+            android:textColor="@color/azulescuro"
+            android:textSize="18dp"
+            android:textStyle="bold"></TextView>
+
+        <LinearLayout
+            android:id="@+id/botoesSalvarExcluirLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/finalizarEdicao"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="70dp">
+
+            <Button
+                android:id="@+id/salvarBotao"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="30dp"
+                android:backgroundTint="@color/azulmedio"
+                android:text="SALVAR \n MUDANÇAS"
+                android:textColor="@color/azulclaro"
+                android:textSize="13dp"
+                android:textStyle="bold"
+                app:rippleColor="@color/azulclaro"></Button>
+
+            <Button
+                android:id="@+id/excluirBotao"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/vermelhoclaro"
+                android:textSize="13dp"
+                android:text="EXCLUIR OBRA"
+                android:textColor="@color/azulclaro"
+                android:textStyle="bold"
+                app:rippleColor="@color/azulclaro"></Button>
+        </LinearLayout>
+
+    </RelativeLayout>
+</ScrollView>
+
+</RelativeLayout>

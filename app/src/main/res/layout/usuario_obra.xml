@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:scrollbars="vertical"
+    tools:context=".MAObraUsuario">
+
+
+    <LinearLayout
+        android:id="@+id/sobreExposicaoTool"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/azulclaro"
+        android:orientation="horizontal"
+        android:elevation="20dp"
+        >
+        <ImageButton
+            android:id="@+id/voltarParaTelaHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="-15dp"
+            android:layout_marginTop="30dp"
+            android:backgroundTint="@color/azulclaro"
+            android:src="@drawable/baseline_arrow_back_ios_24"
+            app:rippleColor="@color/azulmedio"
+            ></ImageButton>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="37dp"
+            android:fontFamily="@font/robotomedium"
+            android:text="Sobre a obra"
+            android:textColor="@color/azulescuro"
+            android:textSize="20dp"></TextView>
+
+    </LinearLayout>
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/sobreExposicaoTool">
+
+        <RelativeLayout
+            android:id="@+id/relativelayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/sobreObra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/nomeObra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="Batman"
+            android:textSize="20dp"
+            android:textStyle="bold|italic"
+            android:layout_gravity="center"
+            ></TextView>
+
+        <androidx.cardview.widget.CardView
+            android:adjustViewBounds="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:elevation="10dp"
+            app:cardCornerRadius="16dp"
+            >
+            <ImageView
+                android:id="@+id/imagemObra"
+                android:elevation="10dp"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_below="@id/nomeObra"
+                android:layout_centerHorizontal="true"
+                android:scaleType="fitXY"
+                android:layout_gravity="center"
+                android:background="@drawable/imagem_background"
+                android:backgroundTint="@color/azulclaro"
+                android:adjustViewBounds="true"
+                ></ImageView>
+        </androidx.cardview.widget.CardView>
+
+
+        <TextView
+            android:id="@+id/descricaoObra"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_below="@id/imagemObra"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="10dp"
+            android:text="Antes da perda de seus pais, Bruce Wayne era uma criança alegre e feliz, guardando boas memórias do tempo em que viveu na Mansão Wayne. Tendo se tornado introvertido e antissocial na adolescência, Bruce preferia a companhia de livros a pessoas. Ele tinha interesse em garotas, mas não se preocupava em gastar tempo com elas. Apesar das Indústrias Wayne serem capazes de lhe proporcionar grandes aposentos e o melhor conforto possível, \n\nBruce mantinha seu quarto na Torre Wayne o mais simples possível, acreditando que a praticidade de achar coisas mais rápido compensava o conforto exagerado que poderia ter com seu dinheiro. Bruce também sempre foi dedicado em sua vida estudantil, tirando as melhores notas possíveis, mas não se preocupando muito com tal resultado―ele de fato estudava por gosto, não pelo resultado"></TextView>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tituloChatIA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sobreObra"
+        android:layout_marginLeft="15dp"
+        android:drawableLeft="@drawable/baseline_smart_toy_24"
+        android:drawablePadding="10dp"
+        android:text="Possui alguma pergunta? Pergunte ao GEMINI:"
+        android:textColor="@color/azulescuro"
+        android:textStyle="bold"
+        ></TextView>
+
+            <EditText
+                android:id="@+id/chatIA"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tituloChatIA"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/edit_backgorund"
+                android:backgroundTint="@color/azulclaro"
+                android:hint="Digite sua pergunta...."
+                android:padding="10dp"
+                android:textColorHint="@color/azulescuro"
+                android:textSize="15dp"></EditText>
+
+
+    <Button
+        android:id="@+id/enivar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/chatIA"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="200dp"
+        android:backgroundTint="@color/azulescuro"
+        android:text="Enviar"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:rippleColor="@color/azulclaro"></Button>
+</RelativeLayout>
+    </ScrollView>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigationBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/azulclaro"
+        android:padding="10dp"
+        >
+        <ImageButton
+            android:id="@+id/desativaracessibilidade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginRight="35dp"
+            android:backgroundTint="#00FFFFFF"
+            android:padding="0dp"
+            android:src="@drawable/baseline_volume_off_24"></ImageButton>
+
+        <ImageButton
+            android:id="@+id/acessibilidadeObra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_margin="0dp"
+            android:backgroundTint="#00FFFFFF"
+            android:padding="0dp"
+            android:src="@drawable/baseline_volume_up_24"></ImageButton>
+    </com.google.android.material.navigation.NavigationView>
+
+</RelativeLayout>
